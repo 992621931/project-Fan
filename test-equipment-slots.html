@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Equipment Slot UI Test</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #ffffff;
+      min-height: 100vh;
+    }
+
+    .test-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      gap: 20px;
+    }
+
+    .panel {
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 12px;
+      padding: 20px;
+      backdrop-filter: blur(10px);
+    }
+
+    .left-panel {
+      flex: 0 0 250px;
+    }
+
+    .right-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    h1 {
+      margin: 0 0 20px 0;
+      font-size: 24px;
+      text-align: center;
+    }
+
+    h2 {
+      margin: 0 0 16px 0;
+      font-size: 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      padding-bottom: 8px;
+    }
+
+    .info-box {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .info-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .info-label {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .info-value {
+      font-weight: bold;
+    }
+
+    .event-log {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      padding: 16px;
+      max-height: 300px;
+      overflow-y: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+    }
+
+    .event-entry {
+      margin-bottom: 8px;
+      padding: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 4px;
+      border-left: 3px solid #3498db;
+    }
+
+    .event-time {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 11px;
+    }
+
+    .button {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s ease;
+      width: 100%;
+      margin-bottom: 8px;
+    }
+
+    .button:hover {
+      background: #2980b9;
+      transform: translateY(-2px);
+    }
+
+    .button.success {
+      background: #27ae60;
+    }
+
+    .button.success:hover {
+      background: #229954;
+    }
+
+    .button.danger {
+      background: #e74c3c;
+    }
+
+    .button.danger:hover {
+      background: #c0392b;
+    }
+  </style>
+</head>
+<body>
+  <div class="test-container">
+    <!-- Left Panel - Equipment Slots -->
+    <div class="panel left-panel">
+      <h2>装备栏测试</h2>
+      <div id="equipment-slot-container"></div>
+    </div>
+
+    <!-- Right Panel - Info and Controls -->
+    <div class="panel right-panel">
+      <div>
+        <h2>角色信息</h2>
+        <div class="info-box">
+          <div class="info-item">
+            <span class="info-label">角色名称:</span>
+            <span class="info-value">测试角色</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">等级:</span>
+            <span class="info-value">10</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">职业:</span>
+            <span class="info-value">战士</span>
+          </div>
+        </div>
+
+        <h2>测试控制</h2>
+        <button class="button success" onclick="equipWeapon()">装备武器</button>
+        <button class="button success" onclick="equipArmor()">装备护甲</button>
+        <button class="button success" onclick="equipOffhand()">装备副手</button>
+        <button class="button success" onclick="equipAccessory()">装备饰品</button>
+        <button class="button danger" onclick="unequipAll()">卸下全部装备</button>
+      </div>
+
+      <div>
+        <h2>事件日志</h2>
+        <div class="event-log" id="event-log">
+          <div class="event-entry">
+            <div class="event-time">系统启动</div>
+            <div>等待用户操作...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Mock implementation for testing
+    const eventLog = document.getElementById('event-log');
+
+    function logEvent(message, type = 'info') {
+      const entry = document.createElement('div');
+      entry.className = 'event-entry';
+      
+      const time = document.createElement('div');
+      time.className = 'event-time';
+      time.textContent = new Date().toLocaleTimeString();
+      
+      const msg = document.createElement('div');
+      msg.textContent = message;
+      
+      entry.appendChild(time);
+      entry.appendChild(msg);
+      
+      eventLog.insertBefore(entry, eventLog.firstChild);
+      
+      // Keep only last 20 entries
+      while (eventLog.children.length > 20) {
+        eventLog.removeChild(eventLog.lastChild);
+      }
+    }
+
+    function equipWeapon() {
+      logEvent('🗡️ 点击武器槽 - 打开仓库筛选武器', 'action');
+      logEvent('装备: 传说之剑 (+50 攻击力)', 'success');
+    }
+
+    function equipArmor() {
+      logEvent('🛡️ 点击护甲槽 - 打开仓库筛选护甲', 'action');
+      logEvent('装备: 龙鳞铠甲 (+80 防御力)', 'success');
+    }
+
+    function equipOffhand() {
+      logEvent('🗡️ 点击副手槽 - 打开仓库筛选副手装备', 'action');
+      logEvent('装备: 守护盾牌 (+30 防御力)', 'success');
+    }
+
+    function equipAccessory() {
+      logEvent('💍 点击饰品槽 - 打开仓库筛选饰品', 'action');
+      logEvent('装备: 力量戒指 (+15 力量)', 'success');
+    }
+
+    function unequipAll() {
+      logEvent('卸下所有装备', 'warning');
+      logEvent('所有装备槽已清空', 'info');
+    }
+
+    // Initialize
+    logEvent('EquipmentSlotUI 组件已加载', 'success');
+    logEvent('提示: 将鼠标悬停在装备槽上查看详细信息', 'info');
+    logEvent('提示: 点击装备槽打开仓库面板', 'info');
+  </script>
+</body>
+</html>

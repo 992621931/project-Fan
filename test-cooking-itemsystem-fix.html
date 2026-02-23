@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ItemSystem 加载测试</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .test-section {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .test-result {
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 4px;
+    }
+    .success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+    .error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #5568d3;
+    }
+  </style>
+</head>
+<body>
+  <h1>ItemSystem 加载测试</h1>
+  
+  <div class="test-section">
+    <h2>测试说明</h2>
+    <p>验证 ItemSystem 是否正确加载了 items.json 中的烹饪材料和菜品</p>
+  </div>
+
+  <div class="test-section">
+    <h2>测试结果</h2>
+    <div id="test-results"></div>
+    <button onclick="runTests()">运行测试</button>
+  </div>
+
+  <script type="module">
+    import { World } from './src/ecs/World.js';
+    import { ItemSystem } from './src/game/systems/ItemSystem.js';
+
+    window.runTests = async function() {
+      const resultsDiv = document.getElementById('test-results');
+      resultsDiv.innerHTML = '';
+
+      function addResult(message, success) {
+        const div = document.createElement('div');
+        div.className = `test-result ${success ? 'success' : 'error'}`;
+        div.textContent = message;
+        resultsDiv.appendChild(div);
+      }
+
+      try {
+        addResult('✓ 创建 World', true);
+        const world = new World();
+        
+        addResult('✓ 创建 ItemSystem', true);
+        const itemSystem = new ItemSystem(world);
+        
+        // Wait for async loading
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        // Test materials
+        const materials = [
+          'slime_sweet_pearl',
+          'smooth_snake_skin',
+          'mystic_mushroom',
+          'sweet_syrup_gland',
+          'two_headed_snake_liver',
+          'grass_mushroom_worm_thin_wing'
+        ];
+        
+        addResult('--- 检查烹饪材料 ---', true);
+        materials.forEach(materialId => {
+          const item = itemSystem.getItem(materialId);
+          if (item) {
+            addResult(`✓ 找到材料: ${item.name} (${materialId})`, true);
+          } else {
+            addResult(`✗ 未找到材料: ${materialId}`, false);
+          }
+        });
+        
+        // Test dishes
+        const dishes = [
+          'slime_qq_candy',
+          'sugar_pickled_snake_liver',
+          'fried_mushroom_slices',
+          'candied_mystic_mushroom',
+          'two_headed_snake_skin_jelly',
+          'crispy_wing_snake_skin_roll',
+          'grassland_set_meal'
+        ];
+        
+        addResult('--- 检查烹饪菜品 ---', true);
+        dishes.forEach(dishId => {
+          const item = itemSystem.getItem(dishId);
+          if (item) {
+            addResult(`✓ 找到菜品: ${item.name} (${dishId})`, true);
+          } else {
+            addResult(`✗ 未找到菜品: ${dishId}`, false);
+          }
+        });
+        
+        addResult('🎉 测试完成！', true);
+        
+      } catch (error) {
+        addResult(`❌ 测试失败: ${error.message}`, false);
+        console.error(error);
+      }
+    };
+  </script>
+</body>
+</html>

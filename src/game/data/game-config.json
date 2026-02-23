@@ -1,0 +1,1430 @@
+{
+  "version": "1.0.0",
+  "characters": [
+    {
+      "id": "starter_warrior",
+      "name": "艾伦",
+      "title": "见习",
+      "rarity": 0,
+      "isSpecial": false,
+      "baseAttributes": {
+        "strength": 12,
+        "agility": 8,
+        "wisdom": 5,
+        "technique": 7
+      },
+      "startingJob": "warrior",
+      "availableJobs": ["warrior"],
+      "description": "一个刚开始冒险的新手战士，拥有基础的剑术技能。"
+    },
+    {
+      "id": "starter_mage",
+      "name": "莉娜",
+      "title": "见习",
+      "rarity": 0,
+      "isSpecial": false,
+      "baseAttributes": {
+        "strength": 5,
+        "agility": 7,
+        "wisdom": 12,
+        "technique": 8
+      },
+      "startingJob": "mage",
+      "availableJobs": ["mage"],
+      "description": "一个初学魔法的年轻法师，对元素魔法有天赋。"
+    },
+    {
+      "id": "veteran_knight",
+      "name": "加雷斯",
+      "title": "老兵",
+      "rarity": 1,
+      "isSpecial": false,
+      "baseAttributes": {
+        "strength": 15,
+        "agility": 10,
+        "wisdom": 8,
+        "technique": 12
+      },
+      "startingJob": "warrior",
+      "availableJobs": ["warrior"],
+      "description": "经验丰富的骑士，曾参与过多次重要战役。"
+    },
+    {
+      "id": "master_archer",
+      "name": "希尔薇",
+      "title": "神射手",
+      "rarity": 2,
+      "isSpecial": false,
+      "baseAttributes": {
+        "strength": 10,
+        "agility": 18,
+        "wisdom": 12,
+        "technique": 15
+      },
+      "startingJob": "ranger",
+      "availableJobs": ["ranger"],
+      "description": "传说中的神射手，箭无虚发，能在百步之外射中蚂蚁。"
+    },
+    {
+      "id": "legendary_sage",
+      "name": "梅林",
+      "title": "贤者",
+      "rarity": 3,
+      "isSpecial": true,
+      "baseAttributes": {
+        "strength": 8,
+        "agility": 10,
+        "wisdom": 25,
+        "technique": 20
+      },
+      "startingJob": "mage",
+      "availableJobs": ["mage"],
+      "description": "古老的贤者，掌握着失传的魔法知识，是魔法界的传奇人物。"
+    },
+    {
+      "id": "dragon_slayer",
+      "name": "西格弗里德",
+      "title": "屠龙者",
+      "rarity": 3,
+      "isSpecial": true,
+      "baseAttributes": {
+        "strength": 22,
+        "agility": 15,
+        "wisdom": 10,
+        "technique": 18
+      },
+      "startingJob": "berserker",
+      "availableJobs": ["warrior", "berserker"],
+      "description": "传说中的屠龙英雄，曾独自击败古龙，拥有无与伦比的战斗技巧。"
+    }
+  ],
+  "items": [
+    {
+      "id": "basic_sword",
+      "name": "铁剑",
+      "description": "一把普通的铁制长剑，适合新手使用。",
+      "type": "equipment",
+      "rarity": 0,
+      "stackSize": 1,
+      "baseValue": 50,
+      "equipmentSlot": "weapon",
+      "attributeModifiers": [
+        {
+          "attribute": "attack",
+          "value": 10,
+          "type": "flat"
+        }
+      ]
+    },
+    {
+      "id": "steel_sword",
+      "name": "钢剑",
+      "description": "精钢打造的长剑，锋利且耐用。",
+      "type": "equipment",
+      "rarity": 1,
+      "stackSize": 1,
+      "baseValue": 150,
+      "equipmentSlot": "weapon",
+      "attributeModifiers": [
+        {
+          "attribute": "attack",
+          "value": 25,
+          "type": "flat"
+        },
+        {
+          "attribute": "critRate",
+          "value": 5,
+          "type": "flat"
+        }
+      ]
+    },
+    {
+      "id": "mithril_sword",
+      "name": "秘银剑",
+      "description": "用珍贵的秘银锻造的神剑，轻盈而锋利。",
+      "type": "equipment",
+      "rarity": 2,
+      "stackSize": 1,
+      "baseValue": 500,
+      "equipmentSlot": "weapon",
+      "attributeModifiers": [
+        {
+          "attribute": "attack",
+          "value": 45,
+          "type": "flat"
+        },
+        {
+          "attribute": "critRate",
+          "value": 12,
+          "type": "flat"
+        },
+        {
+          "attribute": "moveSpeed",
+          "value": 10,
+          "type": "percentage"
+        }
+      ]
+    },
+    {
+      "id": "excalibur",
+      "name": "王者之剑",
+      "description": "传说中的圣剑，只有真正的王者才能挥舞。",
+      "type": "equipment",
+      "rarity": 3,
+      "stackSize": 1,
+      "baseValue": 2000,
+      "equipmentSlot": "weapon",
+      "attributeModifiers": [
+        {
+          "attribute": "attack",
+          "value": 80,
+          "type": "flat"
+        },
+        {
+          "attribute": "critRate",
+          "value": 20,
+          "type": "flat"
+        },
+        {
+          "attribute": "critDamage",
+          "value": 50,
+          "type": "percentage"
+        }
+      ]
+    },
+    {
+      "id": "wooden_staff",
+      "name": "木杖",
+      "description": "简单的木制法杖，能够引导基础魔法。",
+      "type": "equipment",
+      "rarity": 0,
+      "stackSize": 1,
+      "baseValue": 40,
+      "equipmentSlot": "weapon",
+      "attributeModifiers": [
+        {
+          "attribute": "magicPower",
+          "value": 8,
+          "type": "flat"
+        }
+      ]
+    },
+    {
+      "id": "crystal_staff",
+      "name": "水晶法杖",
+      "description": "镶嵌着魔法水晶的法杖，能够放大魔法威力。",
+      "type": "equipment",
+      "rarity": 2,
+      "stackSize": 1,
+      "baseValue": 400,
+      "equipmentSlot": "weapon",
+      "attributeModifiers": [
+        {
+          "attribute": "magicPower",
+          "value": 35,
+          "type": "flat"
+        },
+        {
+          "attribute": "manaRegen",
+          "value": 20,
+          "type": "percentage"
+        }
+      ]
+    },
+    {
+      "id": "leather_armor",
+      "name": "皮甲",
+      "description": "轻便的皮制护甲，提供基础防护。",
+      "type": "equipment",
+      "rarity": 0,
+      "stackSize": 1,
+      "baseValue": 60,
+      "equipmentSlot": "armor",
+      "attributeModifiers": [
+        {
+          "attribute": "defense",
+          "value": 8,
+          "type": "flat"
+        }
+      ]
+    },
+    {
+      "id": "plate_armor",
+      "name": "板甲",
+      "description": "厚重的金属板甲，提供强大的防护能力。",
+      "type": "equipment",
+      "rarity": 1,
+      "stackSize": 1,
+      "baseValue": 200,
+      "equipmentSlot": "armor",
+      "attributeModifiers": [
+        {
+          "attribute": "defense",
+          "value": 20,
+          "type": "flat"
+        },
+        {
+          "attribute": "resistance",
+          "value": 10,
+          "type": "flat"
+        }
+      ]
+    },
+    {
+      "id": "health_potion",
+      "name": "生命药水",
+      "description": "恢复生命值的红色药水。",
+      "type": "consumable",
+      "rarity": 0,
+      "stackSize": 99,
+      "baseValue": 25,
+      "effects": [
+        {
+          "type": "heal",
+          "attribute": "health",
+          "value": 50,
+          "duration": 0
+        }
+      ]
+    },
+    {
+      "id": "mana_potion",
+      "name": "魔法药水",
+      "description": "恢复魔法值的蓝色药水。",
+      "type": "consumable",
+      "rarity": 0,
+      "stackSize": 99,
+      "baseValue": 30,
+      "effects": [
+        {
+          "type": "restore",
+          "attribute": "mana",
+          "value": 40,
+          "duration": 0
+        }
+      ]
+    },
+    {
+      "id": "strength_buff",
+      "name": "力量药剂",
+      "description": "临时提升力量的魔法药剂。",
+      "type": "consumable",
+      "rarity": 1,
+      "stackSize": 20,
+      "baseValue": 80,
+      "effects": [
+        {
+          "type": "buff",
+          "attribute": "strength",
+          "value": 5,
+          "duration": 300
+        }
+      ]
+    },
+    {
+      "id": "iron_ore",
+      "name": "铁矿石",
+      "description": "用于锻造的基础金属矿石。",
+      "type": "material",
+      "rarity": 0,
+      "stackSize": 999,
+      "baseValue": 5,
+      "materialType": "metal",
+      "quality": 50
+    },
+    {
+      "id": "mithril_ore",
+      "name": "秘银矿石",
+      "description": "珍贵的魔法金属矿石，极其稀有。",
+      "type": "material",
+      "rarity": 2,
+      "stackSize": 99,
+      "baseValue": 100,
+      "materialType": "metal",
+      "quality": 85
+    },
+    {
+      "id": "healing_herb",
+      "name": "治疗草药",
+      "description": "珍贵的药用植物，可用于制作治疗药剂。",
+      "type": "material",
+      "rarity": 1,
+      "stackSize": 99,
+      "baseValue": 15,
+      "materialType": "herb",
+      "quality": 60
+    },
+    {
+      "id": "wheat",
+      "name": "小麦",
+      "description": "基础的粮食作物，可用于制作面包。",
+      "type": "food",
+      "rarity": 0,
+      "stackSize": 999,
+      "baseValue": 2,
+      "materialType": "food",
+      "quality": 40
+    },
+    {
+      "id": "bread",
+      "name": "面包",
+      "description": "香甜的面包，能够恢复少量生命值。",
+      "type": "food",
+      "rarity": 0,
+      "stackSize": 99,
+      "baseValue": 8,
+      "effects": [
+        {
+          "type": "heal",
+          "attribute": "health",
+          "value": 20,
+          "duration": 0
+        }
+      ]
+    },
+    {
+      "id": "wheat_seed",
+      "name": "小麦种子",
+      "description": "可以种植的小麦种子。",
+      "type": "seed",
+      "rarity": 0,
+      "stackSize": 999,
+      "baseValue": 1
+    }
+  ],
+  "recipes": [
+    {
+      "id": "craft_iron_sword",
+      "name": "锻造铁剑",
+      "description": "使用铁矿石锻造基础的铁剑。",
+      "type": "equipment",
+      "requirements": [
+        {
+          "type": "skill",
+          "id": "blacksmithing",
+          "level": 1,
+          "required": true
+        }
+      ],
+      "materials": [
+        {
+          "itemId": "iron_ore",
+          "quantity": 3,
+          "qualityMin": 30,
+          "consumeOnUse": true
+        }
+      ],
+      "result": {
+        "itemId": "basic_sword",
+        "baseQuantity": 1,
+        "qualityInfluence": {
+          "attributeMultiplier": 0.1,
+          "quantityChance": 0.05,
+          "rarityBonus": 0.02
+        },
+        "rarityChance": [
+          {
+            "rarity": 0,
+            "baseChance": 0.9,
+            "qualityBonus": 0.001,
+            "skillBonus": 0.01
+          },
+          {
+            "rarity": 1,
+            "baseChance": 0.1,
+            "qualityBonus": 0.002,
+            "skillBonus": 0.015
+          }
+        ],
+        "bonusResults": []
+      },
+      "successRate": 0.95,
+      "experienceGain": 10,
+      "craftingTime": 300,
+      "unlockConditions": []
+    },
+    {
+      "id": "bake_bread",
+      "name": "烘焙面包",
+      "description": "使用小麦制作香甜的面包。",
+      "type": "food",
+      "requirements": [
+        {
+          "type": "skill",
+          "id": "cooking",
+          "level": 1,
+          "required": true
+        }
+      ],
+      "materials": [
+        {
+          "itemId": "wheat",
+          "quantity": 2,
+          "qualityMin": 20,
+          "consumeOnUse": true
+        }
+      ],
+      "result": {
+        "itemId": "bread",
+        "baseQuantity": 3,
+        "qualityInfluence": {
+          "attributeMultiplier": 0.2,
+          "quantityChance": 0.1,
+          "rarityBonus": 0.01
+        },
+        "rarityChance": [
+          {
+            "rarity": 0,
+            "baseChance": 1.0,
+            "qualityBonus": 0.0,
+            "skillBonus": 0.0
+          }
+        ],
+        "bonusResults": []
+      },
+      "successRate": 0.98,
+      "experienceGain": 5,
+      "craftingTime": 120,
+      "unlockConditions": []
+    },
+    {
+      "id": "brew_health_potion",
+      "name": "调制生命药水",
+      "description": "使用草药调制恢复生命的药水。",
+      "type": "alchemy",
+      "requirements": [
+        {
+          "type": "skill",
+          "id": "alchemy",
+          "level": 1,
+          "required": true
+        }
+      ],
+      "materials": [
+        {
+          "itemId": "healing_herb",
+          "quantity": 1,
+          "qualityMin": 25,
+          "consumeOnUse": true
+        }
+      ],
+      "result": {
+        "itemId": "health_potion",
+        "baseQuantity": 2,
+        "qualityInfluence": {
+          "attributeMultiplier": 0.3,
+          "quantityChance": 0.15,
+          "rarityBonus": 0.02
+        },
+        "rarityChance": [
+          {
+            "rarity": 0,
+            "baseChance": 0.9,
+            "qualityBonus": 0.001,
+            "skillBonus": 0.01
+          },
+          {
+            "rarity": 1,
+            "baseChance": 0.1,
+            "qualityBonus": 0.002,
+            "skillBonus": 0.015
+          }
+        ],
+        "bonusResults": []
+      },
+      "successRate": 0.9,
+      "experienceGain": 8,
+      "craftingTime": 180,
+      "unlockConditions": []
+    }
+  ],
+  "dungeons": [
+    {
+      "id": "goblin_cave",
+      "name": "哥布林洞穴",
+      "description": "一个被哥布林占据的小洞穴，适合新手冒险者。",
+      "difficulty": 1,
+      "requiredLevel": 1,
+      "encounters": [
+        {
+          "id": "goblin_patrol",
+          "type": "combat",
+          "enemies": [
+            {
+              "id": "goblin_warrior",
+              "name": "哥布林战士",
+              "level": 2,
+              "attributes": {
+                "strength": 6,
+                "agility": 8,
+                "wisdom": 3,
+                "technique": 5
+              },
+              "health": 40,
+              "skills": ["basic_attack"],
+              "dropTable": [
+                {
+                  "type": "currency",
+                  "currency": "gold",
+                  "amount": 15,
+                  "chance": 1.0
+                },
+                {
+                  "type": "item",
+                  "id": "iron_ore",
+                  "amount": 1,
+                  "chance": 0.3
+                }
+              ]
+            }
+          ],
+          "weight": 0.6
+        },
+        {
+          "id": "treasure_chest",
+          "type": "treasure",
+          "rewards": [
+            {
+              "type": "currency",
+              "currency": "gold",
+              "amount": 50,
+              "chance": 1.0
+            },
+            {
+              "type": "item",
+              "id": "health_potion",
+              "amount": 2,
+              "chance": 0.8
+            }
+          ],
+          "weight": 0.4
+        }
+      ],
+      "rewards": [
+        {
+          "type": "experience",
+          "amount": 50,
+          "chance": 1.0
+        }
+      ],
+      "unlockConditions": []
+    },
+    {
+      "id": "ancient_ruins",
+      "name": "古代遗迹",
+      "description": "充满魔法陷阱和古老秘密的遗迹。",
+      "difficulty": 3,
+      "requiredLevel": 8,
+      "encounters": [
+        {
+          "id": "skeleton_guard",
+          "type": "combat",
+          "enemies": [
+            {
+              "id": "skeleton_warrior",
+              "name": "骷髅战士",
+              "level": 10,
+              "attributes": {
+                "strength": 14,
+                "agility": 12,
+                "wisdom": 6,
+                "technique": 10
+              },
+              "health": 80,
+              "skills": ["bone_strike"],
+              "dropTable": [
+                {
+                  "type": "currency",
+                  "currency": "gold",
+                  "amount": 40,
+                  "chance": 1.0
+                },
+                {
+                  "type": "item",
+                  "id": "mithril_ore",
+                  "amount": 1,
+                  "chance": 0.1
+                }
+              ]
+            }
+          ],
+          "weight": 1.0
+        }
+      ],
+      "rewards": [
+        {
+          "type": "experience",
+          "amount": 200,
+          "chance": 1.0
+        }
+      ],
+      "unlockConditions": [
+        {
+          "type": "level",
+          "value": 8,
+          "description": "需要角色等级达到8级"
+        }
+      ]
+    }
+  ],
+  "jobs": [
+    {
+      "id": "warrior",
+      "name": "战士",
+      "description": "近战物理职业，擅长使用剑盾进行战斗。",
+      "attributeGrowth": {
+        "strength": 5,
+        "agility": 0,
+        "wisdom": 0,
+        "technique": 0
+      },
+      "grantedSkills": ["combat_stance"],
+      "unlockConditions": [
+        {
+          "type": "noJob",
+          "description": "需要无职业"
+        },
+        {
+          "type": "attribute",
+          "attribute": "strength",
+          "value": 5,
+          "description": "需要力量≥5"
+        }
+      ],
+      "prerequisiteJob": null
+    },
+    {
+      "id": "mage",
+      "name": "魔法师",
+      "description": "远程魔法职业，使用元素魔法攻击敌人。",
+      "attributeGrowth": {
+        "strength": 0,
+        "agility": 0,
+        "wisdom": 5,
+        "technique": 0
+      },
+      "grantedSkills": ["fireball"],
+      "unlockConditions": [
+        {
+          "type": "noJob",
+          "description": "需要无职业"
+        },
+        {
+          "type": "attribute",
+          "attribute": "wisdom",
+          "value": 5,
+          "description": "需要智慧≥5"
+        }
+      ],
+      "prerequisiteJob": null
+    },
+    {
+      "id": "ranger",
+      "name": "游侠",
+      "description": "远程物理职业，使用弓箭进行精准射击。",
+      "attributeGrowth": {
+        "strength": 0,
+        "agility": 5,
+        "wisdom": 0,
+        "technique": 0
+      },
+      "grantedSkills": ["piercing_arrow"],
+      "unlockConditions": [
+        {
+          "type": "noJob",
+          "description": "需要无职业"
+        },
+        {
+          "type": "attribute",
+          "attribute": "agility",
+          "value": 5,
+          "description": "需要敏捷≥5"
+        }
+      ],
+      "prerequisiteJob": null
+    },
+    {
+      "id": "priest",
+      "name": "牧师",
+      "description": "支援职业，专门治疗和辅助队友。",
+      "attributeGrowth": {
+        "strength": 2,
+        "agility": 2,
+        "wisdom": 2,
+        "technique": 2
+      },
+      "grantedSkills": ["sanctuary"],
+      "unlockConditions": [
+        {
+          "type": "noJob",
+          "description": "需要无职业"
+        },
+        {
+          "type": "attribute",
+          "attribute": "strength",
+          "value": 3,
+          "description": "需要力量≥3"
+        },
+        {
+          "type": "attribute",
+          "attribute": "wisdom",
+          "value": 3,
+          "description": "需要智慧≥3"
+        },
+        {
+          "type": "attribute",
+          "attribute": "agility",
+          "value": 3,
+          "description": "需要敏捷≥3"
+        },
+        {
+          "type": "attribute",
+          "attribute": "technique",
+          "value": 3,
+          "description": "需要技巧≥3"
+        }
+      ],
+      "prerequisiteJob": null
+    },
+    {
+      "id": "berserker",
+      "name": "狂战士",
+      "description": "狂暴的战士，以力量压制敌人。",
+      "attributeGrowth": {
+        "strength": 15,
+        "agility": 0,
+        "wisdom": 0,
+        "technique": 0
+      },
+      "grantedMasterSkill": "hot_blood_soul",
+      "unlockConditions": [
+        {
+          "type": "level",
+          "value": 10,
+          "description": "需要等级≥10"
+        },
+        {
+          "type": "attribute",
+          "attribute": "strength",
+          "value": 15,
+          "description": "需要力量≥15"
+        }
+      ],
+      "prerequisiteJob": "warrior"
+    },
+    {
+      "id": "guardian",
+      "name": "守卫",
+      "description": "坚不可摧的防御者，保护队友免受伤害。",
+      "attributeGrowth": {
+        "strength": 0,
+        "agility": 0,
+        "wisdom": 0,
+        "technique": 0,
+        "maxHP": 100
+      },
+      "grantedMasterSkill": "iron_fortress",
+      "unlockConditions": [
+        {
+          "type": "level",
+          "value": 10,
+          "description": "需要等级≥10"
+        },
+        {
+          "type": "derivedStat",
+          "stat": "defense",
+          "value": 20,
+          "description": "需要防御力≥20"
+        }
+      ],
+      "prerequisiteJob": "warrior"
+    },
+    {
+      "id": "elementalist",
+      "name": "元素师",
+      "description": "掌控元素之力的魔法大师。",
+      "attributeGrowth": {
+        "strength": 0,
+        "agility": 0,
+        "wisdom": 15,
+        "technique": 0
+      },
+      "grantedMasterSkill": "mana_burst",
+      "unlockConditions": [
+        {
+          "type": "level",
+          "value": 10,
+          "description": "需要等级≥10"
+        },
+        {
+          "type": "attribute",
+          "attribute": "wisdom",
+          "value": 15,
+          "description": "需要智慧≥15"
+        }
+      ],
+      "prerequisiteJob": "mage"
+    },
+    {
+      "id": "warlock",
+      "name": "咒术师",
+      "description": "精通诅咒与黑暗魔法的施法者。",
+      "attributeGrowth": {
+        "strength": 0,
+        "agility": 0,
+        "wisdom": 8,
+        "technique": 8
+      },
+      "grantedMasterSkill": "double_pupil",
+      "unlockConditions": [
+        {
+          "type": "level",
+          "value": 10,
+          "description": "需要等级≥10"
+        },
+        {
+          "type": "attribute",
+          "attribute": "wisdom",
+          "value": 10,
+          "description": "需要智慧≥10"
+        },
+        {
+          "type": "attribute",
+          "attribute": "technique",
+          "value": 5,
+          "description": "需要技巧≥5"
+        }
+      ],
+      "prerequisiteJob": "mage"
+    },
+    {
+      "id": "hunter",
+      "name": "猎杀者",
+      "description": "致命的猎手，追踪并消灭目标。",
+      "attributeGrowth": {
+        "strength": 0,
+        "agility": 15,
+        "wisdom": 0,
+        "technique": 0
+      },
+      "grantedMasterSkill": "hunt",
+      "unlockConditions": [
+        {
+          "type": "level",
+          "value": 10,
+          "description": "需要等级≥10"
+        },
+        {
+          "type": "attribute",
+          "attribute": "agility",
+          "value": 15,
+          "description": "需要敏捷≥15"
+        }
+      ],
+      "prerequisiteJob": "ranger"
+    },
+    {
+      "id": "dancer",
+      "name": "舞者",
+      "description": "灵动的战斗艺术家，以优雅的身姿躲避攻击。",
+      "attributeGrowth": {
+        "strength": 0,
+        "agility": 8,
+        "wisdom": 0,
+        "technique": 8
+      },
+      "grantedMasterSkill": "phantom_step",
+      "unlockConditions": [
+        {
+          "type": "level",
+          "value": 10,
+          "description": "需要等级≥10"
+        },
+        {
+          "type": "attribute",
+          "attribute": "agility",
+          "value": 10,
+          "description": "需要敏捷≥10"
+        },
+        {
+          "type": "attribute",
+          "attribute": "technique",
+          "value": 5,
+          "description": "需要技巧≥5"
+        }
+      ],
+      "prerequisiteJob": "ranger"
+    },
+    {
+      "id": "divine_messenger",
+      "name": "神使",
+      "description": "神圣的使者，守护队友的生命。",
+      "attributeGrowth": {
+        "strength": 5,
+        "agility": 5,
+        "wisdom": 5,
+        "technique": 5
+      },
+      "grantedMasterSkill": "divine_proclamation",
+      "unlockConditions": [
+        {
+          "type": "level",
+          "value": 10,
+          "description": "需要等级≥10"
+        },
+        {
+          "type": "equalAttributes",
+          "count": 2,
+          "description": "需要任意两项主属性相等"
+        }
+      ],
+      "prerequisiteJob": "priest"
+    },
+    {
+      "id": "dark_messenger",
+      "name": "邪使",
+      "description": "黑暗的使者，以生命为代价释放禁忌之力。",
+      "attributeGrowth": {
+        "strength": 0,
+        "agility": 0,
+        "wisdom": 0,
+        "technique": 0,
+        "random": 20
+      },
+      "grantedMasterSkill": "death_aura",
+      "unlockConditions": [
+        {
+          "type": "level",
+          "value": 10,
+          "description": "需要等级≥10"
+        },
+        {
+          "type": "allDifferentAttributes",
+          "description": "需要四项主属性均不相等"
+        }
+      ],
+      "prerequisiteJob": "priest"
+    }
+  ],
+  "skills": [
+    {
+      "id": "sword_mastery",
+      "name": "剑术精通",
+      "description": "提高使用剑类武器的熟练度。",
+      "type": "passive",
+      "maxLevel": 10,
+      "manaCost": 0,
+      "cooldown": 0,
+      "effects": [
+        {
+          "type": "attribute_bonus",
+          "target": "self",
+          "attribute": "attack",
+          "value": 2,
+          "duration": -1
+        }
+      ],
+      "learnConditions": []
+    },
+    {
+      "id": "power_strike",
+      "name": "强力攻击",
+      "description": "消耗魔法值进行一次强力攻击。",
+      "type": "active",
+      "maxLevel": 5,
+      "manaCost": 10,
+      "cooldown": 5,
+      "effects": [
+        {
+          "type": "damage",
+          "target": "enemy",
+          "attribute": "attack",
+          "value": 150,
+          "duration": 0
+        }
+      ],
+      "learnConditions": []
+    },
+    {
+      "id": "fireball",
+      "name": "火球术",
+      "description": "发射一个火球攻击敌人。",
+      "type": "active",
+      "maxLevel": 8,
+      "manaCost": 15,
+      "cooldown": 3,
+      "effects": [
+        {
+          "type": "magic_damage",
+          "target": "enemy",
+          "attribute": "magicPower",
+          "value": 120,
+          "duration": 0
+        }
+      ],
+      "learnConditions": []
+    },
+    {
+      "id": "heal",
+      "name": "治疗术",
+      "description": "恢复目标的生命值。",
+      "type": "active",
+      "maxLevel": 10,
+      "manaCost": 12,
+      "cooldown": 2,
+      "effects": [
+        {
+          "type": "heal",
+          "target": "ally",
+          "attribute": "health",
+          "value": 80,
+          "duration": 0
+        }
+      ],
+      "learnConditions": []
+    },
+    {
+      "id": "precise_shot",
+      "name": "精准射击",
+      "description": "提高射击的命中率和暴击率。",
+      "type": "passive",
+      "maxLevel": 7,
+      "manaCost": 0,
+      "cooldown": 0,
+      "effects": [
+        {
+          "type": "attribute_bonus",
+          "target": "self",
+          "attribute": "hitRate",
+          "value": 5,
+          "duration": -1
+        }
+      ],
+      "learnConditions": []
+    },
+    {
+      "id": "divine_protection",
+      "name": "神圣护盾",
+      "description": "为队友提供神圣保护，减少受到的伤害。",
+      "type": "active",
+      "maxLevel": 5,
+      "manaCost": 20,
+      "cooldown": 15,
+      "effects": [
+        {
+          "type": "buff",
+          "target": "ally",
+          "attribute": "defense",
+          "value": 50,
+          "duration": 30
+        }
+      ],
+      "learnConditions": []
+    },
+    {
+      "id": "rage",
+      "name": "狂暴",
+      "description": "进入狂暴状态，大幅提升攻击力但降低防御力。",
+      "type": "active",
+      "maxLevel": 4,
+      "manaCost": 25,
+      "cooldown": 30,
+      "effects": [
+        {
+          "type": "buff",
+          "target": "self",
+          "attribute": "attack",
+          "value": 100,
+          "duration": 20
+        }
+      ],
+      "learnConditions": []
+    },
+    {
+      "id": "meteor",
+      "name": "流星术",
+      "description": "召唤流星攻击所有敌人。",
+      "type": "active",
+      "maxLevel": 3,
+      "manaCost": 50,
+      "cooldown": 60,
+      "effects": [
+        {
+          "type": "magic_damage",
+          "target": "all_enemies",
+          "attribute": "magicPower",
+          "value": 300,
+          "duration": 0
+        }
+      ],
+      "learnConditions": []
+    },
+    {
+      "id": "blacksmithing",
+      "name": "锻造技能",
+      "description": "制作和修理金属装备的技能。",
+      "type": "job",
+      "maxLevel": 20,
+      "manaCost": 0,
+      "cooldown": 0,
+      "effects": [
+        {
+          "type": "craft_bonus",
+          "target": "self",
+          "attribute": "equipment_quality",
+          "value": 5,
+          "duration": -1
+        }
+      ],
+      "learnConditions": []
+    },
+    {
+      "id": "cooking",
+      "name": "烹饪技能",
+      "description": "制作食物和药剂的技能。",
+      "type": "job",
+      "maxLevel": 15,
+      "manaCost": 0,
+      "cooldown": 0,
+      "effects": [
+        {
+          "type": "craft_bonus",
+          "target": "self",
+          "attribute": "food_quality",
+          "value": 3,
+          "duration": -1
+        }
+      ],
+      "learnConditions": []
+    },
+    {
+      "id": "alchemy",
+      "name": "炼金技能",
+      "description": "调制药水和合成材料的技能。",
+      "type": "job",
+      "maxLevel": 18,
+      "manaCost": 0,
+      "cooldown": 0,
+      "effects": [
+        {
+          "type": "craft_bonus",
+          "target": "self",
+          "attribute": "potion_potency",
+          "value": 10,
+          "duration": -1
+        }
+      ],
+      "learnConditions": []
+    },
+    {
+      "id": "photosynthesis",
+      "name": "光合作用",
+      "description": "在白天进行光合作用，回血+1，回魔+1。",
+      "type": "passive",
+      "maxLevel": 1,
+      "manaCost": 0,
+      "cooldown": 0,
+      "icon": "images/beidongjineng_guanghezuoyong.png",
+      "effects": [
+        {
+          "type": "conditional_bonus",
+          "target": "self",
+          "attribute": "healthRegen",
+          "value": 1,
+          "duration": -1,
+          "condition": {
+            "type": "time_of_day",
+            "value": "day"
+          }
+        },
+        {
+          "type": "conditional_bonus",
+          "target": "self",
+          "attribute": "manaRegen",
+          "value": 1,
+          "duration": -1,
+          "condition": {
+            "type": "time_of_day",
+            "value": "day"
+          }
+        }
+      ],
+      "learnConditions": [
+        {
+          "type": "level",
+          "value": 1,
+          "description": "需要角色等级1"
+        }
+      ]
+    }
+  ],
+  "achievements": [
+    {
+      "id": "first_recruit",
+      "name": "初次招募",
+      "description": "招募你的第一个角色",
+      "category": "character",
+      "conditions": [
+        {
+          "type": "collect",
+          "target": "character",
+          "amount": 1
+        }
+      ],
+      "rewards": [
+        {
+          "type": "currency",
+          "currency": "gold",
+          "amount": 100,
+          "chance": 1.0
+        }
+      ],
+      "hidden": false
+    },
+    {
+      "id": "dungeon_master",
+      "name": "地下城大师",
+      "description": "完成10个不同的地下城",
+      "category": "exploration",
+      "conditions": [
+        {
+          "type": "complete",
+          "target": "dungeon",
+          "amount": 10
+        }
+      ],
+      "rewards": [
+        {
+          "type": "currency",
+          "currency": "reputation",
+          "amount": 50,
+          "chance": 1.0
+        }
+      ],
+      "hidden": false
+    },
+    {
+      "id": "master_crafter",
+      "name": "制作大师",
+      "description": "制作100件物品",
+      "category": "crafting",
+      "conditions": [
+        {
+          "type": "craft",
+          "target": "any",
+          "amount": 100
+        }
+      ],
+      "rewards": [
+        {
+          "type": "currency",
+          "currency": "crystal",
+          "amount": 10,
+          "chance": 1.0
+        }
+      ],
+      "hidden": false
+    }
+  ],
+  "shops": [
+    {
+      "id": "general_store",
+      "name": "杂货店",
+      "type": "general",
+      "items": [
+        {
+          "itemId": "health_potion",
+          "basePrice": 30,
+          "stock": 20,
+          "restockTime": 24,
+          "popularity": 0.8
+        },
+        {
+          "itemId": "mana_potion",
+          "basePrice": 35,
+          "stock": 15,
+          "restockTime": 24,
+          "popularity": 0.7
+        },
+        {
+          "itemId": "bread",
+          "basePrice": 10,
+          "stock": 50,
+          "restockTime": 12,
+          "popularity": 0.9
+        }
+      ],
+      "unlockConditions": []
+    },
+    {
+      "id": "weapon_shop",
+      "name": "武器店",
+      "type": "equipment",
+      "items": [
+        {
+          "itemId": "basic_sword",
+          "basePrice": 60,
+          "stock": 5,
+          "restockTime": 72,
+          "popularity": 0.7
+        },
+        {
+          "itemId": "steel_sword",
+          "basePrice": 180,
+          "stock": 3,
+          "restockTime": 120,
+          "popularity": 0.5
+        }
+      ],
+      "unlockConditions": [
+        {
+          "type": "reputation",
+          "value": 10,
+          "description": "需要声望达到10点"
+        }
+      ]
+    }
+  ],
+  "crops": [
+    {
+      "id": "wheat",
+      "name": "小麦",
+      "description": "基础的粮食作物，生长周期短，产量稳定。",
+      "seedItemId": "wheat_seed",
+      "growthTime": 4,
+      "seasons": ["spring", "summer", "autumn"],
+      "yield": [
+        {
+          "itemId": "wheat",
+          "minAmount": 2,
+          "maxAmount": 4,
+          "chance": 1.0
+        },
+        {
+          "itemId": "wheat_seed",
+          "minAmount": 1,
+          "maxAmount": 2,
+          "chance": 0.3
+        }
+      ],
+      "soilRequirement": 30
+    },
+    {
+      "id": "healing_herb",
+      "name": "治疗草药",
+      "description": "珍贵的药用植物，可用于制作治疗药剂。",
+      "seedItemId": "herb_seed",
+      "growthTime": 8,
+      "seasons": ["spring", "summer"],
+      "yield": [
+        {
+          "itemId": "healing_herb",
+          "minAmount": 1,
+          "maxAmount": 3,
+          "chance": 1.0
+        }
+      ],
+      "soilRequirement": 60
+    }
+  ]
+}

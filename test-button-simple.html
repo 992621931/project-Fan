@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简单按钮测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background: #f0f0f0;
+        }
+        .test-button {
+            padding: 15px 20px;
+            background: #667eea;
+            border: 2px solid #667eea;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            margin: 10px;
+        }
+        .test-button:hover {
+            background: #5568d3;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            min-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>按钮点击测试</h1>
+    <p>如果按钮能正常工作，点击后会在下方显示消息</p>
+    
+    <button class="test-button" id="testBtn1">测试按钮 1</button>
+    <button class="test-button" id="testBtn2">测试按钮 2</button>
+    
+    <div id="output">
+        <p>等待点击...</p>
+    </div>
+
+    <script>
+        console.log('[TEST] Script loaded');
+        
+        const output = document.getElementById('output');
+        const btn1 = document.getElementById('testBtn1');
+        const btn2 = document.getElementById('testBtn2');
+        
+        console.log('[TEST] Elements found:', { output, btn1, btn2 });
+        
+        // 方法1: onclick
+        btn1.onclick = function() {
+            console.log('[TEST] Button 1 clicked (onclick)');
+            output.innerHTML += '<p style="color: green;">✓ 按钮 1 被点击了 (onclick 方法)</p>';
+        };
+        
+        // 方法2: addEventListener
+        btn2.addEventListener('click', function() {
+            console.log('[TEST] Button 2 clicked (addEventListener)');
+            output.innerHTML += '<p style="color: blue;">✓ 按钮 2 被点击了 (addEventListener 方法)</p>';
+        });
+        
+        // 鼠标悬停测试
+        btn1.onmouseenter = function() {
+            console.log('[TEST] Mouse enter button 1');
+        };
+        
+        btn2.addEventListener('mouseenter', function() {
+            console.log('[TEST] Mouse enter button 2');
+        });
+        
+        console.log('[TEST] Event handlers attached');
+    </script>
+</body>
+</html>

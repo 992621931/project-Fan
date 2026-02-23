@@ -1,0 +1,60 @@
+{
+  "name": "codename-rice-game",
+  "version": "1.0.0",
+  "description": "A fantasy-themed idle simulation management game with character collection, crafting, exploration, and shop management",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "webpack serve --mode development",
+    "build": "webpack --mode production",
+    "build:dev": "webpack --mode development",
+    "watch": "webpack --mode development --watch",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "format": "prettier --write src/**/*.ts",
+    "format:check": "prettier --check src/**/*.ts",
+    "type-check": "tsc --noEmit",
+    "clean": "rimraf dist",
+    "test": "vitest --run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest --coverage --run",
+    "test:performance": "vitest --run src/ecs/Performance.integration.test.ts src/ecs/ObjectPool.test.ts src/ecs/CacheSystem.test.ts src/ecs/PerformanceMonitor.test.ts",
+    "test:unit": "vitest --run --exclude='**/*.property.test.ts' --exclude='**/Performance.integration.test.ts'",
+    "test:property": "vitest --run '**/*.property.test.ts'",
+    "analyze": "webpack-bundle-analyzer dist/stats.json",
+    "serve": "npx http-server dist -p 8080 -c-1"
+  },
+  "keywords": [
+    "game",
+    "typescript",
+    "ecs",
+    "simulation",
+    "fantasy"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitest/coverage-v8": "^1.0.0",
+    "copy-webpack-plugin": "^13.0.1",
+    "css-loader": "^6.8.1",
+    "eslint": "^8.45.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "html-webpack-plugin": "^5.5.3",
+    "jsdom": "^23.0.0",
+    "prettier": "^3.0.0",
+    "rimraf": "^5.0.1",
+    "style-loader": "^3.3.3",
+    "ts-loader": "^9.4.4",
+    "typescript": "^5.1.6",
+    "vitest": "^1.0.0",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  },
+  "dependencies": {
+    "fast-check": "^3.15.0"
+  }
+}

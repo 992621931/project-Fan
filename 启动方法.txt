@@ -1,0 +1,42 @@
+启动游戏的方法
+方法1：开发服务器（推荐用于开发）
+运行开发服务器，支持热重载：
+
+npm run dev
+这会启动 webpack-dev-server，通常会在 http://localhost:8080 打开游戏。修改代码后会自动刷新浏览器。
+
+方法2：构建后使用本地服务器
+先构建项目：
+.\build.bat
+或
+
+npm run build
+然后启动本地服务器：
+npm run serve
+这会在 http://localhost:8080 启动一个静态文件服务器，访问 dist 文件夹中的构建结果。
+
+方法3：直接打开HTML文件
+构建完成后，你也可以直接在浏览器中打开：
+
+dist/index.html
+不过这种方式可能会有跨域问题（CORS），不推荐。
+
+推荐的开发流程
+首次启动：
+npm run dev
+修改代码：在编辑器中修改 TypeScript 文件
+
+自动刷新：保存文件后，浏览器会自动刷新显示最新内容
+
+测试功能：在浏览器中测试你的修改
+
+生产构建（发布前）：
+
+npm run build
+其他有用的命令
+运行测试：npm test
+监听模式测试：npm run test:watch
+类型检查：npm run type-check
+代码格式化：npm run format
+代码检查：npm run lint
+现在你可以运行 npm run dev 来启动开发服务器，然后在浏览器中访问游戏了！

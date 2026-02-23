@@ -1,0 +1,249 @@
+{
+  "jobExclusiveSkills": [
+    {
+      "id": "combat_stance",
+      "name": "迎敌姿态",
+      "type": "active",
+      "tag": "buff",
+      "jobTag": "warrior",
+      "rarity": "common",
+      "icon": "images/zhudongjineng_yingdizitai.png",
+      "description": "减少自身移速，提升攻击、防御、体重",
+      "effects": [
+        {
+          "type": "buff_self",
+          "buffId": "combat_stance",
+          "duration": 10000
+        }
+      ]
+    },
+    {
+      "id": "fireball",
+      "name": "火球术",
+      "type": "active",
+      "tag": "projectile",
+      "jobTag": "mage",
+      "rarity": "common",
+      "icon": "images/zhudongjineng_huoqiushu.png",
+      "description": "朝一个敌人发射一个会跟踪的火球。智慧越高伤害越高，技巧越高火球速度越快。",
+      "effects": [
+        {
+          "type": "spawn_projectile",
+          "projectileType": "tracking",
+          "image": "images/toushewu_huoqiu.png",
+          "size": 30,
+          "speed": {
+            "base": 100,
+            "skillMultiplier": 1.0
+          },
+          "damage": {
+            "base": 10,
+            "wisdomMultiplier": 1.0
+          },
+          "tracking": true,
+          "piercing": false,
+          "destroyOnHit": true,
+          "lifetime": 8000,
+          "hasTrail": true,
+          "hasGlow": true
+        }
+      ]
+    },
+    {
+      "id": "piercing_arrow",
+      "name": "穿云箭",
+      "type": "active",
+      "tag": "projectile",
+      "jobTag": "ranger",
+      "rarity": "common",
+      "icon": "images/zhudongjineng_chuanyunjian.png",
+      "description": "朝距离最远的敌人发射一根会穿透敌人的箭矢，每个敌人只会受到一次伤害。敏捷越高箭矢越快，技巧越高射程越远",
+      "effects": [
+        {
+          "type": "spawn_projectile",
+          "projectileType": "piercing",
+          "image": "images/toushewu_jianshi.png",
+          "size": 40,
+          "speed": {
+            "base": 200,
+            "agilityMultiplier": 10
+          },
+          "maxDistance": {
+            "base": 500,
+            "skillMultiplier": 20
+          },
+          "damage": {
+            "base": 10,
+            "attackMultiplier": 1.0
+          },
+          "tracking": false,
+          "piercing": true,
+          "destroyOnMaxDistance": true
+        }
+      ]
+    },
+    {
+      "id": "sanctuary",
+      "name": "庇护",
+      "type": "active",
+      "tag": "buff",
+      "jobTag": "priest",
+      "rarity": "common",
+      "icon": "images/zhudongjineng_bihu.png",
+      "description": "为一个友方角色生成抵挡伤害的护盾。技巧越高护盾数值越高",
+      "effects": [
+        {
+          "type": "shield_ally",
+          "shieldAmount": {
+            "base": 50,
+            "skillMultiplier": 2.0
+          },
+          "duration": 5000
+        }
+      ]
+    },
+    {
+      "id": "hot_blood_soul",
+      "name": "热血战魂",
+      "type": "master",
+      "tag": "buff",
+      "jobTag": "warrior",
+      "rarity": "legendary",
+      "icon": "images/dashijineng_rexuezhanhun.png",
+      "description": "每次碰撞都会叠加热血BUFF，短暂提升攻击力和移动速度",
+      "effects": [
+        {
+          "type": "on_collision",
+          "buffId": "hot_blood",
+          "duration": 5000,
+          "maxStacks": 5
+        }
+      ]
+    },
+    {
+      "id": "iron_fortress",
+      "name": "固若金汤",
+      "type": "master",
+      "tag": "passive",
+      "jobTag": "warrior",
+      "rarity": "legendary",
+      "icon": "images/dashijineng_guruojintang.png",
+      "description": "减伤20%，如果自身拥有护盾，则改为减伤40%",
+      "effects": [
+        {
+          "type": "damage_reduction",
+          "baseReduction": 0.2,
+          "shieldReduction": 0.4
+        }
+      ]
+    },
+    {
+      "id": "mana_burst",
+      "name": "魔力迸发",
+      "type": "master",
+      "tag": "passive",
+      "jobTag": "mage",
+      "rarity": "legendary",
+      "icon": "images/dashijineng_molibengfa.png",
+      "description": "释放技能有50%概率恢复20魔法值",
+      "effects": [
+        {
+          "type": "on_skill_cast",
+          "probability": 0.5,
+          "manaRestore": 20
+        }
+      ]
+    },
+    {
+      "id": "double_pupil",
+      "name": "双瞳",
+      "type": "master",
+      "tag": "buff",
+      "jobTag": "ranger",
+      "rarity": "legendary",
+      "icon": "images/dashijineng_shuangtong.png",
+      "description": "每次以单体作为目标释放主动技能后，会以随机目标再次释放一次",
+      "effects": [
+        {
+          "type": "on_single_target_skill",
+          "delay": 300,
+          "excludeSelf": true
+        }
+      ]
+    },
+    {
+      "id": "hunt",
+      "name": "猎杀",
+      "type": "master",
+      "tag": "buff",
+      "jobTag": "ranger",
+      "rarity": "legendary",
+      "icon": "images/dashijineng_liesha.png",
+      "description": "每隔10秒使一个随机敌人变得脆弱，下一次受到的伤害必定会暴击",
+      "effects": [
+        {
+          "type": "periodic_debuff",
+          "interval": 10000,
+          "buffId": "exposed_weakness",
+          "duration": 10000
+        }
+      ]
+    },
+    {
+      "id": "phantom_step",
+      "name": "迷踪步",
+      "type": "master",
+      "tag": "passive",
+      "jobTag": "ranger",
+      "rarity": "legendary",
+      "icon": "images/dashijineng_mizongbu.png",
+      "description": "每次和敌人碰撞后会闪烁到安全的位置",
+      "effects": [
+        {
+          "type": "on_collision_teleport",
+          "minDistance": 200
+        }
+      ]
+    },
+    {
+      "id": "divine_proclamation",
+      "name": "神之宣言",
+      "type": "master",
+      "tag": "passive",
+      "jobTag": "priest",
+      "rarity": "legendary",
+      "icon": "images/dashijineng_shenzhixuanyan.png",
+      "description": "队友在自身周围受到伤害时有10%概率使该次伤害无效",
+      "effects": [
+        {
+          "type": "aura_damage_nullify",
+          "radius": 150,
+          "probability": 0.1,
+          "excludeSelf": true,
+          "affectAllies": true
+        }
+      ]
+    },
+    {
+      "id": "death_aura",
+      "name": "死亡光环",
+      "type": "master",
+      "tag": "passive",
+      "jobTag": "priest",
+      "rarity": "legendary",
+      "icon": "images/dashijineng_siwangguanghuan.png",
+      "description": "敌人和队友在自身周围时都会持续受到百分比伤害",
+      "effects": [
+        {
+          "type": "aura_damage_over_time",
+          "radius": 150,
+          "interval": 500,
+          "damagePercent": 0.01,
+          "excludeSelf": true,
+          "affectAllies": true,
+          "affectEnemies": true
+        }
+      ]
+    }
+  ]
+}

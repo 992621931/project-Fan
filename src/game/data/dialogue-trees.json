@@ -1,0 +1,701 @@
+{
+  "dialogues": [
+    {
+      "id": "village_chief_quest_main_01",
+      "characterId": "village_chief",
+      "topic": "紧急任务",
+      "condition": {
+        "type": "quest_status",
+        "questId": "main_01_meet_chief",
+        "status": "inProgress"
+      },
+      "npcText": "年轻人，你就是国王派来的冒险团团长吗？太好了，鲍勃的女儿有救了！鲍勃在酒馆中等你很久了，快去找他吧！",
+      "responses": [
+        { "text": "好的，我这就去！", "affinityEffect": 5 }
+      ]
+    },
+    {
+      "id": "village_chief_governance_1",
+      "characterId": "village_chief",
+      "topic": "村庄治理",
+      "npcText": "作为村长，我每天都要处理各种事务。最近村民们对新的税收政策有些意见，你觉得应该如何平衡村庄发展和村民负担呢？",
+      "responses": [
+        { "text": "应该降低税收，让村民生活更轻松。", "affinityEffect": 1 },
+        { "text": "维持现状就好，不要轻易改变。", "affinityEffect": 0 },
+        { "text": "应该提高税收，加快村庄建设。", "affinityEffect": -1 },
+        { "text": "这不关我的事，你自己决定吧。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "village_chief_security_1",
+      "characterId": "village_chief",
+      "topic": "村庄安全",
+      "npcText": "最近森林里的魔物活动频繁，我担心会威胁到村民的安全。你愿意帮忙巡逻吗？",
+      "responses": [
+        { "text": "当然！保护村民是我的责任。", "affinityEffect": 1 },
+        { "text": "我可以考虑一下，但需要报酬。", "affinityEffect": -1 },
+        { "text": "我很忙，找别人吧。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "village_chief_future_1",
+      "characterId": "village_chief",
+      "topic": "村庄未来",
+      "npcText": "我一直在思考村庄的未来发展方向。是应该专注农业，还是发展商业和冒险者经济？",
+      "responses": [
+        { "text": "农业是根本，应该优先发展。", "affinityEffect": 0.5 },
+        { "text": "商业能带来更多机会和财富。", "affinityEffect": 0.5 },
+        { "text": "两者兼顾，平衡发展最重要。", "affinityEffect": 1 },
+        { "text": "随便吧，反正我不住这里。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "bartender_quest_main_02",
+      "characterId": "bartender",
+      "topic": "寻找女儿",
+      "condition": {
+        "type": "quest_status",
+        "questId": "main_02_visit_tavern",
+        "status": "inProgress"
+      },
+      "npcText": "终于把你等来了！我女儿最近去附近的草原采药后一直没有回来，能不能帮我找找她？这点小钱你拿着，去招募那些客人组队吧。还有这点干粮也带上，路上饿了记得吃。要是不够，以后每天带上这张会员卡都可以来找我领一份吃的",
+      "responses": [
+        { "text": "女儿吗？放心交给我吧！", "affinityEffect": 5 }
+      ]
+    },
+    {
+      "id": "bartender_gossip_1",
+      "characterId": "bartender",
+      "topic": "酒馆八卦",
+      "npcText": "你听说了吗？村里的铁匠最近总是神神秘秘的，好像在打造什么特别的东西。",
+      "responses": [
+        { "text": "真的吗？能告诉我更多细节吗？", "affinityEffect": 0.5 },
+        { "text": "我对八卦不感兴趣。", "affinityEffect": -1 },
+        { "text": "别乱传谣言，这样不好。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "bartender_drinks_1",
+      "characterId": "bartender",
+      "topic": "酒水推荐",
+      "npcText": "今天我调配了一款新酒，用了森林里的野果和蜂蜜。要不要尝尝？",
+      "responses": [
+        { "text": "听起来不错！给我来一杯。", "affinityEffect": 1 },
+        { "text": "我还是喝老样子吧。", "affinityEffect": 0 },
+        { "text": "不了，我不喝酒。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "bartender_business_1",
+      "characterId": "bartender",
+      "topic": "酒馆生意",
+      "npcText": "最近生意不太好，冒险者们都去地下城了。你有什么建议能帮我吸引更多客人吗？",
+      "responses": [
+        { "text": "可以举办一些活动，比如音乐之夜。", "affinityEffect": 1 },
+        { "text": "降价促销应该有效。", "affinityEffect": 0.5 },
+        { "text": "这是你的问题，我帮不了。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "bartender_stories_1",
+      "characterId": "bartender",
+      "topic": "冒险故事",
+      "npcText": "我听过无数冒险者的故事。你有什么精彩的冒险经历想分享吗？",
+      "responses": [
+        { "text": "当然！让我讲讲上次地下城的经历。", "affinityEffect": 1 },
+        { "text": "我的故事很普通，没什么好说的。", "affinityEffect": 0 },
+        { "text": "我不喜欢炫耀。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "maid_service_1",
+      "characterId": "maid",
+      "topic": "服务态度",
+      "npcText": "欢迎光临！今天想要什么服务呢？我会尽力让您满意的。",
+      "responses": [
+        { "text": "你的服务总是很周到，谢谢你。", "affinityEffect": 1 },
+        { "text": "就按平常的来吧。", "affinityEffect": 0 },
+        { "text": "快点，别浪费我时间。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "maid_daily_1",
+      "characterId": "maid",
+      "topic": "日常工作",
+      "npcText": "今天的工作特别忙，但看到客人满意的笑容，我就觉得一切都值得了。",
+      "responses": [
+        { "text": "你真是个敬业的人，辛苦了。", "affinityEffect": 1 },
+        { "text": "工作本来就应该认真做。", "affinityEffect": 0 },
+        { "text": "抱怨什么，这是你的工作。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "maid_dreams_1",
+      "characterId": "maid",
+      "topic": "个人梦想",
+      "npcText": "其实我一直有个梦想，想开一家属于自己的小店。但现在还在努力存钱。",
+      "responses": [
+        { "text": "加油！我相信你一定能实现梦想。", "affinityEffect": 1 },
+        { "text": "梦想很好，但要脚踏实地。", "affinityEffect": 0.5 },
+        { "text": "梦想而已，别太当真。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "adventurer_combat_1",
+      "characterId": "adventurer",
+      "topic": "战斗经验",
+      "npcText": "上次在地下城遇到了一只强大的魔物，差点就回不来了。你有什么战斗技巧可以分享吗？",
+      "responses": [
+        { "text": "观察敌人的攻击模式很重要。", "affinityEffect": 1 },
+        { "text": "装备好一点就行了。", "affinityEffect": 0 },
+        { "text": "你太弱了，不适合当冒险者。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "adventurer_exploration_1",
+      "characterId": "adventurer",
+      "topic": "探索发现",
+      "npcText": "我最近发现了一个隐藏的洞穴，里面可能有宝藏。要不要一起去探险？",
+      "responses": [
+        { "text": "听起来很刺激！我们一起去吧。", "affinityEffect": 1 },
+        { "text": "我考虑一下，有空再说。", "affinityEffect": 0 },
+        { "text": "太危险了，我不去。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "adventurer_philosophy_1",
+      "characterId": "adventurer",
+      "topic": "人生哲学",
+      "npcText": "有时候我会想，冒险的意义到底是什么？是为了财富，还是为了证明自己？",
+      "responses": [
+        { "text": "是为了体验不同的人生和自由。", "affinityEffect": 1 },
+        { "text": "当然是为了赚钱。", "affinityEffect": -1 },
+        { "text": "别想那么多，活在当下就好。", "affinityEffect": 0.5 }
+      ]
+    },
+    {
+      "id": "adventurer_teamwork_1",
+      "characterId": "adventurer",
+      "topic": "团队合作",
+      "npcText": "我觉得一个好的队伍比个人实力更重要。你怎么看？",
+      "responses": [
+        { "text": "完全同意，团队协作是关键。", "affinityEffect": 1 },
+        { "text": "个人实力也很重要。", "affinityEffect": 0.5 },
+        { "text": "我更喜欢独来独往。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "adventurer_rest_1",
+      "characterId": "adventurer",
+      "topic": "休息放松",
+      "npcText": "连续冒险好几天了，真的好累。你平时怎么放松自己？",
+      "responses": [
+        { "text": "找个安静的地方好好休息。", "affinityEffect": 0.5 },
+        { "text": "去酒馆喝一杯，听听故事。", "affinityEffect": 1 },
+        { "text": "继续训练，不能松懈。", "affinityEffect": 0 },
+        { "text": "休息是弱者的借口。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "adventurer_equipment_1",
+      "characterId": "adventurer",
+      "topic": "装备维护",
+      "npcText": "我的武器在战斗中损坏了，需要找铁匠修理。你平时怎么保养装备？",
+      "responses": [
+        { "text": "定期保养很重要，能延长使用寿命。", "affinityEffect": 1 },
+        { "text": "坏了再修就行。", "affinityEffect": 0 },
+        { "text": "直接买新的更方便。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "adventurer_danger_1",
+      "characterId": "adventurer",
+      "topic": "危险经历",
+      "npcText": "上次差点被陷阱困住，幸好反应够快。你遇到过什么危险的情况吗？",
+      "responses": [
+        { "text": "是啊，冒险总是充满未知和危险。", "affinityEffect": 1 },
+        { "text": "小心谨慎就能避免大部分危险。", "affinityEffect": 0.5 },
+        { "text": "我从来不冒险，太危险了。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "adventurer_treasure_1",
+      "characterId": "adventurer",
+      "topic": "宝藏传说",
+      "npcText": "听说森林深处有一个古老的遗迹，里面藏着传说中的宝藏。你相信这些传说吗？",
+      "responses": [
+        { "text": "传说往往有一定的真实性，值得探索。", "affinityEffect": 1 },
+        { "text": "半信半疑，去看看也无妨。", "affinityEffect": 0.5 },
+        { "text": "都是骗人的故事，别浪费时间。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "adventurer_friendship_1",
+      "characterId": "adventurer",
+      "topic": "冒险友谊",
+      "npcText": "在冒险中结识的伙伴，往往是最可靠的朋友。你有这样的经历吗？",
+      "responses": [
+        { "text": "是的，患难见真情。", "affinityEffect": 1 },
+        { "text": "朋友很重要，但也要保持警惕。", "affinityEffect": 0 },
+        { "text": "我不需要朋友，靠自己就够了。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "adventurer_skills_1",
+      "characterId": "adventurer",
+      "topic": "技能学习",
+      "npcText": "我一直想学习新的战斗技能，但不知道该从哪里开始。你有什么建议吗？",
+      "responses": [
+        { "text": "可以去找训练师阿林，她很专业。", "affinityEffect": 1 },
+        { "text": "在实战中学习最快。", "affinityEffect": 0.5 },
+        { "text": "技能书可以直接学习。", "affinityEffect": 0.5 },
+        { "text": "你现在的技能够用了，别浪费时间。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "adventurer_food_1",
+      "characterId": "adventurer",
+      "topic": "食物补给",
+      "npcText": "长时间冒险最重要的就是食物补给。你有什么推荐的食物吗？",
+      "responses": [
+        { "text": "咖喱大厨的料理很不错，能恢复体力。", "affinityEffect": 1 },
+        { "text": "自己做一些简单的食物就行。", "affinityEffect": 0.5 },
+        { "text": "随便吃点什么都行。", "affinityEffect": 0 }
+      ]
+    },
+    {
+      "id": "adventurer_weather_1",
+      "characterId": "adventurer",
+      "topic": "天气影响",
+      "npcText": "今天天气不太好，可能会影响冒险计划。你觉得应该继续还是等天气好转？",
+      "responses": [
+        { "text": "安全第一，等天气好转再出发。", "affinityEffect": 1 },
+        { "text": "做好准备就能应对恶劣天气。", "affinityEffect": 0.5 },
+        { "text": "天气不是问题，继续前进。", "affinityEffect": 0 }
+      ]
+    },
+    {
+      "id": "adventurer_motivation_1",
+      "characterId": "adventurer",
+      "topic": "动力来源",
+      "npcText": "有时候会感到疲惫和迷茫，不知道为什么要继续冒险。你是什么支撑着你前进？",
+      "responses": [
+        { "text": "是对未知世界的好奇和探索欲。", "affinityEffect": 1 },
+        { "text": "是想要变得更强的决心。", "affinityEffect": 1 },
+        { "text": "是为了保护重要的人。", "affinityEffect": 1 },
+        { "text": "没什么特别的，就是习惯了。", "affinityEffect": 0 }
+      ]
+    },
+    {
+      "id": "adventurer_hometown_1",
+      "characterId": "adventurer",
+      "topic": "故乡回忆",
+      "npcText": "有时候会想念家乡，但冒险者的生活注定要四处漂泊。你想家吗？",
+      "responses": [
+        { "text": "当然想，但这是我选择的道路。", "affinityEffect": 1 },
+        { "text": "偶尔会想，但更享受冒险的自由。", "affinityEffect": 0.5 },
+        { "text": "不想，外面的世界更精彩。", "affinityEffect": 0 }
+      ]
+    },
+    {
+      "id": "adventurer_future_1",
+      "characterId": "adventurer",
+      "topic": "未来规划",
+      "npcText": "你有想过以后要做什么吗？一直当冒险者，还是有其他打算？",
+      "responses": [
+        { "text": "我会一直冒险下去，直到找到人生的答案。", "affinityEffect": 1 },
+        { "text": "等赚够钱就回家乡定居。", "affinityEffect": 0.5 },
+        { "text": "还没想那么远，走一步看一步。", "affinityEffect": 0 }
+      ]
+    },
+    {
+      "id": "adventurer_mentor_1",
+      "characterId": "adventurer",
+      "topic": "导师教诲",
+      "npcText": "我的导师曾经告诉我，真正的强者不是从不失败，而是能从失败中站起来。你怎么看？",
+      "responses": [
+        { "text": "说得对，失败是成功之母。", "affinityEffect": 1 },
+        { "text": "有道理，但最好还是不要失败。", "affinityEffect": 0.5 },
+        { "text": "强者就是不应该失败。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "alchemist_tuanzi_potions_1",
+      "characterId": "alchemist_tuanzi",
+      "topic": "药剂调配",
+      "npcText": "炼金术的精髓在于材料的配比和火候的掌握。你对炼金术感兴趣吗？",
+      "responses": [
+        { "text": "非常感兴趣！能教教我吗？", "affinityEffect": 1 },
+        { "text": "有点兴趣，但不确定能学会。", "affinityEffect": 0.5 },
+        { "text": "不感兴趣，太复杂了。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "alchemist_tuanzi_materials_1",
+      "characterId": "alchemist_tuanzi",
+      "topic": "材料收集",
+      "npcText": "我需要一些稀有的草药来制作高级药剂。如果你在冒险中找到了，能卖给我吗？",
+      "responses": [
+        { "text": "当然！我会留意的。", "affinityEffect": 1 },
+        { "text": "看价格吧，合适就卖。", "affinityEffect": 0 },
+        { "text": "我自己要用，不卖。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "alchemist_tuanzi_experiments_1",
+      "characterId": "alchemist_tuanzi",
+      "topic": "炼金实验",
+      "npcText": "我最近在研究一种新的药剂配方，但总是失败。你觉得问题可能出在哪里？",
+      "responses": [
+        { "text": "也许是材料的新鲜度不够？", "affinityEffect": 1 },
+        { "text": "可能是温度控制有问题。", "affinityEffect": 1 },
+        { "text": "我不懂炼金术，帮不了你。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "scholar_xiaomei_quest_10",
+      "characterId": "scholar_xiaomei",
+      "topic": "古籍研究",
+      "npcText": "你好呀冒险者，你想帮我完成古籍的研究吗？拿上这本图册吧，收集齐卡牌我就能给你一些奖励哦~。",
+      "responses": [
+        { "text": "我已经等不及了！", "affinityEffect": 1 }
+      ],
+      "condition": {
+        "type": "quest_status",
+        "questId": "main_10_meet_scholar",
+        "status": "inProgress"
+      }
+    },
+    {
+      "id": "scholar_xiaomei_research_1",
+      "characterId": "scholar_xiaomei",
+      "topic": "学术研究",
+      "npcText": "我正在研究古代文明的历史，发现了一些有趣的记载。你对历史感兴趣吗？",
+      "responses": [
+        { "text": "很感兴趣！能跟我讲讲吗？", "affinityEffect": 1 },
+        { "text": "有点兴趣，但不太懂。", "affinityEffect": 0.5 },
+        { "text": "历史太枯燥了，我不喜欢。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "scholar_xiaomei_knowledge_1",
+      "characterId": "scholar_xiaomei",
+      "topic": "知识传承",
+      "npcText": "知识应该被传承和分享，而不是被垄断。你同意这个观点吗？",
+      "responses": [
+        { "text": "完全同意！知识属于所有人。", "affinityEffect": 1 },
+        { "text": "要看情况，有些知识需要保密。", "affinityEffect": 0 },
+        { "text": "知识就是力量，应该保密。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "scholar_xiaomei_ancient_texts_1",
+      "characterId": "scholar_xiaomei",
+      "topic": "古代文献",
+      "npcText": "我在古籍中发现了一段关于失落文明的记载，但文字很难辨认。你愿意帮我一起研究吗？",
+      "responses": [
+        { "text": "当然！这听起来很有意思。", "affinityEffect": 1 },
+        { "text": "我可以试试，但不保证能帮上忙。", "affinityEffect": 0.5 },
+        { "text": "我对这个不感兴趣。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "trainer_alin_training_1",
+      "characterId": "trainer_alin",
+      "topic": "训练方法",
+      "npcText": "想要变强，就必须坚持训练。你准备好接受严格的训练了吗？",
+      "responses": [
+        { "text": "我已经准备好了！请指导我。", "affinityEffect": 1 },
+        { "text": "我会尽力的。", "affinityEffect": 0.5 },
+        { "text": "太累了，我不想训练。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "trainer_alin_discipline_1",
+      "characterId": "trainer_alin",
+      "topic": "纪律与毅力",
+      "npcText": "成为强者不仅需要天赋，更需要纪律和毅力。你觉得自己具备这些品质吗？",
+      "responses": [
+        { "text": "我会努力培养这些品质。", "affinityEffect": 1 },
+        { "text": "我觉得我还可以。", "affinityEffect": 0.5 },
+        { "text": "天赋更重要吧。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "trainer_alin_combat_techniques_1",
+      "characterId": "trainer_alin",
+      "topic": "战斗技巧",
+      "npcText": "战斗不仅是力量的较量，更是技巧和策略的比拼。你想学习哪种战斗技巧？",
+      "responses": [
+        { "text": "我想学习防御技巧。", "affinityEffect": 1 },
+        { "text": "我想学习攻击技巧。", "affinityEffect": 1 },
+        { "text": "我觉得我现在的技巧够用了。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "summoner_kaoezi_summoning_1",
+      "characterId": "summoner_kaoezi",
+      "topic": "召唤术基础",
+      "npcText": "召唤术需要强大的精神力和对魔法的理解。你觉得自己适合学习召唤术吗？",
+      "responses": [
+        { "text": "我愿意尝试，请教教我。", "affinityEffect": 1 },
+        { "text": "我不确定，但想试试看。", "affinityEffect": 0.5 },
+        { "text": "召唤术太危险了，我不学。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "summoner_kaoezi_creatures_1",
+      "characterId": "summoner_kaoezi",
+      "topic": "召唤生物",
+      "npcText": "每个召唤生物都有自己的性格和喜好。你必须学会与它们沟通和建立信任。",
+      "responses": [
+        { "text": "我会用心对待每一个召唤生物。", "affinityEffect": 1 },
+        { "text": "它们只是工具而已吧？", "affinityEffect": -1 },
+        { "text": "我会尽量理解它们。", "affinityEffect": 0.5 }
+      ]
+    },
+    {
+      "id": "summoner_kaoezi_rituals_1",
+      "characterId": "summoner_kaoezi",
+      "topic": "召唤仪式",
+      "npcText": "召唤仪式需要精确的魔法阵和咒语。一个小错误就可能导致灾难性的后果。",
+      "responses": [
+        { "text": "我会认真学习，不会马虎。", "affinityEffect": 1 },
+        { "text": "听起来很复杂，我有点担心。", "affinityEffect": 0 },
+        { "text": "这么麻烦，还是算了。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "blacksmith_zz_crafting_1",
+      "characterId": "blacksmith_zz",
+      "topic": "锻造技艺",
+      "npcText": "锻造是一门需要力量、技巧和耐心的手艺。每一件武器都是我的心血。你觉得什么样的武器最好？",
+      "responses": [
+        { "text": "坚固耐用的，能陪伴很久。", "affinityEffect": 1 },
+        { "text": "锋利强大的，能快速制敌。", "affinityEffect": 0.5 },
+        { "text": "精美华丽的，彰显身份。", "affinityEffect": 0 },
+        { "text": "适合使用者的才是最好的。", "affinityEffect": 1 }
+      ]
+    },
+    {
+      "id": "blacksmith_zz_materials_1",
+      "characterId": "blacksmith_zz",
+      "topic": "材料品质",
+      "npcText": "好的材料是打造神兵利器的基础。我对材料的要求非常严格。你能帮我收集一些稀有矿石吗？",
+      "responses": [
+        { "text": "当然！我会尽力找到最好的材料。", "affinityEffect": 1 },
+        { "text": "可以，但需要一些报酬。", "affinityEffect": 0 },
+        { "text": "看情况，如果不太危险的话。", "affinityEffect": 0.5 }
+      ]
+    },
+    {
+      "id": "blacksmith_zz_masterpiece_1",
+      "characterId": "blacksmith_zz",
+      "topic": "传世之作",
+      "npcText": "每个铁匠都梦想打造出传世之作，能流传后世的神兵。你觉得什么样的作品才能称为传世之作？",
+      "responses": [
+        { "text": "品质卓越，经久不衰。", "affinityEffect": 1 },
+        { "text": "独一无二，无法复制。", "affinityEffect": 0.5 },
+        { "text": "承载着故事和传说。", "affinityEffect": 1 }
+      ]
+    },
+    {
+      "id": "blacksmith_zz_apprentice_1",
+      "characterId": "blacksmith_zz",
+      "topic": "传承技艺",
+      "npcText": "锻造技艺需要代代相传，但现在愿意学习的年轻人越来越少了。你对传统手艺的传承有什么看法？",
+      "responses": [
+        { "text": "传统技艺很宝贵，应该好好传承。", "affinityEffect": 1 },
+        { "text": "可以结合现代技术，创新发展。", "affinityEffect": 0.5 },
+        { "text": "时代在变，有些东西注定会消失。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "chef_curry_cooking_1",
+      "characterId": "chef_curry",
+      "topic": "烹饪艺术",
+      "npcText": "烹饪不仅仅是填饱肚子，更是一门艺术。每道菜都承载着厨师的心意和情感。你觉得什么样的菜最美味？",
+      "responses": [
+        { "text": "用心做的菜最美味，能感受到温暖。", "affinityEffect": 1 },
+        { "text": "食材新鲜最重要，原汁原味。", "affinityEffect": 0.5 },
+        { "text": "技巧精湛的菜，色香味俱全。", "affinityEffect": 0.5 },
+        { "text": "能填饱肚子就行，不用太讲究。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "chef_curry_ingredients_1",
+      "characterId": "chef_curry",
+      "topic": "食材选择",
+      "npcText": "好的食材是美味的基础。我每天都要精心挑选最新鲜的食材。你觉得选择食材时什么最重要？",
+      "responses": [
+        { "text": "新鲜度最重要，新鲜的食材最美味。", "affinityEffect": 1 },
+        { "text": "品质要好，宁缺毋滥。", "affinityEffect": 1 },
+        { "text": "价格实惠就好，不必太贵。", "affinityEffect": 0 }
+      ]
+    },
+    {
+      "id": "chef_curry_recipes_1",
+      "characterId": "chef_curry",
+      "topic": "秘制配方",
+      "npcText": "每个厨师都有自己的秘制配方，这是多年经验的积累。你想学习烹饪吗？",
+      "responses": [
+        { "text": "非常想学！请教教我。", "affinityEffect": 1 },
+        { "text": "有兴趣，但可能学不会。", "affinityEffect": 0.5 },
+        { "text": "我只想吃，不想学做菜。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "chef_curry_specialty_1",
+      "characterId": "chef_curry",
+      "topic": "招牌菜",
+      "npcText": "我的招牌菜是咖喱饭，这是我花了多年时间完善的配方。你喜欢什么口味的咖喱？",
+      "responses": [
+        { "text": "微辣的，有层次感。", "affinityEffect": 0.5 },
+        { "text": "香甜的，适合大众口味。", "affinityEffect": 0.5 },
+        { "text": "特辣的，够刺激！", "affinityEffect": 0 },
+        { "text": "你做的都喜欢，相信你的手艺。", "affinityEffect": 1 }
+      ]
+    },
+    {
+      "id": "bookseller_xiaochao_reading_1",
+      "characterId": "bookseller_xiaochao",
+      "topic": "阅读推荐",
+      "npcText": "最近进了一批新书，有战斗技巧类的，也有魔法理论类的。你平时喜欢看什么类型的书？",
+      "responses": [
+        { "text": "我喜欢看战斗技巧类的，实用性强。", "affinityEffect": 1 },
+        { "text": "魔法理论类的更有意思，充满未知。", "affinityEffect": 1 },
+        { "text": "什么书都看，知识越多越好。", "affinityEffect": 1 },
+        { "text": "我不太爱看书。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "bookseller_xiaochao_knowledge_1",
+      "characterId": "bookseller_xiaochao",
+      "topic": "知识的价值",
+      "npcText": "有人说书本上的知识不如实战经验有用，你怎么看？",
+      "responses": [
+        { "text": "书本知识和实战经验同样重要，缺一不可。", "affinityEffect": 1 },
+        { "text": "确实，实战经验更重要一些。", "affinityEffect": 0 },
+        { "text": "书本知识是基础，没有理论何来实践？", "affinityEffect": 1 },
+        { "text": "看书太无聊了，还是直接上手比较好。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "bookseller_xiaochao_rare_books_1",
+      "characterId": "bookseller_xiaochao",
+      "topic": "珍稀典籍",
+      "npcText": "我最近在寻找一本失传已久的古代技能书，据说记载了一种强大的秘术。你在冒险中有见过古代书籍吗？",
+      "responses": [
+        { "text": "如果找到了一定第一时间带给你！", "affinityEffect": 1 },
+        { "text": "古代书籍？听起来很值钱啊。", "affinityEffect": 0 },
+        { "text": "没注意过，下次会留意的。", "affinityEffect": 0 },
+        { "text": "那种东西有什么用？不如一把好剑。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "bookseller_xiaochao_business_1",
+      "characterId": "bookseller_xiaochao",
+      "topic": "书商生涯",
+      "npcText": "做书商虽然赚不了大钱，但每次看到冒险者因为一本书变得更强，我就觉得很有成就感。你觉得这份工作怎么样？",
+      "responses": [
+        { "text": "很有意义，知识改变命运。", "affinityEffect": 1 },
+        { "text": "挺好的，至少比冒险安全。", "affinityEffect": 0 },
+        { "text": "赚不了大钱的话，为什么不换个行当？", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "merchant_youliang_equipment_1",
+      "characterId": "merchant_youliang",
+      "topic": "装备鉴赏",
+      "npcText": "这把剑是我从远方商队那里收来的，做工精良。你觉得选装备时，外观和性能哪个更重要？",
+      "responses": [
+        { "text": "当然是性能，实用才是王道。", "affinityEffect": 1 },
+        { "text": "外观也很重要，毕竟要穿戴出去。", "affinityEffect": 0 },
+        { "text": "两者兼顾最好，好看又好用。", "affinityEffect": 1 },
+        { "text": "随便什么都行，能用就好。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "merchant_youliang_trade_routes_1",
+      "characterId": "merchant_youliang",
+      "topic": "商路见闻",
+      "npcText": "我走过很多地方的商路，见过不少稀奇古怪的东西。你对远方的世界好奇吗？",
+      "responses": [
+        { "text": "当然好奇，能给我讲讲吗？", "affinityEffect": 1 },
+        { "text": "远方的东西能在这里卖个好价钱吧？", "affinityEffect": 0 },
+        { "text": "我更关心眼前的事情。", "affinityEffect": 0 },
+        { "text": "没什么兴趣，走那么远太累了。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "merchant_youliang_business_1",
+      "characterId": "merchant_youliang",
+      "topic": "经商之道",
+      "npcText": "做生意最重要的是诚信，一次欺骗可能毁掉多年的口碑。你觉得做生意最重要的品质是什么？",
+      "responses": [
+        { "text": "诚信确实最重要，信誉是无价的。", "affinityEffect": 1 },
+        { "text": "眼光也很重要，要能发现商机。", "affinityEffect": 1 },
+        { "text": "会砍价最重要吧。", "affinityEffect": 0 },
+        { "text": "赚到钱就行，管那么多干嘛。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "merchant_youliang_rare_items_1",
+      "characterId": "merchant_youliang",
+      "topic": "稀有货物",
+      "npcText": "最近收到了一批稀有装备的材料，品质相当不错。如果你在冒险中找到好材料，可以拿来跟我交易。",
+      "responses": [
+        { "text": "好的，找到好东西一定先给你看。", "affinityEffect": 1 },
+        { "text": "你收购价格怎么样？", "affinityEffect": 0 },
+        { "text": "我自己留着用比较好。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "merchant_xiaoheiyang_goods_1",
+      "characterId": "merchant_xiaoheiyang",
+      "topic": "杂货经营",
+      "npcText": "我这里什么都卖，从冒险用品到日常杂货应有尽有。你觉得一个好的杂货铺最需要什么？",
+      "responses": [
+        { "text": "种类齐全最重要，一站式购物。", "affinityEffect": 1 },
+        { "text": "价格实惠才是关键。", "affinityEffect": 0 },
+        { "text": "品质好就行，贵一点也没关系。", "affinityEffect": 1 },
+        { "text": "我很少逛杂货铺。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "merchant_xiaoheiyang_sourcing_1",
+      "characterId": "merchant_xiaoheiyang",
+      "topic": "进货渠道",
+      "npcText": "为了找到好货源，我经常要跟各种商队打交道。有时候还得冒险去偏远的地方收货。你觉得值得吗？",
+      "responses": [
+        { "text": "为了好货源，冒点险是值得的。", "affinityEffect": 1 },
+        { "text": "安全第一，可以让别人代劳。", "affinityEffect": 0 },
+        { "text": "亲自去才能保证品质，很敬业。", "affinityEffect": 1 },
+        { "text": "何必那么辛苦，随便卖点什么就好。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "merchant_xiaoheiyang_village_life_1",
+      "characterId": "merchant_xiaoheiyang",
+      "topic": "村庄生活",
+      "npcText": "在这个村子开店虽然客人不多，但大家都很友善。你喜欢这里的生活吗？",
+      "responses": [
+        { "text": "很喜欢，这里的人都很好。", "affinityEffect": 1 },
+        { "text": "还不错，就是有时候有点无聊。", "affinityEffect": 0 },
+        { "text": "比起大城市差远了。", "affinityEffect": -1 }
+      ]
+    },
+    {
+      "id": "merchant_xiaoheiyang_customers_1",
+      "characterId": "merchant_xiaoheiyang",
+      "topic": "有趣的顾客",
+      "npcText": "做杂货生意能遇到各种各样的人。前几天有个冒险者来买了一大堆绷带，说是要去挑战地下城。你觉得冒险前最该准备什么？",
+      "responses": [
+        { "text": "药剂和食物最重要，保命要紧。", "affinityEffect": 1 },
+        { "text": "好的装备才是关键。", "affinityEffect": 0 },
+        { "text": "有可靠的队友比什么都重要。", "affinityEffect": 1 },
+        { "text": "准备那么多干嘛，直接冲就完了。", "affinityEffect": -1 }
+      ]
+    }
+  ]
+}

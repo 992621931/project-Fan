@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>炼金师团子测试</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+        }
+        .npc-container {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>炼金师团子 NPC 测试</h1>
+    <div id="npc-container" class="npc-container"></div>
+    
+    <script type="module">
+        // Import NPCSystem
+        import { NPCSystem } from './dist/main.b0b5ab679519cfb7ba7c.js';
+        
+        // Create a mock world object
+        const mockWorld = {
+            addSystem: () => {},
+            removeSystem: () => {},
+            getSystem: () => null
+        };
+        
+        // Initialize NPC System
+        const npcSystem = new NPCSystem(mockWorld);
+        
+        // Get alchemist Tuanzi NPC
+        const alchemistTuanzi = npcSystem.getNPC('alchemist_tuanzi');
+        
+        console.log('Alchemist Tuanzi:', alchemistTuanzi);
+        
+        if (alchemistTuanzi) {
+            const container = document.getElementById('npc-container');
+            
+            // Create NPC card
+            const card = document.createElement('div');
+            card.style.cssText = `
+                display: inline-flex;
+                flex-direction: column;
+                align-items: center;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                text-align: center;
+                gap: 8px;
+                background: white;
+                padding: 20px;
+                border-radius: 12px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            `;
+            
+            // Avatar
+            const avatar = document.createElement('div');
+            avatar.style.cssText = `
+                width: 75px;
+                height: 75px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 2px solid white;
+                box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.2);
+                overflow: hidden;
+            `;
+            
+            const avatarImg = document.createElement('img');
+            avatarImg.src = alchemistTuanzi.emoji;
+            avatarImg.style.cssText = `
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            `;
+            avatar.appendChild(avatarImg);
+            
+            // Name
+            const name = document.createElement('div');
+            name.style.cssText = `
+                font-size: 16px;
+                font-weight: bold;
+                color: #333;
+            `;
+            name.textContent = `${alchemistTuanzi.title}${alchemistTuanzi.name}`;
+            
+            // Info
+            const info = document.createElement('div');
+            info.style.cssText = `
+                font-size: 14px;
+                color: #666;
+            `;
+            info.textContent = `好感度: ${alchemistTuanzi.affinity}`;
+            
+            card.appendChild(avatar);
+            card.appendChild(name);
+            card.appendChild(info);
+            container.appendChild(card);
+            
+            console.log('✅ 炼金师团子卡片创建成功！');
+        } else {
+            console.error('❌ 未找到炼金师团子NPC！');
+            document.getElementById('npc-container').innerHTML = '<p style="color: red;">未找到炼金师团子NPC</p>';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,318 @@
+{
+  "passiveSkills": [
+    {
+      "id": "martial_training",
+      "name": "自幼习武",
+      "type": "passive",
+      "rarity": "common",
+      "icon": "images/beidongjineng_ziyouxiwu.png",
+      "description": "攻击力+15%",
+      "triggerCondition": "always",
+      "effects": [
+        {
+          "type": "attribute_multiplier",
+          "attribute": "attack",
+          "value": 0.15
+        }
+      ]
+    },
+    {
+      "id": "thick_skin",
+      "name": "皮糙肉厚",
+      "type": "passive",
+      "rarity": "common",
+      "icon": "images/beidongjineng_picaorouhou.png",
+      "description": "防御力+5",
+      "triggerCondition": "always",
+      "effects": [
+        {
+          "type": "attribute_bonus",
+          "attribute": "defense",
+          "value": 5
+        }
+      ]
+    },
+    {
+      "id": "robust_body",
+      "name": "身强体壮",
+      "type": "passive",
+      "rarity": "common",
+      "icon": "images/beidongjineng_shenqiangtizhuang.png",
+      "description": "最大生命值+15%",
+      "triggerCondition": "always",
+      "effects": [
+        {
+          "type": "hp_multiplier",
+          "attribute": "maxHP",
+          "value": 0.15
+        }
+      ]
+    },
+    {
+      "id": "swift_feet",
+      "name": "脚底抹油",
+      "type": "passive",
+      "rarity": "common",
+      "icon": "images/beidongjineng_jiaodimoyou.png",
+      "description": "移动速度+20%",
+      "triggerCondition": "always",
+      "effects": [
+        {
+          "type": "attribute_multiplier",
+          "attribute": "moveSpeed",
+          "value": 0.20
+        }
+      ]
+    },
+    {
+      "id": "thirst_for_knowledge",
+      "name": "求知欲",
+      "type": "passive",
+      "rarity": "common",
+      "icon": "images/beidongjineng_qiuzhiyu.png",
+      "description": "经验率+15%",
+      "triggerCondition": "always",
+      "effects": [
+        {
+          "type": "attribute_multiplier",
+          "attribute": "expRate",
+          "value": 0.15
+        }
+      ]
+    },
+    {
+      "id": "heavy_strike",
+      "name": "重击",
+      "type": "passive",
+      "rarity": "common",
+      "icon": "images/beidongjineng_zhongji.png",
+      "description": "和敌人发生3次碰撞之后，下一次碰撞必定暴击",
+      "triggerCondition": "collision_count",
+      "triggerValue": 3,
+      "effects": [
+        {
+          "type": "guaranteed_crit",
+          "duration": "next_hit"
+        }
+      ]
+    },
+    {
+      "id": "aim_weakness",
+      "name": "瞄准弱点",
+      "type": "passive",
+      "rarity": "common",
+      "icon": "images/beidongjineng_miaozhunruodian.png",
+      "description": "暴击率+8%",
+      "triggerCondition": "always",
+      "effects": [
+        {
+          "type": "attribute_bonus",
+          "attribute": "critRate",
+          "value": 8
+        }
+      ]
+    },
+    {
+      "id": "extreme_cruelty",
+      "name": "残忍至极",
+      "type": "passive",
+      "rarity": "common",
+      "icon": "images/beidongjineng_canrenzhiji.png",
+      "description": "暴击伤害+10%",
+      "triggerCondition": "always",
+      "effects": [
+        {
+          "type": "attribute_bonus",
+          "attribute": "critDamage",
+          "value": 10
+        }
+      ]
+    },
+    {
+      "id": "arcane_supremacy",
+      "name": "奥术至尊",
+      "type": "passive",
+      "rarity": "common",
+      "icon": "images/beidongjineng_aoshuzhizun.png",
+      "description": "魔法强度+8",
+      "triggerCondition": "always",
+      "effects": [
+        {
+          "type": "attribute_bonus",
+          "attribute": "magicPower",
+          "value": 8
+        }
+      ]
+    },
+    {
+      "id": "titan_bloodline",
+      "name": "泰坦血脉",
+      "type": "passive",
+      "rarity": "common",
+      "icon": "images/beidongjineng_taitanxuemai.png",
+      "description": "体积+30，体重+10",
+      "triggerCondition": "always",
+      "effects": [
+        {
+          "type": "attribute_bonus",
+          "attribute": "volume",
+          "value": 30
+        },
+        {
+          "type": "attribute_bonus",
+          "attribute": "weight",
+          "value": 10
+        }
+      ]
+    },
+    {
+      "id": "carrier",
+      "name": "搬运者",
+      "type": "passive",
+      "rarity": "common",
+      "icon": "images/beidongjineng_banyunzhe.png",
+      "description": "负重+10，移速-30%",
+      "triggerCondition": "always",
+      "effects": [
+        {
+          "type": "attribute_bonus",
+          "attribute": "carryWeight",
+          "value": 10
+        },
+        {
+          "type": "attribute_multiplier",
+          "attribute": "moveSpeed",
+          "value": -0.30
+        }
+      ]
+    },
+    {
+      "id": "gastritis",
+      "name": "胃炎",
+      "type": "passive",
+      "rarity": "common",
+      "icon": "images/beidongjineng_weiyan.png",
+      "description": "最大生命-10，饱腹度消耗-50%",
+      "triggerCondition": "always",
+      "effects": [
+        {
+          "type": "attribute_bonus",
+          "attribute": "maxHP",
+          "value": -10
+        },
+        {
+          "type": "attribute_multiplier",
+          "attribute": "satietyConsumptionRate",
+          "value": -0.50
+        }
+      ]
+    },
+    {
+      "id": "challenger",
+      "name": "挑战者",
+      "type": "passive",
+      "rarity": "common",
+      "icon": "images/beidongjineng_tiaozhanzhe.png",
+      "description": "对BOSS伤害+20%",
+      "triggerCondition": "always",
+      "effects": [
+        {
+          "type": "damage_modifier",
+          "targetType": "boss",
+          "value": 0.20
+        }
+      ]
+    },
+    {
+      "id": "natural_science",
+      "name": "自然学",
+      "type": "passive",
+      "rarity": "common",
+      "icon": "images/beidongjineng_ziranxue.png",
+      "description": "对资源点伤害+100%",
+      "triggerCondition": "always",
+      "effects": [
+        {
+          "type": "damage_modifier",
+          "targetType": "resource",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "id": "lifesteal",
+      "name": "饮血",
+      "type": "passive",
+      "rarity": "common",
+      "icon": "images/beidongjineng_yinxue.png",
+      "description": "碰撞伤害的10%转化为治疗",
+      "triggerCondition": "on_collision",
+      "effects": [
+        {
+          "type": "lifesteal",
+          "value": 0.10
+        }
+      ]
+    },
+    {
+      "id": "midas_touch",
+      "name": "麦达斯之触",
+      "type": "passive",
+      "rarity": "common",
+      "icon": "images/beidongjineng_maidasizhichu.png",
+      "description": "碰撞获得1金币",
+      "triggerCondition": "on_collision",
+      "effects": [
+        {
+          "type": "gold_on_hit",
+          "minValue": 1,
+          "maxValue": 1
+        }
+      ]
+    },
+    {
+      "id": "moon_blessing",
+      "name": "月之祝福",
+      "type": "passive",
+      "rarity": "common",
+      "icon": "images/beidongjineng_yuezhizhufu.png",
+      "description": "夜晚攻击+15%，防御+10",
+      "triggerCondition": "time_of_day",
+      "triggerValue": "night",
+      "effects": [
+        {
+          "type": "attribute_multiplier",
+          "attribute": "attack",
+          "value": 0.15
+        },
+        {
+          "type": "attribute_bonus",
+          "attribute": "defense",
+          "value": 10
+        }
+      ]
+    },
+    {
+      "id": "photosynthesis",
+      "name": "光合作用",
+      "type": "passive",
+      "rarity": "common",
+      "icon": "images/beidongjineng_guanghezuoyong.png",
+      "description": "白天回血+1，回魔+1",
+      "triggerCondition": "time_of_day",
+      "triggerValue": "day",
+      "effects": [
+        {
+          "type": "attribute_bonus",
+          "attribute": "healthRegen",
+          "value": 1
+        },
+        {
+          "type": "attribute_bonus",
+          "attribute": "manaRegen",
+          "value": 1
+        }
+      ]
+    }
+  ]
+}

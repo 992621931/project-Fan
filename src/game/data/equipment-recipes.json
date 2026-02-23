@@ -1,0 +1,880 @@
+{
+  "recipes": [
+    {
+      "id": "copper_longsword",
+      "name": "铜质长剑",
+      "rarity": "common",
+      "type": [
+        "装备",
+        "武器"
+      ],
+      "icon": "images/wupin_zhuangbei_tongzhichangjian.png",
+      "mainAttribute": "攻击力+5",
+      "secondaryAttributes": [],
+      "description": "用铜矿石锻造的基础长剑",
+      "materials": [
+        {
+          "itemId": "copper_ore",
+          "amount": 4
+        },
+        {
+          "itemId": "oak_wood",
+          "amount": 1
+        }
+      ],
+      "buyPrice": 800
+    },
+    {
+      "id": "oak_wand",
+      "name": "橡木魔杖",
+      "rarity": "common",
+      "type": [
+        "装备",
+        "武器"
+      ],
+      "icon": "images/wupin_zhuangbei_xiangmumozhang.png",
+      "mainAttribute": "魔法强度+10",
+      "secondaryAttributes": [],
+      "description": "用橡木制作的基础魔杖",
+      "materials": [
+        {
+          "itemId": "oak_wood",
+          "amount": 5
+        }
+      ],
+      "buyPrice": 800
+    },
+    {
+      "id": "copper_chestplate",
+      "name": "铜甲护胸",
+      "rarity": "common",
+      "type": [
+        "装备",
+        "护甲"
+      ],
+      "icon": "images/wupin_zhuangbei_tongjiahuxiong.png",
+      "mainAttribute": "防御力+5",
+      "secondaryAttributes": [],
+      "description": "用铜矿石锻造的护胸甲",
+      "materials": [
+        {
+          "itemId": "copper_ore",
+          "amount": 5
+        }
+      ],
+      "buyPrice": 800
+    },
+    {
+      "id": "oak_plate_armor",
+      "name": "橡木板甲",
+      "rarity": "common",
+      "type": [
+        "装备",
+        "护甲"
+      ],
+      "icon": "images/wupin_zhuangbei_xiangmubanjia.png",
+      "mainAttribute": "防御力+2，最大生命值+10",
+      "secondaryAttributes": [],
+      "description": "用橡木制作的板甲",
+      "materials": [
+        {
+          "itemId": "oak_wood",
+          "amount": 5
+        }
+      ],
+      "buyPrice": 800
+    },
+    {
+      "id": "small_round_shield",
+      "name": "小圆盾",
+      "rarity": "common",
+      "type": [
+        "装备",
+        "副手"
+      ],
+      "icon": "images/wupin_zhuangbei_xiaoyuandun.png",
+      "mainAttribute": "防御力+2，最大生命值+10",
+      "secondaryAttributes": [],
+      "description": "小巧的圆形盾牌",
+      "materials": [
+        {
+          "itemId": "oak_wood",
+          "amount": 4
+        },
+        {
+          "itemId": "copper_ore",
+          "amount": 1
+        }
+      ],
+      "buyPrice": 800
+    },
+    {
+      "id": "copper_tower_shield",
+      "name": "铜质长盾",
+      "rarity": "common",
+      "type": [
+        "装备",
+        "副手"
+      ],
+      "icon": "images/wupin_zhuangbei_tongzhichangdun.png",
+      "mainAttribute": "防御力+5",
+      "secondaryAttributes": [],
+      "description": "用铜矿石锻造的长盾",
+      "materials": [
+        {
+          "itemId": "copper_ore",
+          "amount": 5
+        }
+      ],
+      "buyPrice": 800
+    },
+    {
+      "id": "copper_ring",
+      "name": "铜戒指",
+      "rarity": "common",
+      "type": [
+        "装备",
+        "杂项"
+      ],
+      "icon": "images/wupin_zhuangbei_tongjiezhi.png",
+      "mainAttribute": "防御力+1",
+      "secondaryAttributes": [],
+      "description": "简单的铜制戒指",
+      "materials": [
+        {
+          "itemId": "copper_ore",
+          "amount": 3
+        }
+      ],
+      "buyPrice": 750
+    },
+    {
+      "id": "copper_necklace",
+      "name": "铜项链",
+      "rarity": "common",
+      "type": [
+        "装备",
+        "杂项"
+      ],
+      "icon": "images/wupin_zhuangbei_tongxianglian.png",
+      "mainAttribute": "最大生命值+5",
+      "secondaryAttributes": [],
+      "description": "简单的铜制项链",
+      "materials": [
+        {
+          "itemId": "copper_ore",
+          "amount": 3
+        }
+      ],
+      "buyPrice": 750
+    },
+    {
+      "id": "red_moon",
+      "name": "血月",
+      "rarity": "rare",
+      "type": [
+        "装备",
+        "武器"
+      ],
+      "icon": "images/wupin_zhuangbei_hongyue.png",
+      "mainAttribute": "攻击力+7",
+      "secondaryAttributes": [],
+      "description": "蕴含赤鬃之力的武器",
+      "materials": [
+        {
+          "itemId": "red_mane_fang",
+          "amount": 2
+        },
+        {
+          "itemId": "copper_ore",
+          "amount": 4
+        }
+      ],
+      "buyPrice": 1700
+    },
+    {
+      "id": "sirius",
+      "name": "天狼星",
+      "rarity": "rare",
+      "type": [
+        "装备",
+        "武器"
+      ],
+      "icon": "images/wupin_zhuangbei_tianlangxing.png",
+      "mainAttribute": "魔法强度+15",
+      "secondaryAttributes": [],
+      "description": "闪耀如星辰的魔杖",
+      "materials": [
+        {
+          "itemId": "red_mane_fang",
+          "amount": 2
+        },
+        {
+          "itemId": "slime_sweet_pearl",
+          "amount": 2
+        },
+        {
+          "itemId": "oak_wood",
+          "amount": 2
+        }
+      ],
+      "buyPrice": 1700
+    },
+    {
+      "id": "red_tide",
+      "name": "赤潮",
+      "rarity": "rare",
+      "type": [
+        "装备",
+        "护甲"
+      ],
+      "icon": "images/wupin_zhuangbei_chichao.png",
+      "mainAttribute": "防御力+7",
+      "secondaryAttributes": [],
+      "description": "赤鬃毛皮制成的护甲",
+      "materials": [
+        {
+          "itemId": "red_mane_fur",
+          "amount": 2
+        },
+        {
+          "itemId": "copper_ore",
+          "amount": 6
+        }
+      ],
+      "buyPrice": 1700
+    },
+    {
+      "id": "bleeder",
+      "name": "放血者",
+      "rarity": "rare",
+      "type": [
+        "装备",
+        "副手"
+      ],
+      "icon": "images/wupin_zhuangbei_fangxuezhe.png",
+      "mainAttribute": "暴击率+5%",
+      "secondaryAttributes": [],
+      "description": "锋利的副手武器",
+      "materials": [
+        {
+          "itemId": "red_mane_fang",
+          "amount": 1
+        },
+        {
+          "itemId": "smooth_snake_skin",
+          "amount": 4
+        }
+      ],
+      "buyPrice": 1700
+    },
+    {
+      "id": "red_shadow",
+      "name": "赤影",
+      "rarity": "rare",
+      "type": [
+        "装备",
+        "杂项"
+      ],
+      "icon": "images/wupin_zhuangbei_chiying.png",
+      "mainAttribute": "移动速度+15",
+      "secondaryAttributes": [],
+      "description": "轻盈如影的靴子",
+      "materials": [
+        {
+          "itemId": "red_mane_fur",
+          "amount": 2
+        },
+        {
+          "itemId": "grass_mushroom_worm_thin_wing",
+          "amount": 4
+        }
+      ],
+      "buyPrice": 1700
+    },
+    {
+      "id": "iron_spear",
+      "name": "铁质长矛",
+      "rarity": "common",
+      "type": [
+        "装备",
+        "武器"
+      ],
+      "icon": "images/wupin_zhuangbei_tiezhichangmao.png",
+      "mainAttribute": "攻击力+8",
+      "secondaryAttributes": [],
+      "description": "以精铁锻打的长矛，矛尖寒光凛冽，刺穿力远胜寻常兵刃",
+      "materials": [
+        {
+          "itemId": "iron_ore",
+          "amount": 5
+        },
+        {
+          "itemId": "birch_wood",
+          "amount": 2
+        }
+      ],
+      "buyPrice": 1600
+    },
+    {
+      "id": "birch_wand",
+      "name": "桦木魔杖",
+      "rarity": "common",
+      "type": [
+        "装备",
+        "武器"
+      ],
+      "icon": "images/wupin_zhuangbei_huamumozhang.png",
+      "mainAttribute": "魔法强度+16",
+      "secondaryAttributes": [],
+      "description": "取自百年桦木的杖身，纹理间流淌着淡淡的魔力光泽",
+      "materials": [
+        {
+          "itemId": "birch_wood",
+          "amount": 7
+        }
+      ],
+      "buyPrice": 1600
+    },
+    {
+      "id": "chain_mail",
+      "name": "锁子甲",
+      "rarity": "common",
+      "type": [
+        "装备",
+        "护甲"
+      ],
+      "icon": "images/wupin_zhuangbei_suozijia.png",
+      "mainAttribute": "防御力+8",
+      "secondaryAttributes": [],
+      "description": "数千枚铁环环环相扣，兼顾防护与灵活，是战场上的可靠伙伴",
+      "materials": [
+        {
+          "itemId": "iron_ore",
+          "amount": 7
+        }
+      ],
+      "buyPrice": 1600
+    },
+    {
+      "id": "birch_plate_armor",
+      "name": "桦木板甲",
+      "rarity": "common",
+      "type": [
+        "装备",
+        "护甲"
+      ],
+      "icon": "images/wupin_zhuangbei_huamubanjia.png",
+      "mainAttribute": "防御力+4，最大生命值+30",
+      "secondaryAttributes": [],
+      "description": "以桦木薄板层叠拼合而成，轻便却出奇地坚韧",
+      "materials": [
+        {
+          "itemId": "birch_wood",
+          "amount": 7
+        }
+      ],
+      "buyPrice": 1600
+    },
+    {
+      "id": "iron_round_shield",
+      "name": "铁质圆盾",
+      "rarity": "common",
+      "type": [
+        "装备",
+        "副手"
+      ],
+      "icon": "images/wupin_zhuangbei_tiezhiyuandun.png",
+      "mainAttribute": "防御力+4，最大生命值+30",
+      "secondaryAttributes": [],
+      "description": "厚实的铁盾，盾面微微隆起，能将来袭的力道巧妙卸开",
+      "materials": [
+        {
+          "itemId": "iron_ore",
+          "amount": 4
+        },
+        {
+          "itemId": "birch_wood",
+          "amount": 3
+        }
+      ],
+      "buyPrice": 1600
+    },
+    {
+      "id": "kitchen_knife",
+      "name": "厨刀",
+      "rarity": "common",
+      "type": [
+        "装备",
+        "副手"
+      ],
+      "icon": "images/wupin_zhuangbei_chudao.png",
+      "mainAttribute": "暴伤+10%",
+      "secondaryAttributes": [],
+      "description": "锋利得能切开空气的厨刀，据说是某位大厨的退役装备",
+      "materials": [
+        {
+          "itemId": "iron_ore",
+          "amount": 7
+        }
+      ],
+      "buyPrice": 1600
+    },
+    {
+      "id": "iron_ring",
+      "name": "铁戒指",
+      "rarity": "common",
+      "type": [
+        "装备",
+        "杂项"
+      ],
+      "icon": "images/wupin_zhuangbei_tiejiezhi.png",
+      "mainAttribute": "防御力+2",
+      "secondaryAttributes": [],
+      "description": "朴素的铁制戒指，虽不起眼，却蕴含着铁匠的心意",
+      "materials": [
+        {
+          "itemId": "iron_ore",
+          "amount": 4
+        }
+      ],
+      "buyPrice": 1450
+    },
+    {
+      "id": "iron_necklace",
+      "name": "铁项链",
+      "rarity": "common",
+      "type": [
+        "装备",
+        "杂项"
+      ],
+      "icon": "images/wupin_zhuangbei_tiexianglian.png",
+      "mainAttribute": "最大生命值+10",
+      "secondaryAttributes": [],
+      "description": "粗犷的铁链项链，佩戴者似乎能感受到一股温暖的力量",
+      "materials": [
+        {
+          "itemId": "iron_ore",
+          "amount": 4
+        }
+      ],
+      "buyPrice": 1450
+    },
+    {
+      "id": "crusher",
+      "name": "粉碎者",
+      "rarity": "rare",
+      "type": [
+        "装备",
+        "武器"
+      ],
+      "icon": "images/wupin_zhuangbei_fensuizhe.png",
+      "mainAttribute": "攻击力+10",
+      "secondaryAttributes": [],
+      "description": "以胡克骨骼为柄、弯牙为刃，挥舞时带着野兽般的破坏力",
+      "materials": [
+        {
+          "itemId": "huke_leg_bone",
+          "amount": 1
+        },
+        {
+          "itemId": "huke_curved_fang",
+          "amount": 3
+        },
+        {
+          "itemId": "blue_spider_front_leg",
+          "amount": 5
+        }
+      ],
+      "buyPrice": 2800
+    },
+    {
+      "id": "gravedigger",
+      "name": "掘墓者",
+      "rarity": "rare",
+      "type": [
+        "装备",
+        "武器"
+      ],
+      "icon": "images/wupin_zhuangbei_juemuzhe.png",
+      "mainAttribute": "魔法强度+18",
+      "secondaryAttributes": [],
+      "description": "杖身散发着不祥的气息，据说能窥探生死之间的奥秘",
+      "materials": [
+        {
+          "itemId": "huke_leg_bone",
+          "amount": 3
+        },
+        {
+          "itemId": "huke_curved_fang",
+          "amount": 1
+        },
+        {
+          "itemId": "bitter_root",
+          "amount": 5
+        }
+      ],
+      "buyPrice": 2800
+    },
+    {
+      "id": "death_god",
+      "name": "死神",
+      "rarity": "rare",
+      "type": [
+        "装备",
+        "护甲"
+      ],
+      "icon": "images/wupin_zhuangbei_sishen.png",
+      "mainAttribute": "防御力+10",
+      "secondaryAttributes": [],
+      "description": "漆黑如夜的重甲，穿上它的人仿佛被死亡本身所庇护",
+      "materials": [
+        {
+          "itemId": "huke_leg_bone",
+          "amount": 4
+        },
+        {
+          "itemId": "coarse_salt_block",
+          "amount": 5
+        }
+      ],
+      "buyPrice": 2800
+    },
+    {
+      "id": "skull_crusher",
+      "name": "碎颅",
+      "rarity": "rare",
+      "type": [
+        "装备",
+        "副手"
+      ],
+      "icon": "images/wupin_zhuangbei_suilu.png",
+      "mainAttribute": "攻击力+3，防御力+3",
+      "secondaryAttributes": [],
+      "description": "沉重的副手钝器，一击之下足以粉碎坚硬的头骨",
+      "materials": [
+        {
+          "itemId": "huke_leg_bone",
+          "amount": 3
+        }
+      ],
+      "buyPrice": 2600
+    },
+    {
+      "id": "ancestral_teaching",
+      "name": "祖训",
+      "rarity": "rare",
+      "type": [
+        "装备",
+        "杂项"
+      ],
+      "icon": "images/wupin_zhuangbei_zuxun.png",
+      "mainAttribute": "暴击率+6%",
+      "secondaryAttributes": [],
+      "description": "刻有古老训诫的饰物，佩戴者能在战斗中捕捉到致命的破绽",
+      "materials": [
+        {
+          "itemId": "huke_curved_fang",
+          "amount": 3
+        }
+      ],
+      "buyPrice": 2600
+    },
+    {
+      "id": "legion_axe",
+      "name": "军团利斧",
+      "rarity": "rare",
+      "type": [
+        "装备",
+        "武器"
+      ],
+      "icon": "images/wupin_zhuangbei_juntuanlifu.png",
+      "mainAttribute": "攻击力+11",
+      "secondaryAttributes": [],
+      "description": "军团制式战斧，斧刃上残留着无数战役的痕迹",
+      "materials": [
+        {
+          "itemId": "amber_ore",
+          "amount": 10
+        }
+      ],
+      "buyPrice": 3400
+    },
+    {
+      "id": "blue_dawn_wand",
+      "name": "蓝昙魔杖",
+      "rarity": "rare",
+      "type": [
+        "装备",
+        "武器"
+      ],
+      "icon": "images/wupin_zhuangbei_lantanmozhang.png",
+      "mainAttribute": "魔法强度+20",
+      "secondaryAttributes": [],
+      "description": "以蓝昙木精心雕琢而成，杖端在暗处会泛起幽蓝微光",
+      "materials": [
+        {
+          "itemId": "blue_tan_wood",
+          "amount": 10
+        }
+      ],
+      "buyPrice": 3400
+    },
+    {
+      "id": "legion_armor",
+      "name": "军团护甲",
+      "rarity": "rare",
+      "type": [
+        "装备",
+        "护甲"
+      ],
+      "icon": "images/wupin_zhuangbei_juntuanhujia.png",
+      "mainAttribute": "防御力+11",
+      "secondaryAttributes": [],
+      "description": "军团精锐的标配护甲，厚重的甲片下是无数次冲锋的勇气",
+      "materials": [
+        {
+          "itemId": "amber_ore",
+          "amount": 10
+        }
+      ],
+      "buyPrice": 3400
+    },
+    {
+      "id": "blue_dawn_robe",
+      "name": "蓝昙棉衣",
+      "rarity": "rare",
+      "type": [
+        "装备",
+        "护甲"
+      ],
+      "icon": "images/wupin_zhuangbei_lantanmianyi.png",
+      "mainAttribute": "最大生命值+80",
+      "secondaryAttributes": [],
+      "description": "以蓝昙木纤维编织的棉衣，穿着者能感受到森林的生命力",
+      "materials": [
+        {
+          "itemId": "blue_tan_wood",
+          "amount": 10
+        }
+      ],
+      "buyPrice": 3400
+    },
+    {
+      "id": "legion_round_shield",
+      "name": "军团圆盾",
+      "rarity": "rare",
+      "type": [
+        "装备",
+        "副手"
+      ],
+      "icon": "images/wupin_zhuangbei_juntuanyuandun.png",
+      "mainAttribute": "防御力+5，最大生命值+50",
+      "secondaryAttributes": [],
+      "description": "军团盾兵的标志，盾面上的军徽在阳光下熠熠生辉",
+      "materials": [
+        {
+          "itemId": "amber_ore",
+          "amount": 4
+        },
+        {
+          "itemId": "blue_tan_wood",
+          "amount": 6
+        }
+      ],
+      "buyPrice": 3400
+    },
+    {
+      "id": "legion_mirror_shield",
+      "name": "军团镜盾",
+      "rarity": "rare",
+      "type": [
+        "装备",
+        "副手"
+      ],
+      "icon": "images/wupin_zhuangbei_juntuanjingdun.png",
+      "mainAttribute": "防御力+5，闪避率+5%",
+      "secondaryAttributes": [],
+      "description": "盾面打磨如镜，传说能映射敌人的攻击意图",
+      "materials": [
+        {
+          "itemId": "amber_ore",
+          "amount": 6
+        },
+        {
+          "itemId": "blue_tan_wood",
+          "amount": 4
+        }
+      ],
+      "buyPrice": 3400
+    },
+    {
+      "id": "legion_ring",
+      "name": "军团戒指",
+      "rarity": "rare",
+      "type": [
+        "装备",
+        "杂项"
+      ],
+      "icon": "images/wupin_zhuangbei_juntuanjiezhi.png",
+      "mainAttribute": "防御力+3",
+      "secondaryAttributes": [],
+      "description": "军团成员的身份象征，戴上它便是荣誉的承诺",
+      "materials": [
+        {
+          "itemId": "amber_ore",
+          "amount": 6
+        }
+      ],
+      "buyPrice": 3100
+    },
+    {
+      "id": "legion_necklace",
+      "name": "军团项链",
+      "rarity": "rare",
+      "type": [
+        "装备",
+        "杂项"
+      ],
+      "icon": "images/wupin_zhuangbei_juntuanxianglian.png",
+      "mainAttribute": "最大生命值+30",
+      "secondaryAttributes": [],
+      "description": "镶嵌着黄珀碎片的项链，温润的光芒给予佩戴者安心感",
+      "materials": [
+        {
+          "itemId": "amber_ore",
+          "amount": 6
+        }
+      ],
+      "buyPrice": 3100
+    },
+    {
+      "id": "former_emperor",
+      "name": "先皇",
+      "rarity": "epic",
+      "type": [
+        "装备",
+        "武器"
+      ],
+      "icon": "images/wupin_zhuangbei_xianhuang.png",
+      "mainAttribute": "攻击力+15，暴伤+10%",
+      "secondaryAttributes": [],
+      "description": "传说中先皇御用的佩剑，剑身上的龙纹在战斗中会隐隐发光",
+      "materials": [
+        {
+          "itemId": "amber_ore",
+          "amount": 20
+        },
+        {
+          "itemId": "ghost_lizard_skin",
+          "amount": 10
+        }
+      ],
+      "buyPrice": 8500
+    },
+    {
+      "id": "pope",
+      "name": "教皇",
+      "rarity": "epic",
+      "type": [
+        "装备",
+        "武器"
+      ],
+      "icon": "images/wupin_zhuangbei_jiaohuang.png",
+      "mainAttribute": "魔法强度+25，回魔+1",
+      "secondaryAttributes": [],
+      "description": "教廷至高权杖的复制品，杖端的宝石仿佛蕴含着无尽的魔力之海",
+      "materials": [
+        {
+          "itemId": "blue_tan_wood",
+          "amount": 20
+        },
+        {
+          "itemId": "ghost_lizard_sucker",
+          "amount": 5
+        }
+      ],
+      "buyPrice": 8500
+    },
+    {
+      "id": "glory",
+      "name": "辉煌",
+      "rarity": "epic",
+      "type": [
+        "装备",
+        "护甲"
+      ],
+      "icon": "images/wupin_zhuangbei_huihuang.png",
+      "mainAttribute": "防御力+13，负重+10",
+      "secondaryAttributes": [],
+      "description": "以珍稀材料铸就的华丽铠甲，穿戴者宛如行走的堡垒",
+      "materials": [
+        {
+          "itemId": "amber_ore",
+          "amount": 10
+        },
+        {
+          "itemId": "blue_tan_wood",
+          "amount": 10
+        },
+        {
+          "itemId": "ghost_lizard_sucker",
+          "amount": 5
+        }
+      ],
+      "buyPrice": 8500
+    },
+    {
+      "id": "unity",
+      "name": "团结",
+      "rarity": "epic",
+      "type": [
+        "装备",
+        "副手"
+      ],
+      "icon": "images/wupin_zhuangbei_tuanjie.png",
+      "mainAttribute": "防御力+8，体重+5",
+      "secondaryAttributes": [],
+      "description": "铭刻着团结誓言的盾牌，据说只有真正的战友才能发挥它的全部力量",
+      "materials": [
+        {
+          "itemId": "amber_ore",
+          "amount": 8
+        },
+        {
+          "itemId": "blue_tan_wood",
+          "amount": 8
+        },
+        {
+          "itemId": "ghost_lizard_skin",
+          "amount": 8
+        }
+      ],
+      "buyPrice": 8200
+    },
+    {
+      "id": "devotion",
+      "name": "奉献",
+      "rarity": "epic",
+      "type": [
+        "装备",
+        "杂项"
+      ],
+      "icon": "images/wupin_zhuangbei_fengxian.png",
+      "mainAttribute": "最大生命值+35，回血+1",
+      "secondaryAttributes": [],
+      "description": "散发着柔和光辉的圣物，佩戴者的伤口会缓缓自愈",
+      "materials": [
+        {
+          "itemId": "ghost_lizard_skin",
+          "amount": 10
+        },
+        {
+          "itemId": "ghost_lizard_sucker",
+          "amount": 5
+        }
+      ],
+      "buyPrice": 8200
+    }
+  ]
+}

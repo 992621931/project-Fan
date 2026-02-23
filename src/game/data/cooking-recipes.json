@@ -1,0 +1,433 @@
+{
+  "recipes": [
+    {
+      "id": "slime_qq_candy",
+      "name": "史莱姆QQ糖",
+      "rarity": 0,
+      "icon": "images/wupin_caiyao_shilaimuQQtang.png",
+      "description": "酸酸甜甜，QQ弹弹",
+      "hungerRestore": 8,
+      "effects": "饱腹度+8",
+      "ingredients": [
+        {
+          "itemId": "slime_sweet_pearl",
+          "quantity": 3
+        }
+      ],
+      "weight": 1,
+      "buyPrice": 220
+    },
+    {
+      "id": "sugar_pickled_snake_liver",
+      "name": "糖腌蛇肝",
+      "rarity": 1,
+      "icon": "images/wupin_caiyao_tangyanshegan.png",
+      "description": "甜中带腥，别有一番风味",
+      "hungerRestore": 20,
+      "effects": "饱腹度+20",
+      "ingredients": [
+        {
+          "itemId": "slime_sweet_pearl",
+          "quantity": 2
+        },
+        {
+          "itemId": "two_headed_snake_liver",
+          "quantity": 1
+        }
+      ],
+      "weight": 1,
+      "buyPrice": 200
+    },
+    {
+      "id": "fried_mushroom_slices",
+      "name": "香煎菇片",
+      "rarity": 0,
+      "icon": "images/wupin_caiyao_xiangjiangupian.png",
+      "description": "简单的煎制，保留了蘑菇的原汁原味",
+      "hungerRestore": 25,
+      "effects": "饱腹度+25",
+      "ingredients": [
+        {
+          "itemId": "mystic_mushroom",
+          "quantity": 3
+        }
+      ],
+      "weight": 1,
+      "buyPrice": 50
+    },
+    {
+      "id": "candied_mystic_mushroom",
+      "name": "冰糖迷香菇",
+      "rarity": 1,
+      "icon": "images/wupin_caiyao_bingtangmixianggu.png",
+      "description": "甜蜜的糖浆包裹着香菇，口感独特",
+      "hungerRestore": 25,
+      "effects": "饱腹度+25",
+      "ingredients": [
+        {
+          "itemId": "mystic_mushroom",
+          "quantity": 2
+        },
+        {
+          "itemId": "sweet_syrup_gland",
+          "quantity": 1
+        }
+      ],
+      "weight": 1,
+      "buyPrice": 240
+    },
+    {
+      "id": "two_headed_snake_skin_jelly",
+      "name": "双头蛇皮冻",
+      "rarity": 0,
+      "icon": "images/wupin_caiyao_shuangtoushepidong.png",
+      "description": "Q弹爽滑，冰冰凉凉",
+      "hungerRestore": 15,
+      "effects": "饱腹度+15",
+      "ingredients": [
+        {
+          "itemId": "smooth_snake_skin",
+          "quantity": 3
+        }
+      ],
+      "weight": 1,
+      "buyPrice": 150
+    },
+    {
+      "id": "crispy_wing_snake_skin_roll",
+      "name": "酥翼蛇皮卷",
+      "rarity": 1,
+      "icon": "images/wupin_caiyao_suyishepijuan.png",
+      "description": "外酥里嫩，层次分明",
+      "hungerRestore": 22,
+      "effects": "饱腹度+22",
+      "ingredients": [
+        {
+          "itemId": "smooth_snake_skin",
+          "quantity": 2
+        },
+        {
+          "itemId": "grass_mushroom_worm_thin_wing",
+          "quantity": 1
+        }
+      ],
+      "weight": 1,
+      "buyPrice": 215
+    },
+    {
+      "id": "grassland_set_meal",
+      "name": "草原套餐",
+      "rarity": 2,
+      "icon": "images/wupin_caiyao_caoyuantaocan.png",
+      "description": "草原上的珍馐美馔，集合了多种食材的精华",
+      "hungerRestore": 50,
+      "effects": "饱腹度+50",
+      "ingredients": [
+        {
+          "itemId": "sweet_syrup_gland",
+          "quantity": 2
+        },
+        {
+          "itemId": "two_headed_snake_liver",
+          "quantity": 2
+        },
+        {
+          "itemId": "grass_mushroom_worm_thin_wing",
+          "quantity": 2
+        },
+        {
+          "itemId": "lavender",
+          "quantity": 2
+        }
+      ],
+      "weight": 1,
+      "buyPrice": 350
+    },
+    {
+      "id": "bitter_ball",
+      "name": "苦团",
+      "rarity": 0,
+      "icon": "images/wupin_caiyao_kutuan.png",
+      "description": "软糯微苦，小巧扛饿",
+      "hungerRestore": 31,
+      "effects": "饱腹度+31",
+      "ingredients": [
+        {
+          "itemId": "bitter_root",
+          "quantity": 3
+        }
+      ],
+      "weight": 1,
+      "buyPrice": 70
+    },
+    {
+      "id": "suffocating_special_drink",
+      "name": "窒息特饮",
+      "rarity": 1,
+      "icon": "images/wupin_caiyao_zhixiteying.png",
+      "description": "只需一口，提神醒脑",
+      "hungerRestore": 10,
+      "effects": "饱腹度+10",
+      "ingredients": [
+        {
+          "itemId": "bitter_root",
+          "quantity": 2
+        },
+        {
+          "itemId": "salt_stone_crystal",
+          "quantity": 1
+        }
+      ],
+      "weight": 1,
+      "buyPrice": 350
+    },
+    {
+      "id": "steamed_spider_leg",
+      "name": "清蒸蛛腿",
+      "rarity": 0,
+      "icon": "images/wupin_caiyao_qingzhengzhutui.png",
+      "description": "鲜甜饱满，一口满足",
+      "hungerRestore": 28,
+      "effects": "饱腹度+28",
+      "ingredients": [
+        {
+          "itemId": "blue_spider_front_leg",
+          "quantity": 3
+        }
+      ],
+      "weight": 1,
+      "buyPrice": 255
+    },
+    {
+      "id": "braised_spider_leg",
+      "name": "酱烧蛛腿",
+      "rarity": 1,
+      "icon": "images/wupin_caiyao_jiangshaozhutui.png",
+      "description": "酸苦酱汁，别具风味",
+      "hungerRestore": 33,
+      "effects": "饱腹度+33",
+      "ingredients": [
+        {
+          "itemId": "blue_spider_front_leg",
+          "quantity": 2
+        },
+        {
+          "itemId": "bitter_juice",
+          "quantity": 1
+        }
+      ],
+      "weight": 1,
+      "buyPrice": 305
+    },
+    {
+      "id": "salty_concubine_candy",
+      "name": "咸妃糖",
+      "rarity": 0,
+      "icon": "images/wupin_caiyao_xianfeitang.png",
+      "description": "咸咸糯糯，小孩最爱",
+      "hungerRestore": 5,
+      "effects": "饱腹度+5",
+      "ingredients": [
+        {
+          "itemId": "coarse_salt_block",
+          "quantity": 3
+        }
+      ],
+      "weight": 1,
+      "buyPrice": 300
+    },
+    {
+      "id": "dehydrated_compressed_biscuit",
+      "name": "脱水压缩饼",
+      "rarity": 1,
+      "icon": "images/wupin_caiyao_tuoshuiyasuobing.png",
+      "description": "一块下肚，一天不饿",
+      "hungerRestore": 50,
+      "effects": "饱腹度+50",
+      "ingredients": [
+        {
+          "itemId": "coarse_salt_block",
+          "quantity": 2
+        },
+        {
+          "itemId": "blue_cheese_ball",
+          "quantity": 1
+        }
+      ],
+      "weight": 1,
+      "buyPrice": 50
+    },
+    {
+      "id": "forest_set_meal",
+      "name": "森林套餐",
+      "rarity": 2,
+      "icon": "images/wupin_caiyao_senlintaocan.png",
+      "description": "森林精华，此刻尽享",
+      "hungerRestore": 50,
+      "effects": "饱腹度+50",
+      "ingredients": [
+        {
+          "itemId": "bitter_juice",
+          "quantity": 2
+        },
+        {
+          "itemId": "blue_cheese_ball",
+          "quantity": 2
+        },
+        {
+          "itemId": "salt_stone_crystal",
+          "quantity": 2
+        },
+        {
+          "itemId": "burst_fruit",
+          "quantity": 2
+        }
+      ],
+      "weight": 1,
+      "buyPrice": 500
+    },
+    {
+      "id": "finger_fries",
+      "name": "手指薯条",
+      "rarity": 0,
+      "icon": "images/wupin_caiyao_shouzhishutiao.png",
+      "description": "一口一根，停不下来",
+      "hungerRestore": 18,
+      "effects": "饱腹度+18",
+      "ingredients": [
+        {
+          "itemId": "corpse_potato",
+          "quantity": 3
+        }
+      ],
+      "weight": 1,
+      "buyPrice": 400
+    },
+    {
+      "id": "bile_noodles",
+      "name": "胆汁拌面",
+      "rarity": 1,
+      "icon": "images/wupin_caiyao_danzhibanmian.png",
+      "description": "劲爽酱汁，一口升天",
+      "hungerRestore": 40,
+      "effects": "饱腹度+40",
+      "ingredients": [
+        {
+          "itemId": "corpse_potato",
+          "quantity": 2
+        },
+        {
+          "itemId": "beating_gallbladder",
+          "quantity": 1
+        }
+      ],
+      "weight": 1,
+      "buyPrice": 430
+    },
+    {
+      "id": "frog_leg_sashimi",
+      "name": "蛙腿刺身",
+      "rarity": 0,
+      "icon": "images/wupin_caiyao_watuicishen.png",
+      "description": "紧致Q弹，经典原味",
+      "hungerRestore": 36,
+      "effects": "饱腹度+36",
+      "ingredients": [
+        {
+          "itemId": "fire_tongue_frog_leg",
+          "quantity": 3
+        }
+      ],
+      "weight": 1,
+      "buyPrice": 325
+    },
+    {
+      "id": "dry_pot_eye_frog",
+      "name": "干锅眼蛙",
+      "rarity": 1,
+      "icon": "images/wupin_caiyao_ganguoyanwa.png",
+      "description": "咸香爽口，一锅尽有",
+      "hungerRestore": 33,
+      "effects": "饱腹度+33",
+      "ingredients": [
+        {
+          "itemId": "fire_tongue_frog_leg",
+          "quantity": 2
+        },
+        {
+          "itemId": "three_color_eyeball",
+          "quantity": 1
+        }
+      ],
+      "weight": 1,
+      "buyPrice": 485
+    },
+    {
+      "id": "charcoal_grilled_crispy_vine",
+      "name": "碳烤脆藤",
+      "rarity": 0,
+      "icon": "images/wupin_caiyao_tankaocuiteng.png",
+      "description": "脆爽焦香，无需多言",
+      "hungerRestore": 26,
+      "effects": "饱腹度+26",
+      "ingredients": [
+        {
+          "itemId": "twitching_vine_core",
+          "quantity": 3
+        }
+      ],
+      "weight": 1,
+      "buyPrice": 370
+    },
+    {
+      "id": "explosive_double_crispy",
+      "name": "火爆双脆",
+      "rarity": 1,
+      "icon": "images/wupin_caiyao_huobaoshuangcui.png",
+      "description": "香脆暴辣，闭眼享受",
+      "hungerRestore": 37,
+      "effects": "饱腹度+37",
+      "ingredients": [
+        {
+          "itemId": "twitching_vine_core",
+          "quantity": 2
+        },
+        {
+          "itemId": "spicy_tongue",
+          "quantity": 1
+        }
+      ],
+      "weight": 1,
+      "buyPrice": 470
+    },
+    {
+      "id": "cave_set_meal",
+      "name": "洞穴套餐",
+      "rarity": 2,
+      "icon": "images/wupin_caiyaodongxuetaocan.png",
+      "description": "洞穴精华，此刻尽享",
+      "hungerRestore": 50,
+      "effects": "饱腹度+50",
+      "ingredients": [
+        {
+          "itemId": "beating_gallbladder",
+          "quantity": 2
+        },
+        {
+          "itemId": "three_color_eyeball",
+          "quantity": 2
+        },
+        {
+          "itemId": "spicy_tongue",
+          "quantity": 2
+        },
+        {
+          "itemId": "night_vision_grass",
+          "quantity": 2
+        }
+      ],
+      "weight": 1,
+      "buyPrice": 700
+    }
+  ]
+}

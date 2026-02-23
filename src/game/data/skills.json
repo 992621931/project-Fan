@@ -1,0 +1,691 @@
+{
+  "skills": [
+    {
+      "id": "sword_mastery",
+      "name": "剑术精通",
+      "description": "提高使用剑类武器的熟练度。",
+      "type": "passive",
+      "maxLevel": 10,
+      "manaCost": 0,
+      "cooldown": 0,
+      "effects": [
+        {
+          "type": "attribute_bonus",
+          "target": "self",
+          "attribute": "attack",
+          "value": 2,
+          "duration": -1
+        }
+      ],
+      "learnConditions": [
+        {
+          "type": "level",
+          "value": 1,
+          "description": "需要角色等级1"
+        }
+      ]
+    },
+    {
+      "id": "power_strike",
+      "name": "强力攻击",
+      "description": "消耗魔法值进行一次强力攻击。",
+      "type": "active",
+      "maxLevel": 5,
+      "manaCost": 10,
+      "cooldown": 5,
+      "effects": [
+        {
+          "type": "damage",
+          "target": "enemy",
+          "attribute": "attack",
+          "value": 150,
+          "duration": 0
+        }
+      ],
+      "learnConditions": [
+        {
+          "type": "skill",
+          "id": "sword_mastery",
+          "value": 3,
+          "description": "需要剑术精通等级3"
+        }
+      ]
+    },
+    {
+      "id": "fireball",
+      "name": "火球术",
+      "description": "发射一个火球攻击敌人。",
+      "type": "active",
+      "maxLevel": 8,
+      "manaCost": 15,
+      "cooldown": 3,
+      "effects": [
+        {
+          "type": "magic_damage",
+          "target": "enemy",
+          "attribute": "magicPower",
+          "value": 120,
+          "duration": 0
+        }
+      ],
+      "learnConditions": [
+        {
+          "type": "level",
+          "value": 2,
+          "description": "需要角色等级2"
+        }
+      ]
+    },
+    {
+      "id": "heal",
+      "name": "治疗术",
+      "description": "恢复目标的生命值。",
+      "type": "active",
+      "maxLevel": 10,
+      "manaCost": 12,
+      "cooldown": 2,
+      "effects": [
+        {
+          "type": "heal",
+          "target": "ally",
+          "attribute": "health",
+          "value": 80,
+          "duration": 0
+        }
+      ],
+      "learnConditions": [
+        {
+          "type": "level",
+          "value": 3,
+          "description": "需要角色等级3"
+        }
+      ]
+    },
+    {
+      "id": "precise_shot",
+      "name": "精准射击",
+      "description": "提高射击的命中率和暴击率。",
+      "type": "passive",
+      "maxLevel": 7,
+      "manaCost": 0,
+      "cooldown": 0,
+      "effects": [
+        {
+          "type": "attribute_bonus",
+          "target": "self",
+          "attribute": "hitRate",
+          "value": 5,
+          "duration": -1
+        },
+        {
+          "type": "attribute_bonus",
+          "target": "self",
+          "attribute": "critRate",
+          "value": 3,
+          "duration": -1
+        }
+      ],
+      "learnConditions": [
+        {
+          "type": "level",
+          "value": 1,
+          "description": "需要角色等级1"
+        }
+      ]
+    },
+    {
+      "id": "sneak_attack",
+      "name": "偷袭",
+      "description": "从背后攻击敌人，造成额外伤害。",
+      "type": "active",
+      "maxLevel": 6,
+      "manaCost": 8,
+      "cooldown": 8,
+      "effects": [
+        {
+          "type": "damage",
+          "target": "enemy",
+          "attribute": "attack",
+          "value": 200,
+          "duration": 0
+        }
+      ],
+      "learnConditions": [
+        {
+          "type": "skill",
+          "id": "stealth",
+          "value": 2,
+          "description": "需要潜行技能等级2"
+        }
+      ]
+    },
+    {
+      "id": "divine_protection",
+      "name": "神圣护盾",
+      "description": "为队友提供神圣保护，减少受到的伤害。",
+      "type": "active",
+      "maxLevel": 5,
+      "manaCost": 20,
+      "cooldown": 15,
+      "effects": [
+        {
+          "type": "buff",
+          "target": "ally",
+          "attribute": "defense",
+          "value": 50,
+          "duration": 30
+        }
+      ],
+      "learnConditions": [
+        {
+          "type": "level",
+          "value": 8,
+          "description": "需要角色等级8"
+        }
+      ]
+    },
+    {
+      "id": "rage",
+      "name": "狂暴",
+      "description": "进入狂暴状态，大幅提升攻击力但降低防御力。",
+      "type": "active",
+      "maxLevel": 4,
+      "manaCost": 25,
+      "cooldown": 30,
+      "effects": [
+        {
+          "type": "buff",
+          "target": "self",
+          "attribute": "attack",
+          "value": 100,
+          "duration": 20
+        },
+        {
+          "type": "debuff",
+          "target": "self",
+          "attribute": "defense",
+          "value": -30,
+          "duration": 20
+        }
+      ],
+      "learnConditions": [
+        {
+          "type": "level",
+          "value": 12,
+          "description": "需要角色等级12"
+        }
+      ]
+    },
+    {
+      "id": "meteor",
+      "name": "流星术",
+      "description": "召唤流星攻击所有敌人。",
+      "type": "active",
+      "maxLevel": 3,
+      "manaCost": 50,
+      "cooldown": 60,
+      "effects": [
+        {
+          "type": "magic_damage",
+          "target": "all_enemies",
+          "attribute": "magicPower",
+          "value": 300,
+          "duration": 0
+        }
+      ],
+      "learnConditions": [
+        {
+          "type": "level",
+          "value": 18,
+          "description": "需要角色等级18"
+        },
+        {
+          "type": "skill",
+          "id": "magic_mastery",
+          "value": 8,
+          "description": "需要魔法精通等级8"
+        }
+      ]
+    },
+    {
+      "id": "blacksmithing",
+      "name": "锻造技能",
+      "description": "制作和修理金属装备的技能。",
+      "type": "job",
+      "maxLevel": 20,
+      "manaCost": 0,
+      "cooldown": 0,
+      "effects": [
+        {
+          "type": "craft_bonus",
+          "target": "self",
+          "attribute": "equipment_quality",
+          "value": 5,
+          "duration": -1
+        }
+      ],
+      "learnConditions": [
+        {
+          "type": "level",
+          "value": 1,
+          "description": "需要角色等级1"
+        }
+      ]
+    },
+    {
+      "id": "cooking",
+      "name": "烹饪技能",
+      "description": "制作食物和药剂的技能。",
+      "type": "job",
+      "maxLevel": 15,
+      "manaCost": 0,
+      "cooldown": 0,
+      "effects": [
+        {
+          "type": "craft_bonus",
+          "target": "self",
+          "attribute": "food_quality",
+          "value": 3,
+          "duration": -1
+        }
+      ],
+      "learnConditions": [
+        {
+          "type": "level",
+          "value": 1,
+          "description": "需要角色等级1"
+        }
+      ]
+    },
+    {
+      "id": "alchemy",
+      "name": "炼金技能",
+      "description": "调制药水和合成材料的技能。",
+      "type": "job",
+      "maxLevel": 18,
+      "manaCost": 0,
+      "cooldown": 0,
+      "effects": [
+        {
+          "type": "craft_bonus",
+          "target": "self",
+          "attribute": "potion_potency",
+          "value": 10,
+          "duration": -1
+        }
+      ],
+      "learnConditions": [
+        {
+          "type": "level",
+          "value": 3,
+          "description": "需要角色等级3"
+        }
+      ]
+    },
+    {
+      "id": "aim_weakness",
+      "name": "瞄准弱点",
+      "description": "精准地瞄准敌人的弱点，增加8%暴击率。",
+      "type": "passive",
+      "maxLevel": 1,
+      "manaCost": 0,
+      "cooldown": 0,
+      "icon": "images/beidongjineng_miaozhunruodian.png",
+      "effects": [
+        {
+          "type": "attribute_bonus",
+          "target": "self",
+          "attribute": "critRate",
+          "value": 8,
+          "duration": -1
+        }
+      ],
+      "learnConditions": [
+        {
+          "type": "level",
+          "value": 1,
+          "description": "需要角色等级1"
+        }
+      ]
+    },
+    {
+      "id": "extreme_cruelty",
+      "name": "残忍至极",
+      "description": "对敌人毫不留情，暴击伤害+10%。",
+      "type": "passive",
+      "maxLevel": 1,
+      "manaCost": 0,
+      "cooldown": 0,
+      "icon": "images/beidongjineng_canrenzhiji.png",
+      "effects": [
+        {
+          "type": "attribute_bonus",
+          "target": "self",
+          "attribute": "critDamage",
+          "value": 10,
+          "duration": -1
+        }
+      ],
+      "learnConditions": [
+        {
+          "type": "level",
+          "value": 1,
+          "description": "需要角色等级1"
+        }
+      ]
+    },
+    {
+      "id": "natural_science",
+      "name": "自然学",
+      "description": "深入研究自然资源，对资源点伤害+100%。",
+      "type": "passive",
+      "maxLevel": 1,
+      "manaCost": 0,
+      "cooldown": 0,
+      "icon": "images/beidongjineng_ziranxue.png",
+      "effects": [
+        {
+          "type": "damage_modifier",
+          "target": "resource",
+          "attribute": "damage",
+          "value": 1.0,
+          "duration": -1
+        }
+      ],
+      "learnConditions": [
+        {
+          "type": "level",
+          "value": 1,
+          "description": "需要角色等级1"
+        }
+      ]
+    },
+    {
+      "id": "titan_bloodline",
+      "name": "泰坦血脉",
+      "description": "拥有泰坦的血统，体积+30，体重+10。",
+      "type": "passive",
+      "maxLevel": 1,
+      "manaCost": 0,
+      "cooldown": 0,
+      "icon": "images/beidongjineng_taitanxuemai.png",
+      "effects": [
+        {
+          "type": "attribute_bonus",
+          "target": "self",
+          "attribute": "volume",
+          "value": 30,
+          "duration": -1
+        },
+        {
+          "type": "attribute_bonus",
+          "target": "self",
+          "attribute": "weight",
+          "value": 10,
+          "duration": -1
+        }
+      ],
+      "learnConditions": [
+        {
+          "type": "level",
+          "value": 1,
+          "description": "需要角色等级1"
+        }
+      ]
+    },
+    {
+      "id": "carrier",
+      "name": "搬运者",
+      "description": "强大的负重能力，负重+10，移速-30%。",
+      "type": "passive",
+      "maxLevel": 1,
+      "manaCost": 0,
+      "cooldown": 0,
+      "icon": "images/beidongjineng_banyunzhe.png",
+      "effects": [
+        {
+          "type": "attribute_bonus",
+          "target": "self",
+          "attribute": "carryWeight",
+          "value": 10,
+          "duration": -1
+        },
+        {
+          "type": "percentage_modifier",
+          "target": "self",
+          "attribute": "moveSpeed",
+          "value": -0.3,
+          "duration": -1
+        }
+      ],
+      "learnConditions": [
+        {
+          "type": "level",
+          "value": 1,
+          "description": "需要角色等级1"
+        }
+      ]
+    },
+    {
+      "id": "arcane_supremacy",
+      "name": "奥术至尊",
+      "description": "掌握奥术的精髓，魔法强度+8。",
+      "type": "passive",
+      "maxLevel": 1,
+      "manaCost": 0,
+      "cooldown": 0,
+      "icon": "images/beidongjineng_aoshuzhizun.png",
+      "effects": [
+        {
+          "type": "attribute_bonus",
+          "target": "self",
+          "attribute": "magicPower",
+          "value": 8,
+          "duration": -1
+        }
+      ],
+      "learnConditions": [
+        {
+          "type": "level",
+          "value": 1,
+          "description": "需要角色等级1"
+        }
+      ]
+    },
+    {
+      "id": "lifesteal",
+      "name": "饮血",
+      "description": "每次对敌人造成碰撞伤害后，恢复相当于伤害10%的生命值。",
+      "type": "passive",
+      "maxLevel": 1,
+      "manaCost": 0,
+      "cooldown": 0,
+      "icon": "images/beidongjineng_yinxue.png",
+      "effects": [
+        {
+          "type": "on_collision_heal",
+          "target": "self",
+          "attribute": "health",
+          "value": 0.1,
+          "duration": -1
+        }
+      ],
+      "learnConditions": [
+        {
+          "type": "level",
+          "value": 1,
+          "description": "需要角色等级1"
+        }
+      ]
+    },
+    {
+      "id": "moon_blessing",
+      "name": "月之祝福",
+      "description": "在夜晚获得月亮的祝福，攻击力+15%，防御力+10。",
+      "type": "passive",
+      "maxLevel": 1,
+      "manaCost": 0,
+      "cooldown": 0,
+      "icon": "images/beidongjineng_yuezhizhufu.png",
+      "effects": [
+        {
+          "type": "conditional_bonus",
+          "target": "self",
+          "attribute": "attack",
+          "value": 0.15,
+          "duration": -1,
+          "condition": {
+            "type": "time_of_day",
+            "value": "night"
+          }
+        },
+        {
+          "type": "conditional_bonus",
+          "target": "self",
+          "attribute": "defense",
+          "value": 10,
+          "duration": -1,
+          "condition": {
+            "type": "time_of_day",
+            "value": "night"
+          }
+        }
+      ],
+      "learnConditions": [
+        {
+          "type": "level",
+          "value": 1,
+          "description": "需要角色等级1"
+        }
+      ]
+    },
+    {
+      "id": "gastritis",
+      "name": "胃炎",
+      "description": "患有胃炎，最大生命-10，饱腹度消耗-50%。",
+      "type": "passive",
+      "maxLevel": 1,
+      "manaCost": 0,
+      "cooldown": 0,
+      "icon": "images/beidongjineng_weiyan.png",
+      "effects": [
+        {
+          "type": "attribute_bonus",
+          "target": "self",
+          "attribute": "maxHealth",
+          "value": -10,
+          "duration": -1
+        },
+        {
+          "type": "percentage_modifier",
+          "target": "self",
+          "attribute": "satietyConsumptionRate",
+          "value": -0.5,
+          "duration": -1
+        }
+      ],
+      "learnConditions": [
+        {
+          "type": "level",
+          "value": 1,
+          "description": "需要角色等级1"
+        }
+      ]
+    },
+    {
+      "id": "midas_touch",
+      "name": "麦达斯之触",
+      "description": "每次碰撞到敌人后，获得1金币。",
+      "type": "passive",
+      "maxLevel": 1,
+      "manaCost": 0,
+      "cooldown": 0,
+      "icon": "images/beidongjineng_maidasizhichu.png",
+      "effects": [
+        {
+          "type": "on_collision_gold",
+          "target": "self",
+          "attribute": "gold",
+          "value": 1,
+          "duration": -1,
+          "minValue": 1,
+          "maxValue": 1
+        }
+      ],
+      "learnConditions": [
+        {
+          "type": "level",
+          "value": 1,
+          "description": "需要角色等级1"
+        }
+      ]
+    },
+    {
+      "id": "challenger",
+      "name": "挑战者",
+      "description": "勇于挑战强敌，对BOSS伤害+20%。",
+      "type": "passive",
+      "maxLevel": 1,
+      "manaCost": 0,
+      "cooldown": 0,
+      "icon": "images/beidongjineng_tiaozhanzhe.png",
+      "effects": [
+        {
+          "type": "damage_modifier",
+          "target": "boss",
+          "attribute": "damage",
+          "value": 0.20,
+          "duration": -1
+        }
+      ],
+      "learnConditions": [
+        {
+          "type": "level",
+          "value": 1,
+          "description": "需要角色等级1"
+        }
+      ]
+    },
+    {
+      "id": "photosynthesis",
+      "name": "光合作用",
+      "description": "在白天进行光合作用，回血+1，回魔+1。",
+      "type": "passive",
+      "maxLevel": 1,
+      "manaCost": 0,
+      "cooldown": 0,
+      "icon": "images/beidongjineng_guanghezuoyong.png",
+      "effects": [
+        {
+          "type": "conditional_bonus",
+          "target": "self",
+          "attribute": "healthRegen",
+          "value": 1,
+          "duration": -1,
+          "condition": {
+            "type": "time_of_day",
+            "value": "day"
+          }
+        },
+        {
+          "type": "conditional_bonus",
+          "target": "self",
+          "attribute": "manaRegen",
+          "value": 1,
+          "duration": -1,
+          "condition": {
+            "type": "time_of_day",
+            "value": "day"
+          }
+        }
+      ],
+      "learnConditions": [
+        {
+          "type": "level",
+          "value": 1,
+          "description": "需要角色等级1"
+        }
+      ]
+    }
+  ]
+}

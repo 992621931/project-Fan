@@ -1,0 +1,196 @@
+{
+  "activeSkills": [
+    {
+      "id": "heavy_punch",
+      "name": "重拳出击",
+      "type": "active",
+      "tag": "orbit",
+      "rarity": "common",
+      "icon": "images/zhudongjineng_zhongquanchuji.png",
+      "description": "挥舞拳头造成伤害（10+施法者攻击力*75%）。",
+      "effects": [
+        {
+          "type": "spawn_orbit",
+          "emoji": "👊",
+          "distance": 100,
+          "duration": 2000,
+          "size": 50,
+          "rotationSpeed": 1,
+          "damage": {
+            "base": 10,
+            "attackMultiplier": 0.75
+          },
+          "knockback": {
+            "base": 10,
+            "strengthMultiplier": 1.0
+          },
+          "piercing": true,
+          "hitOnce": true
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "冲锋",
+      "type": "active",
+      "tag": "single_target",
+      "rarity": "common",
+      "icon": "images/zhudongjineng_chongfeng.png",
+      "description": "朝距离自己最近的敌人移动并获得「冲锋」BUFF（移动速度+50，防御力+10，附带残影），持续5秒。碰撞敌人0.2秒后移除BUFF。",
+      "effects": [
+        {
+          "type": "charge_enemy",
+          "buffId": "charge",
+          "duration": 5000,
+          "visualEffect": "afterimage"
+        }
+      ]
+    },
+    {
+      "id": "simple_bandage",
+      "name": "简易包扎",
+      "type": "active",
+      "tag": "single_target",
+      "rarity": "common",
+      "icon": "images/zhudongjineng_jianyibaoza.png",
+      "description": "治疗一个当前生命值最低的队友。治疗量（10+施法者主属性技巧*100%）",
+      "effects": [
+        {
+          "type": "heal_lowest_hp",
+          "healing": {
+            "base": 10,
+            "skillMultiplier": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "id": "enrage",
+      "name": "激怒",
+      "type": "active",
+      "tag": "single_target",
+      "rarity": "common",
+      "icon": "images/zhudongjineng_jinu.png",
+      "description": "使一个随机队友（包括自己）获得「激怒」BUFF，移动速度+30，攻击力+20%，持续8秒。",
+      "effects": [
+        {
+          "type": "buff_ally",
+          "buffId": "enrage",
+          "duration": 8000,
+          "visualEffect": "angry_emoji"
+        }
+      ]
+    },
+    {
+      "id": "whirlwind_axe",
+      "name": "旋风飞斧",
+      "type": "active",
+      "tag": "环绕物",
+      "rarity": "common",
+      "icon": "images/zhudongjineng_xuanfengfeifu.png",
+      "description": "用3个旋转的飞斧攻击敌人，伤害受攻击力影响",
+      "effects": [
+        {
+          "type": "spawn_orbit",
+          "image": "images/texiao_futou.png",
+          "count": 3,
+          "distance": 100,
+          "lifetime": 6000,
+          "rotationSpeed": 1.5,
+          "selfSpin": true,
+          "selfSpinSpeed": 2.0,
+          "hasTrail": true,
+          "trailColor": "red",
+          "damage": {
+            "base": 5,
+            "attackMultiplier": 0.5
+          },
+          "knockback": {
+            "base": 5,
+            "strengthMultiplier": 0.5
+          },
+          "hitOnce": true,
+          "destroyOnHit": true,
+          "collisionScale": 1.25
+        }
+      ]
+    },
+    {
+      "id": "energy_arrow",
+      "name": "能量箭矢",
+      "type": "active",
+      "tag": "投射物",
+      "rarity": "common",
+      "icon": "images/zhudongjineng_nengliangjianshi.png",
+      "description": "射出一支能量箭矢造成伤害，箭矢碰到场景边缘会反弹并增加伤害，伤害受攻击力影响",
+      "effects": [
+        {
+          "type": "spawn_projectile",
+          "image": "images/toushewu_jianshi.png",
+          "size": 30,
+          "targetRandom": false,
+          "randomDirection": true,
+          "destroyOnHit": true,
+          "lifetime": 5000,
+          "bounce": true,
+          "bounceDamageIncrease": 2,
+          "hasTrail": true,
+          "trailColor": "blue",
+          "trailBlendMode": "screen",
+          "speed": {
+            "base": 600
+          },
+          "damage": {
+            "base": 5,
+            "attackMultiplier": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "id": "spike_trap",
+      "name": "尖刺陷阱",
+      "type": "active",
+      "tag": "陷阱",
+      "rarity": "common",
+      "icon": "images/zhudongjineng_jiancixianjing.png",
+      "description": "放置一片尖刺陷阱，持续对敌人造成伤害。伤害受攻击力影响，范围受技巧影响",
+      "effects": [
+        {
+          "type": "spawn_spike_trap",
+          "diameter": 300,
+          "scalePerSkill": 0.04,
+          "lifetime": 6000,
+          "hitInterval": 1000,
+          "color": "rgba(139, 90, 43, 0.3)",
+          "blendMode": "multiply",
+          "damage": {
+            "base": 2,
+            "attackMultiplier": 0.25
+          }
+        }
+      ]
+    },
+    {
+      "id": "soul_infusion",
+      "name": "灵魂灌注",
+      "type": "active",
+      "tag": "单体目标",
+      "rarity": "common",
+      "icon": "images/zhudongjineng_linghunguanzhu.png",
+      "description": "对一个随机敌人造成一次伤害，然后为一个随机的队友恢复15魔法值，伤害受攻击力影响",
+      "effects": [
+        {
+          "type": "soul_infusion",
+          "damage": {
+            "base": 5,
+            "attackMultiplier": 0.5
+          },
+          "mpRestore": 15,
+          "explosionColor": "blue",
+          "explosionBlendMode": "screen"
+        }
+      ]
+    }
+  ]
+}

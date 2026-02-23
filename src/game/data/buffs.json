@@ -1,0 +1,264 @@
+{
+  "buffs": [
+    {
+      "id": "hardening",
+      "name": "硬化",
+      "description": "防御力+10",
+      "icon": "images/BUFF_yinghua.png",
+      "effects": [
+        {
+          "attribute": "defense",
+          "value": 10,
+          "type": "flat"
+        }
+      ],
+      "duration": 30,
+      "stackable": false,
+      "maxStacks": 1
+    },
+    {
+      "id": "strength",
+      "name": "大力",
+      "description": "攻击力+5",
+      "icon": "images/BUFF_dali.png",
+      "effects": [
+        {
+          "attribute": "attack",
+          "value": 5,
+          "type": "flat"
+        }
+      ],
+      "duration": 30,
+      "stackable": false,
+      "maxStacks": 1
+    },
+    {
+      "id": "speed",
+      "name": "急速",
+      "description": "移动速度+15",
+      "icon": "images/BUFF_jisu.png",
+      "effects": [
+        {
+          "attribute": "moveSpeed",
+          "value": 15,
+          "type": "flat"
+        }
+      ],
+      "duration": 30,
+      "stackable": false,
+      "maxStacks": 1
+    },
+    {
+      "id": "speed_2",
+      "name": "急速Ⅱ",
+      "description": "移动速度+60",
+      "icon": "images/BUFF_jisuⅡ.png",
+      "effects": [
+        {
+          "attribute": "moveSpeed",
+          "value": 60,
+          "type": "flat"
+        }
+      ],
+      "duration": 30,
+      "stackable": false,
+      "maxStacks": 1
+    },
+    {
+      "id": "speed_3",
+      "name": "急速Ⅲ",
+      "description": "移动速度+90",
+      "icon": "images/BUFF_jisuⅢ.png",
+      "effects": [
+        {
+          "attribute": "moveSpeed",
+          "value": 90,
+          "type": "flat"
+        }
+      ],
+      "duration": 30,
+      "stackable": false,
+      "maxStacks": 1
+    },
+    {
+      "id": "enrage",
+      "name": "激怒",
+      "description": "移动速度+30，攻击力+20%",
+      "icon": "images/zhudongjineng_jinu.png",
+      "effects": [
+        {
+          "attribute": "moveSpeed",
+          "value": 30,
+          "type": "flat"
+        },
+        {
+          "attribute": "attack",
+          "value": 20,
+          "type": "percentage"
+        }
+      ],
+      "duration": 8,
+      "stackable": false,
+      "maxStacks": 1
+    },
+    {
+      "id": "charge",
+      "name": "冲锋",
+      "description": "移动速度+50，防御力+10",
+      "icon": "images/zhudongjineng_chongfeng.png",
+      "effects": [
+        {
+          "attribute": "moveSpeed",
+          "value": 50,
+          "type": "flat"
+        },
+        {
+          "attribute": "defense",
+          "value": 10,
+          "type": "flat"
+        }
+      ],
+      "duration": 5,
+      "stackable": false,
+      "maxStacks": 1
+    },
+    {
+      "id": "hunger",
+      "name": "饥饿",
+      "description": "移动速度变为0，攻击力-75%，回血变为0，回魔变为0",
+      "icon": "images/BUFF_jie.png",
+      "effects": [],
+      "duration": 999999,
+      "stackable": false,
+      "maxStacks": 1
+    },
+    {
+      "id": "combat_stance",
+      "name": "迎敌姿态",
+      "description": "移动速度-75%，攻击力+10，防御力+10，体重+20",
+      "icon": "images/BUFF_yingdizitai.png",
+      "effects": [
+        {
+          "attribute": "moveSpeed",
+          "value": -75,
+          "type": "percentage"
+        },
+        {
+          "attribute": "attack",
+          "value": 10,
+          "type": "flat"
+        },
+        {
+          "attribute": "defense",
+          "value": 10,
+          "type": "flat"
+        },
+        {
+          "attribute": "weight",
+          "value": 20,
+          "type": "flat"
+        }
+      ],
+      "duration": 10,
+      "stackable": false,
+      "maxStacks": 1
+    },
+    {
+      "id": "hot_blood",
+      "name": "热血",
+      "description": "移动速度+5，攻击力+3",
+      "icon": "images/dashijineng_rexuezhanhun.png",
+      "effects": [
+        {
+          "attribute": "moveSpeed",
+          "value": 5,
+          "type": "flat"
+        },
+        {
+          "attribute": "attack",
+          "value": 3,
+          "type": "flat"
+        }
+      ],
+      "duration": 5,
+      "stackable": true,
+      "maxStacks": 5
+    },
+    {
+      "id": "exposed_weakness",
+      "name": "暴露弱点",
+      "description": "下一次受到的任何伤害都会必定暴击",
+      "icon": "images/dashijineng_liesha.png",
+      "effects": [],
+      "duration": 10,
+      "stackable": false,
+      "maxStacks": 1
+    },
+    {
+      "id": "slip",
+      "name": "打滑",
+      "description": "移动速度+150，每1.5秒随机改变移动方向",
+      "icon": "images/zhudongjineng_shihuaxianjing.png",
+      "effects": [
+        {
+          "attribute": "moveSpeed",
+          "value": 150,
+          "type": "flat"
+        }
+      ],
+      "randomDirectionInterval": 1.5,
+      "duration": 6,
+      "stackable": false,
+      "maxStacks": 1
+    },
+    {
+      "id": "paralysis",
+      "name": "麻痹",
+      "description": "无法移动",
+      "icon": "images/BUFF_mabi.png",
+      "effects": [],
+      "disableMovement": true,
+      "duration": 3,
+      "stackable": false,
+      "maxStacks": 1
+    },
+    {
+      "id": "dangji",
+      "name": "宕机",
+      "description": "系统宕机，无法移动",
+      "icon": "images/BUFF_mabi.png",
+      "effects": [],
+      "disableMovement": true,
+      "duration": 999,
+      "stackable": false,
+      "maxStacks": 1
+    },
+    {
+      "id": "hamster",
+      "name": "仓鼠",
+      "description": "移动速度-90%，攻击力-50%，防御-50%",
+      "icon": "images/zhudongjineng_cangshuxifa.png",
+      "effects": [
+        {
+          "attribute": "moveSpeed",
+          "value": -90,
+          "type": "percentage"
+        },
+        {
+          "attribute": "attack",
+          "value": -50,
+          "type": "percentage"
+        },
+        {
+          "attribute": "defense",
+          "value": -50,
+          "type": "percentage"
+        }
+      ],
+      "avatarOverride": "images/zhudongjineng_cangshuxifa.png",
+      "duration": 8,
+      "stackable": false,
+      "maxStacks": 1
+    }
+  ]
+}

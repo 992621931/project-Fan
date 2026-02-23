@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>测试游戏初始化 - ConfigManager</title>
+  <style>
+    body {
+      font-family: 'Microsoft YaHei', Arial, sans-serif;
+      padding: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .test-section {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    .test-result {
+      padding: 10px;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+    .success {
+      background: rgba(76, 175, 80, 0.3);
+      border: 1px solid #4CAF50;
+    }
+    .error {
+      background: rgba(244, 67, 54, 0.3);
+      border: 1px solid #f44336;
+    }
+    button {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 5px;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #2980b9;
+    }
+    pre {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎮 游戏初始化测试</h1>
+    
+    <div class="test-section">
+      <h2>测试 1: DataLoader 初始化</h2>
+      <button onclick="testDataLoader()">运行测试</button>
+      <div id="dataloader-result"></div>
+    </div>
+
+    <div class="test-section">
+      <h2>测试 2: ConfigManager 初始化</h2>
+      <button onclick="testConfigManager()">运行测试</button>
+      <div id="configmanager-result"></div>
+    </div>
+
+    <div class="test-section">
+      <h2>测试 3: 获取异界角色数据</h2>
+      <button onclick="testOtherworldCharacters()">运行测试</button>
+      <div id="otherworld-result"></div>
+    </div>
+
+    <div class="test-section">
+      <h2>测试 4: 获取专属技能数据</h2>
+      <button onclick="testExclusiveSkills()">运行测试</button>
+      <div id="exclusive-result"></div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { DataLoader } from './dist/game/data/DataLoader.js';
+    import { ConfigManager } from './dist/game/config/ConfigManager.js';
+
+    window.dataLoader = null;
+    window.configManager = null;
+
+    window.testDataLoader = async function() {
+      const resultDiv = document.getElementById('dataloader-result');
+      resultDiv.innerHTML = '<p>正在测试...</p>';
+      
+      try {
+        window.dataLoader = DataLoader.getInstance();
+        await window.dataLoader.loadGameData();
+        
+        const isLoaded = window.dataLoader.isLoaded();
+        
+        if (isLoaded) {
+          resultDiv.innerHTML = `
+            <div class="test-result success">
+              <p>✅ DataLoader 初始化成功</p>
+              <p>数据已加载: ${isLoaded}</p>
+            </div>
+          `;
+        } else {
+          resultDiv.innerHTML = `
+            <div class="test-result error">
+              <p>❌ DataLoader 初始化失败</p>
+              <p>数据未加载</p>
+            </div>
+          `;
+        }
+      } catch (error) {
+        resultDiv.innerHTML = `
+          <div class="test-result error">
+            <p>❌ 错误: ${error.message}</p>
+            <pre>${error.stack}</pre>
+          </div>
+        `;
+      }
+    };
+
+    window.testConfigManager = async function() {
+      const resultDiv = document.getElementById('configmanager-result');
+      resultDiv.innerHTML = '<p>正在测试...</p>';
+      
+      try {
+        if (!window.dataLoader) {
+          await window.testDataLoader();
+        }
+        
+        window.configManager = ConfigManager.getInstance();
+        const isInitialized = window.configManager.isInitialized();
+        
+        if (isInitialized) {
+          const stats = window.configManager.getStats();
+          
+          resultDiv.innerHTML = `
+            <div class="test-result success">
+              <p>✅ ConfigManager 初始化成功</p>
+              <p>版本: ${stats.version}</p>
+              <p>角色数量: ${stats.characterCount}</p>
+              <p>物品数量: ${stats.itemCount}</p>
+              <p>专属技能数量: ${stats.exclusiveSkillCount}</p>
+              <p>异界角色数量: ${stats.otherworldCharacterCount}</p>
+            </div>
+          `;
+        } else {
+          resultDiv.innerHTML = `
+            <div class="test-result error">
+              <p>❌ ConfigManager 未初始化</p>
+            </div>
+          `;
+        }
+      } catch (error) {
+        resultDiv.innerHTML = `
+          <div class="test-result error">
+            <p>❌ 错误: ${error.message}</p>
+            <pre>${error.stack}</pre>
+          </div>
+        `;
+      }
+    };
+
+    window.testOtherworldCharacters = async function() {
+      const resultDiv = document.getElementById('otherworld-result');
+      resultDiv.innerHTML = '<p>正在测试...</p>';
+      
+      try {
+        if (!window.configManager || !window.configManager.isInitialized()) {
+          await window.testConfigManager();
+        }
+        
+        const otherworldCharacters = window.configManager.getOtherworldCharacters();
+        const otherworldTypeCharacters = otherworldCharacters.filter(char => 
+          char.characterTypes && char.characterTypes.includes('异界')
+        );
+        
+        resultDiv.innerHTML = `
+          <div class="test-result success">
+            <p>✅ 成功获取异界角色数据</p>
+            <p>总异界角色数量: ${otherworldCharacters.length}</p>
+            <p>包含"异界"类型的角色数量: ${otherworldTypeCharacters.length}</p>
+            <pre>${JSON.stringify(otherworldTypeCharacters, null, 2)}</pre>
+          </div>
+        `;
+      } catch (error) {
+        resultDiv.innerHTML = `
+          <div class="test-result error">
+            <p>❌ 错误: ${error.message}</p>
+            <pre>${error.stack}</pre>
+          </div>
+        `;
+      }
+    };
+
+    window.testExclusiveSkills = async function() {
+      const resultDiv = document.getElementById('exclusive-result');
+      resultDiv.innerHTML = '<p>正在测试...</p>';
+      
+      try {
+        if (!window.configManager || !window.configManager.isInitialized()) {
+          await window.testConfigManager();
+        }
+        
+        const exclusiveSkills = window.configManager.getExclusiveSkills();
+        
+        resultDiv.innerHTML = `
+          <div class="test-result success">
+            <p>✅ 成功获取专属技能数据</p>
+            <p>专属技能数量: ${exclusiveSkills.length}</p>
+            <pre>${JSON.stringify(exclusiveSkills, null, 2)}</pre>
+          </div>
+        `;
+      } catch (error) {
+        resultDiv.innerHTML = `
+          <div class="test-result error">
+            <p>❌ 错误: ${error.message}</p>
+            <pre>${error.stack}</pre>
+          </div>
+        `;
+      }
+    };
+  </script>
+</body>
+</html>

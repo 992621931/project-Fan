@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>物品系统测试</title>
+  <style>
+    body {
+      font-family: 'Microsoft YaHei', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .section {
+      margin-bottom: 30px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 10px;
+    }
+
+    .section h2 {
+      color: #667eea;
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+
+    .item-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .item-card {
+      background: white;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      padding: 15px;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .item-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      border-color: #667eea;
+    }
+
+    .item-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .item-icon {
+      width: 50px;
+      height: 50px;
+      background: #f0f0f0;
+      border-radius: 8px;
+      margin-right: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .item-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .item-info {
+      flex: 1;
+    }
+
+    .item-name {
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 3px;
+    }
+
+    .item-type {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .item-description {
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .item-stats {
+      font-size: 12px;
+      color: #333;
+      margin-bottom: 8px;
+    }
+
+    .item-price {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      padding-top: 10px;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    .price-tag {
+      padding: 3px 8px;
+      border-radius: 5px;
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    .price-tag.buy {
+      background: #fff3e0;
+      color: #e65100;
+    }
+
+    .rarity-0 { border-color: #9e9e9e; }
+    .rarity-1 { border-color: #4caf50; }
+    .rarity-2 { border-color: #2196f3; }
+    .rarity-3 { border-color: #9c27b0; }
+    .rarity-4 { border-color: #ff9800; }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+
+    button:hover {
+      background: #5568d3;
+      transform: translateY(-2px);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .inventory {
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 15px;
+    }
+
+    .inventory-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .inventory-item:last-child {
+      border-bottom: none;
+    }
+
+    .quantity-badge {
+      background: #667eea;
+      color: white;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .log {
+      background: #263238;
+      color: #aed581;
+      padding: 15px;
+      border-radius: 10px;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      max-height: 200px;
+      overflow-y: auto;
+      margin-top: 15px;
+    }
+
+    .log-entry {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎮 物品系统测试</h1>
+
+    <div class="section">
+      <h2>控制面板</h2>
+      <div class="controls">
+        <button onclick="showAllItems()">显示所有物品</button>
+        <button onclick="showEquipment()">显示装备</button>
+        <button onclick="showSkillBooks()">显示技能书</button>
+        <button onclick="showMaterials()">显示材料</button>
+        <button onclick="testAddItems()">测试添加物品</button>
+        <button onclick="clearInventory()">清空背包</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>物品列表</h2>
+      <div id="itemList" class="item-grid"></div>
+    </div>
+
+    <div class="section">
+      <h2>玩家背包</h2>
+      <div id="inventory" class="inventory"></div>
+    </div>
+
+    <div class="section">
+      <h2>系统日志</h2>
+      <div id="log" class="log"></div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { World } from './src/ecs/World.js';
+    import { ItemSystem } from './src/game/systems/ItemSystem.js';
+
+    // Initialize
+    const world = new World();
+    const itemSystem = new ItemSystem(world);
+    world.addSystem(itemSystem);
+
+    // Make globally accessible
+    window.itemSystem = itemSystem;
+    window.logMessages = [];
+
+    // Override console.log to capture messages
+    const originalLog = console.log;
+    console.log = function(...args) {
+      originalLog.apply(console, args);
+      const message = args.join(' ');
+      if (message.includes('[ItemSystem]')) {
+        addLog(message);
+      }
+    };
+
+    function addLog(message) {
+      window.logMessages.unshift(message);
+      if (window.logMessages.length > 20) {
+        window.logMessages.pop();
+      }
+      updateLog();
+    }
+
+    function updateLog() {
+      const logDiv = document.getElementById('log');
+      logDiv.innerHTML = window.logMessages
+        .map(msg => `<div class="log-entry">${msg}</div>`)
+        .join('');
+    }
+
+    function displayItems(items) {
+      const listDiv = document.getElementById('itemList');
+      listDiv.innerHTML = items.map(item => {
+        const rarityClass = `rarity-${item.rarity}`;
+        const mainStat = item.mainStat ? 
+          `<div class="item-stats">主词条: +${item.mainStat.value} ${item.mainStat.attribute}</div>` : '';
+        
+        const buyInfo = item.canBuy ? 
+          `<span class="price-tag buy">购买: ${item.buyPrice}金币</span>` : '';
+        const sellInfo = item.canSell ? 
+          `<span class="price-tag">出售: ${item.sellPrice}金币</span>` : '';
+
+        return `
+          <div class="item-card ${rarityClass}" onclick="addItemToInventory('${item.id}')">
+            <div class="item-header">
+              <div class="item-icon">
+                <img src="${item.icon}" alt="${item.name}" onerror="this.style.display='none'">
+              </div>
+              <div class="item-info">
+                <div class="item-name">${item.name}</div>
+                <div class="item-type">${item.type} ${item.subType ? '· ' + (Array.isArray(item.subType) ? item.subType[0] : item.subType) : ''}</div>
+              </div>
+            </div>
+            <div class="item-description">${item.description}</div>
+            ${mainStat}
+            <div class="item-price">
+              ${buyInfo}
+              ${sellInfo}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function updateInventory() {
+      const inventoryDiv = document.getElementById('inventory');
+      const inventory = itemSystem.getInventory();
+      
+      if (inventory.length === 0) {
+        inventoryDiv.innerHTML = '<div style="text-align: center; color: #999; padding: 20px;">背包是空的</div>';
+        return;
+      }
+
+      inventoryDiv.innerHTML = inventory.map(slot => {
+        const item = itemSystem.getItem(slot.itemId);
+        return `
+          <div class="inventory-item">
+            <div>
+              <strong>${item.name}</strong>
+              <div style="font-size: 12px; color: #666;">${item.description}</div>
+            </div>
+            <span class="quantity-badge">x${slot.quantity}</span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    window.showAllItems = function() {
+      const items = itemSystem.getAllItems();
+      displayItems(items);
+      addLog('[UI] 显示所有物品');
+    };
+
+    window.showEquipment = function() {
+      const items = itemSystem.getItemsByType('equipment');
+      displayItems(items);
+      addLog('[UI] 显示装备类物品');
+    };
+
+    window.showSkillBooks = function() {
+      const items = itemSystem.getItemsBySubType('skill_book');
+      displayItems(items);
+      addLog('[UI] 显示技能书');
+    };
+
+    window.showMaterials = function() {
+      const items = itemSystem.getItemsByType('material');
+      displayItems(items);
+      addLog('[UI] 显示材料');
+    };
+
+    window.addItemToInventory = function(itemId) {
+      itemSystem.addItem(itemId, 1);
+      updateInventory();
+    };
+
+    window.testAddItems = function() {
+      itemSystem.addItem('rusty_iron_sword', 1);
+      itemSystem.addItem('skill_book_heavy_punch', 1);
+      itemSystem.addItem('slime_sweet_pearl', 10);
+      itemSystem.addItem('smooth_snake_skin', 5);
+      updateInventory();
+      addLog('[UI] 测试添加物品到背包');
+    };
+
+    window.clearInventory = function() {
+      itemSystem.clearInventory();
+      updateInventory();
+      addLog('[UI] 清空背包');
+    };
+
+    // Initial display
+    showAllItems();
+    updateInventory();
+    addLog('[System] 物品系统初始化完成');
+  </script>
+</body>
+</html>

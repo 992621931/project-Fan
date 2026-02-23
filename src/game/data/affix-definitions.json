@@ -1,0 +1,631 @@
+{
+  "common": [
+    {
+      "type": "strength",
+      "rarity": 0,
+      "displayName": "普通大力",
+      "minValue": 1,
+      "maxValue": 5,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "agility",
+      "rarity": 0,
+      "displayName": "普通灵动",
+      "minValue": 1,
+      "maxValue": 5,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "wisdom",
+      "rarity": 0,
+      "displayName": "普通开窍",
+      "minValue": 1,
+      "maxValue": 5,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "skill",
+      "rarity": 0,
+      "displayName": "普通熟练",
+      "minValue": 1,
+      "maxValue": 5,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "attack",
+      "rarity": 0,
+      "displayName": "普通锋利",
+      "minValue": 1,
+      "maxValue": 5,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "defense",
+      "rarity": 0,
+      "displayName": "普通壁垒",
+      "minValue": 1,
+      "maxValue": 3,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "critRate",
+      "rarity": 0,
+      "displayName": "普通致命",
+      "minValue": 1,
+      "maxValue": 4,
+      "isPercentage": true,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "critDamage",
+      "rarity": 0,
+      "displayName": "普通残忍",
+      "minValue": 1,
+      "maxValue": 4,
+      "isPercentage": true,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "dodgeRate",
+      "rarity": 0,
+      "displayName": "普通躲闪",
+      "minValue": 1,
+      "maxValue": 4,
+      "isPercentage": true,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "moveSpeed",
+      "rarity": 0,
+      "displayName": "普通神速",
+      "minValue": 1,
+      "maxValue": 10,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "magicPower",
+      "rarity": 0,
+      "displayName": "普通神通",
+      "minValue": 1,
+      "maxValue": 5,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "carryWeight",
+      "rarity": 0,
+      "displayName": "普通满载",
+      "minValue": 5,
+      "maxValue": 10,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "resistance",
+      "rarity": 0,
+      "displayName": "普通忍耐",
+      "minValue": 1,
+      "maxValue": 5,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "experienceRate",
+      "rarity": 0,
+      "displayName": "普通钻研",
+      "minValue": 1,
+      "maxValue": 5,
+      "isPercentage": true,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "hpRegen",
+      "rarity": 0,
+      "displayName": "普通活血",
+      "minValue": 0.1,
+      "maxValue": 0.5,
+      "isPercentage": false,
+      "decimalPlaces": 1
+    },
+    {
+      "type": "mpRegen",
+      "rarity": 0,
+      "displayName": "普通充沛",
+      "minValue": 0.1,
+      "maxValue": 1.0,
+      "isPercentage": false,
+      "decimalPlaces": 1
+    },
+    {
+      "type": "bodyWeight",
+      "rarity": 0,
+      "displayName": "普通稳固",
+      "minValue": 1,
+      "maxValue": 5,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "bodySize",
+      "rarity": 0,
+      "displayName": "普通巨像",
+      "minValue": 1,
+      "maxValue": 5,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    }
+  ],
+  "rare": [
+    {
+      "type": "strength",
+      "rarity": 1,
+      "displayName": "稀有大力",
+      "minValue": 1,
+      "maxValue": 10,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "agility",
+      "rarity": 1,
+      "displayName": "稀有灵动",
+      "minValue": 1,
+      "maxValue": 10,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "wisdom",
+      "rarity": 1,
+      "displayName": "稀有开窍",
+      "minValue": 1,
+      "maxValue": 10,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "skill",
+      "rarity": 1,
+      "displayName": "稀有熟练",
+      "minValue": 1,
+      "maxValue": 10,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "attack",
+      "rarity": 1,
+      "displayName": "稀有锋利",
+      "minValue": 1,
+      "maxValue": 10,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "defense",
+      "rarity": 1,
+      "displayName": "稀有壁垒",
+      "minValue": 1,
+      "maxValue": 6,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "critRate",
+      "rarity": 1,
+      "displayName": "稀有致命",
+      "minValue": 1,
+      "maxValue": 8,
+      "isPercentage": true,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "critDamage",
+      "rarity": 1,
+      "displayName": "稀有残忍",
+      "minValue": 1,
+      "maxValue": 8,
+      "isPercentage": true,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "dodgeRate",
+      "rarity": 1,
+      "displayName": "稀有躲闪",
+      "minValue": 1,
+      "maxValue": 8,
+      "isPercentage": true,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "moveSpeed",
+      "rarity": 1,
+      "displayName": "稀有神速",
+      "minValue": 1,
+      "maxValue": 15,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "magicPower",
+      "rarity": 1,
+      "displayName": "稀有神通",
+      "minValue": 1,
+      "maxValue": 10,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "resistance",
+      "rarity": 1,
+      "displayName": "稀有忍耐",
+      "minValue": 1,
+      "maxValue": 10,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "experienceRate",
+      "rarity": 1,
+      "displayName": "稀有钻研",
+      "minValue": 1,
+      "maxValue": 10,
+      "isPercentage": true,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "hpRegen",
+      "rarity": 1,
+      "displayName": "稀有活血",
+      "minValue": 0.1,
+      "maxValue": 1.0,
+      "isPercentage": false,
+      "decimalPlaces": 1
+    },
+    {
+      "type": "mpRegen",
+      "rarity": 1,
+      "displayName": "稀有充沛",
+      "minValue": 0.1,
+      "maxValue": 1.5,
+      "isPercentage": false,
+      "decimalPlaces": 1
+    },
+    {
+      "type": "bodyWeight",
+      "rarity": 1,
+      "displayName": "稀有稳固",
+      "minValue": 1,
+      "maxValue": 10,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "bodySize",
+      "rarity": 1,
+      "displayName": "稀有巨像",
+      "minValue": 1,
+      "maxValue": 10,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    }
+  ],
+  "epic": [
+    {
+      "type": "strength",
+      "rarity": 2,
+      "displayName": "神话大力",
+      "minValue": 1,
+      "maxValue": 15,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "agility",
+      "rarity": 2,
+      "displayName": "神话灵动",
+      "minValue": 1,
+      "maxValue": 15,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "wisdom",
+      "rarity": 2,
+      "displayName": "神话开窍",
+      "minValue": 1,
+      "maxValue": 15,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "skill",
+      "rarity": 2,
+      "displayName": "神话熟练",
+      "minValue": 1,
+      "maxValue": 15,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "attack",
+      "rarity": 2,
+      "displayName": "神话锋利",
+      "minValue": 1,
+      "maxValue": 15,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "defense",
+      "rarity": 2,
+      "displayName": "神话壁垒",
+      "minValue": 1,
+      "maxValue": 9,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "critRate",
+      "rarity": 2,
+      "displayName": "神话致命",
+      "minValue": 1,
+      "maxValue": 12,
+      "isPercentage": true,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "critDamage",
+      "rarity": 2,
+      "displayName": "神话残忍",
+      "minValue": 1,
+      "maxValue": 12,
+      "isPercentage": true,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "dodgeRate",
+      "rarity": 2,
+      "displayName": "神话躲闪",
+      "minValue": 1,
+      "maxValue": 12,
+      "isPercentage": true,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "moveSpeed",
+      "rarity": 2,
+      "displayName": "神话神速",
+      "minValue": 1,
+      "maxValue": 20,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "magicPower",
+      "rarity": 2,
+      "displayName": "神话神通",
+      "minValue": 1,
+      "maxValue": 15,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "resistance",
+      "rarity": 2,
+      "displayName": "神话忍耐",
+      "minValue": 1,
+      "maxValue": 15,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "experienceRate",
+      "rarity": 2,
+      "displayName": "神话钻研",
+      "minValue": 1,
+      "maxValue": 15,
+      "isPercentage": true,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "hpRegen",
+      "rarity": 2,
+      "displayName": "神话活血",
+      "minValue": 0.1,
+      "maxValue": 1.5,
+      "isPercentage": false,
+      "decimalPlaces": 1
+    },
+    {
+      "type": "mpRegen",
+      "rarity": 2,
+      "displayName": "神话充沛",
+      "minValue": 0.1,
+      "maxValue": 2.0,
+      "isPercentage": false,
+      "decimalPlaces": 1
+    },
+    {
+      "type": "bodyWeight",
+      "rarity": 2,
+      "displayName": "神话稳固",
+      "minValue": 1,
+      "maxValue": 15,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "bodySize",
+      "rarity": 2,
+      "displayName": "神话巨像",
+      "minValue": 1,
+      "maxValue": 15,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    }
+  ],
+  "legendary": [
+    {
+      "type": "strength",
+      "rarity": 3,
+      "displayName": "传说大力",
+      "minValue": 5,
+      "maxValue": 20,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "agility",
+      "rarity": 3,
+      "displayName": "传说灵动",
+      "minValue": 5,
+      "maxValue": 20,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "wisdom",
+      "rarity": 3,
+      "displayName": "传说开窍",
+      "minValue": 5,
+      "maxValue": 20,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "skill",
+      "rarity": 3,
+      "displayName": "传说熟练",
+      "minValue": 5,
+      "maxValue": 20,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "attack",
+      "rarity": 3,
+      "displayName": "传说锋利",
+      "minValue": 5,
+      "maxValue": 20,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "defense",
+      "rarity": 3,
+      "displayName": "传说壁垒",
+      "minValue": 3,
+      "maxValue": 12,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "critRate",
+      "rarity": 3,
+      "displayName": "传说致命",
+      "minValue": 4,
+      "maxValue": 16,
+      "isPercentage": true,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "critDamage",
+      "rarity": 3,
+      "displayName": "传说残忍",
+      "minValue": 4,
+      "maxValue": 16,
+      "isPercentage": true,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "dodgeRate",
+      "rarity": 3,
+      "displayName": "传说躲闪",
+      "minValue": 4,
+      "maxValue": 16,
+      "isPercentage": true,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "moveSpeed",
+      "rarity": 3,
+      "displayName": "传说神速",
+      "minValue": 5,
+      "maxValue": 30,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "magicPower",
+      "rarity": 3,
+      "displayName": "传说神通",
+      "minValue": 5,
+      "maxValue": 20,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "resistance",
+      "rarity": 3,
+      "displayName": "传说忍耐",
+      "minValue": 5,
+      "maxValue": 20,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "experienceRate",
+      "rarity": 3,
+      "displayName": "传说钻研",
+      "minValue": 5,
+      "maxValue": 20,
+      "isPercentage": true,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "hpRegen",
+      "rarity": 3,
+      "displayName": "传说活血",
+      "minValue": 0.5,
+      "maxValue": 2.0,
+      "isPercentage": false,
+      "decimalPlaces": 1
+    },
+    {
+      "type": "mpRegen",
+      "rarity": 3,
+      "displayName": "传说充沛",
+      "minValue": 0.6,
+      "maxValue": 3.0,
+      "isPercentage": false,
+      "decimalPlaces": 1
+    },
+    {
+      "type": "bodyWeight",
+      "rarity": 3,
+      "displayName": "传说稳固",
+      "minValue": 5,
+      "maxValue": 20,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    },
+    {
+      "type": "bodySize",
+      "rarity": 3,
+      "displayName": "传说巨像",
+      "minValue": 5,
+      "maxValue": 20,
+      "isPercentage": false,
+      "decimalPlaces": 0
+    }
+  ]
+}

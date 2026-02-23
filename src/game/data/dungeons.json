@@ -1,0 +1,342 @@
+{
+  "dungeons": [
+    {
+      "id": "goblin_cave",
+      "name": "哥布林洞穴",
+      "description": "一个被哥布林占据的小洞穴，适合新手冒险者。",
+      "difficulty": 1,
+      "requiredLevel": 1,
+      "encounters": [
+        {
+          "id": "goblin_patrol",
+          "type": "combat",
+          "enemies": [
+            {
+              "id": "goblin_warrior",
+              "name": "哥布林战士",
+              "level": 2,
+              "attributes": {
+                "strength": 6,
+                "agility": 8,
+                "wisdom": 3,
+                "technique": 5
+              },
+              "health": 40,
+              "skills": ["basic_attack"],
+              "dropTable": [
+                {
+                  "type": "currency",
+                  "currency": "gold",
+                  "amount": 15,
+                  "chance": 1.0
+                },
+                {
+                  "type": "item",
+                  "id": "iron_ore",
+                  "amount": 1,
+                  "chance": 0.3
+                }
+              ]
+            }
+          ],
+          "weight": 0.6
+        },
+        {
+          "id": "treasure_chest",
+          "type": "treasure",
+          "rewards": [
+            {
+              "type": "currency",
+              "currency": "gold",
+              "amount": 50,
+              "chance": 1.0
+            },
+            {
+              "type": "item",
+              "id": "health_potion",
+              "amount": 2,
+              "chance": 0.8
+            },
+            {
+              "type": "item",
+              "id": "basic_sword",
+              "amount": 1,
+              "chance": 0.2
+            }
+          ],
+          "weight": 0.2
+        },
+        {
+          "id": "goblin_chief",
+          "type": "boss",
+          "enemies": [
+            {
+              "id": "goblin_chief",
+              "name": "哥布林酋长",
+              "level": 5,
+              "attributes": {
+                "strength": 12,
+                "agility": 10,
+                "wisdom": 5,
+                "technique": 8
+              },
+              "health": 120,
+              "skills": ["power_attack", "rally"],
+              "dropTable": [
+                {
+                  "type": "currency",
+                  "currency": "gold",
+                  "amount": 100,
+                  "chance": 1.0
+                },
+                {
+                  "type": "item",
+                  "id": "steel_sword",
+                  "amount": 1,
+                  "chance": 0.5
+                },
+                {
+                  "type": "currency",
+                  "currency": "reputation",
+                  "amount": 10,
+                  "chance": 1.0
+                }
+              ]
+            }
+          ],
+          "weight": 0.2
+        }
+      ],
+      "rewards": [
+        {
+          "type": "experience",
+          "amount": 50,
+          "chance": 1.0
+        }
+      ],
+      "unlockConditions": []
+    },
+    {
+      "id": "ancient_ruins",
+      "name": "古代遗迹",
+      "description": "充满魔法陷阱和古老秘密的遗迹。",
+      "difficulty": 3,
+      "requiredLevel": 8,
+      "encounters": [
+        {
+          "id": "skeleton_guard",
+          "type": "combat",
+          "enemies": [
+            {
+              "id": "skeleton_warrior",
+              "name": "骷髅战士",
+              "level": 10,
+              "attributes": {
+                "strength": 14,
+                "agility": 12,
+                "wisdom": 6,
+                "technique": 10
+              },
+              "health": 80,
+              "skills": ["bone_strike", "undead_resilience"],
+              "dropTable": [
+                {
+                  "type": "currency",
+                  "currency": "gold",
+                  "amount": 40,
+                  "chance": 1.0
+                },
+                {
+                  "type": "item",
+                  "id": "mithril_ore",
+                  "amount": 1,
+                  "chance": 0.1
+                }
+              ]
+            }
+          ],
+          "weight": 0.5
+        },
+        {
+          "id": "magic_trap",
+          "type": "event",
+          "eventId": "ancient_trap",
+          "weight": 0.3
+        },
+        {
+          "id": "ancient_guardian",
+          "type": "boss",
+          "enemies": [
+            {
+              "id": "stone_golem",
+              "name": "石像鬼守护者",
+              "level": 15,
+              "attributes": {
+                "strength": 20,
+                "agility": 6,
+                "wisdom": 8,
+                "technique": 12
+              },
+              "health": 300,
+              "skills": ["stone_fist", "earth_shake", "magic_barrier"],
+              "dropTable": [
+                {
+                  "type": "currency",
+                  "currency": "gold",
+                  "amount": 300,
+                  "chance": 1.0
+                },
+                {
+                  "type": "item",
+                  "id": "mithril_sword",
+                  "amount": 1,
+                  "chance": 0.3
+                },
+                {
+                  "type": "currency",
+                  "currency": "crystal",
+                  "amount": 5,
+                  "chance": 1.0
+                }
+              ]
+            }
+          ],
+          "weight": 0.2
+        }
+      ],
+      "rewards": [
+        {
+          "type": "experience",
+          "amount": 200,
+          "chance": 1.0
+        }
+      ],
+      "unlockConditions": [
+        {
+          "type": "level",
+          "value": 8,
+          "description": "需要角色等级达到8级"
+        },
+        {
+          "type": "reputation",
+          "value": 50,
+          "description": "需要声望达到50点"
+        }
+      ]
+    },
+    {
+      "id": "dragon_lair",
+      "name": "巨龙巢穴",
+      "description": "传说中巨龙居住的危险巢穴，只有最强的冒险者才敢挑战。",
+      "difficulty": 5,
+      "requiredLevel": 20,
+      "encounters": [
+        {
+          "id": "dragon_minion",
+          "type": "combat",
+          "enemies": [
+            {
+              "id": "dragonkin_warrior",
+              "name": "龙人战士",
+              "level": 18,
+              "attributes": {
+                "strength": 18,
+                "agility": 15,
+                "wisdom": 12,
+                "technique": 16
+              },
+              "health": 150,
+              "skills": ["dragon_breath", "scale_armor", "claw_strike"],
+              "dropTable": [
+                {
+                  "type": "currency",
+                  "currency": "gold",
+                  "amount": 80,
+                  "chance": 1.0
+                },
+                {
+                  "type": "item",
+                  "id": "dragon_scale",
+                  "amount": 1,
+                  "chance": 0.4
+                }
+              ]
+            }
+          ],
+          "weight": 0.4
+        },
+        {
+          "id": "ancient_dragon",
+          "type": "boss",
+          "enemies": [
+            {
+              "id": "red_dragon",
+              "name": "古红龙",
+              "level": 25,
+              "attributes": {
+                "strength": 30,
+                "agility": 20,
+                "wisdom": 25,
+                "technique": 22
+              },
+              "health": 800,
+              "skills": ["inferno_breath", "dragon_roar", "tail_sweep", "ancient_magic"],
+              "dropTable": [
+                {
+                  "type": "currency",
+                  "currency": "gold",
+                  "amount": 1000,
+                  "chance": 1.0
+                },
+                {
+                  "type": "item",
+                  "id": "excalibur",
+                  "amount": 1,
+                  "chance": 0.1
+                },
+                {
+                  "type": "currency",
+                  "currency": "crystal",
+                  "amount": 20,
+                  "chance": 1.0
+                },
+                {
+                  "type": "currency",
+                  "currency": "reputation",
+                  "amount": 100,
+                  "chance": 1.0
+                }
+              ]
+            }
+          ],
+          "weight": 0.6
+        }
+      ],
+      "rewards": [
+        {
+          "type": "experience",
+          "amount": 1000,
+          "chance": 1.0
+        }
+      ],
+      "unlockConditions": [
+        {
+          "type": "level",
+          "value": 20,
+          "description": "需要角色等级达到20级"
+        },
+        {
+          "type": "reputation",
+          "value": 200,
+          "description": "需要声望达到200点"
+        },
+        {
+          "type": "achievement",
+          "id": "dungeon_master",
+          "value": 1,
+          "description": "需要完成成就：地下城大师"
+        }
+      ]
+    }
+  ]
+}

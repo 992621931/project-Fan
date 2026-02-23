@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quest Completion Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .quest-card {
+      background: white;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    .quest-name {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 8px;
+    }
+    .quest-progress {
+      font-size: 14px;
+      color: #667eea;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .quest-rewards {
+      font-size: 14px;
+      color: #28a745;
+      margin-bottom: 12px;
+    }
+    .button-container {
+      display: flex;
+      gap: 8px;
+    }
+    button {
+      flex: 1;
+      padding: 8px;
+      border: none;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .complete-btn {
+      background: #ffc107;
+      color: #333;
+    }
+    .complete-btn:hover {
+      background: #e0a800;
+    }
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 16px 24px;
+      background: #28a745;
+      color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>任务完成测试</h1>
+  
+  <div id="quest-container"></div>
+  <div id="notification" class="notification"></div>
+
+  <script>
+    // Test quest data
+    const quests = {
+      inProgress: [
+        {
+          id: 'quest_main_1',
+          name: '初到村庄',
+          progress: '1/1',
+          rewards: '💰 500金币',
+          status: 'inProgress'
+        },
+        {
+          id: 'quest_test_2',
+          name: '测试任务',
+          progress: '0/1',
+          rewards: '💰 100金币',
+          status: 'inProgress'
+        }
+      ],
+      completed: []
+    };
+
+    function isQuestObjectiveCompleted(progress) {
+      const match = progress.match(/(\d+)\/(\d+)/);
+      if (!match) return false;
+      
+      const current = parseInt(match[1], 10);
+      const total = parseInt(match[2], 10);
+      
+      return current >= total;
+    }
+
+    function completeQuest(quest) {
+      const questIndex = quests.inProgress.findIndex(q => q.id === quest.id);
+      if (questIndex === -1) return;
+      
+      const completedQuest = quests.inProgress.splice(questIndex, 1)[0];
+      completedQuest.status = 'completed';
+      quests.completed.push(completedQuest);
+      
+      const goldMatch = quest.rewards.match(/(\d+)金币/);
+      if (goldMatch) {
+        const goldAmount = parseInt(goldMatch[1], 10);
+        showNotification(`任务完成！获得 ${goldAmount} 金币`);
+      } else {
+        showNotification(`任务完成！`);
+      }
+      
+      renderQuests();
+    }
+
+    function showNotification(message) {
+      const notification = document.getElementById('notification');
+      notification.textContent = message;
+      notification.style.display = 'block';
+      setTimeout(() => {
+        notification.style.display = 'none';
+      }, 3000);
+    }
+
+    function renderQuests() {
+      const container = document.getElementById('quest-container');
+      container.innerHTML = '';
+      
+      quests.inProgress.forEach(quest => {
+        const card = document.createElement('div');
+        card.className = 'quest-card';
+        
+        const isCompleted = isQuestObjectiveCompleted(quest.progress);
+        
+        card.innerHTML = `
+          <div class="quest-name">${quest.name}</div>
+          <div class="quest-progress">进度: ${quest.progress}</div>
+          <div class="quest-rewards">奖励: ${quest.rewards}</div>
+          ${isCompleted ? `
+            <div class="button-container">
+              <button class="complete-btn" onclick="completeQuest(${JSON.stringify(quest).replace(/"/g, '&quot;')})">完成</button>
+            </div>
+          ` : '<div style="color: #999; font-size: 12px;">任务进行中...</div>'}
+        `;
+        
+        if (isCompleted) {
+          const btn = card.querySelector('.complete-btn');
+          btn.addEventListener('click', () => completeQuest(quest));
+        }
+        
+        container.appendChild(card);
+      });
+      
+      if (quests.completed.length > 0) {
+        const completedSection = document.createElement('div');
+        completedSection.innerHTML = '<h2>已完成任务</h2>';
+        quests.completed.forEach(quest => {
+          const card = document.createElement('div');
+          card.className = 'quest-card';
+          card.style.opacity = '0.7';
+          card.innerHTML = `
+            <div class="quest-name">✓ ${quest.name}</div>
+            <div class="quest-progress">进度: ${quest.progress}</div>
+            <div class="quest-rewards">奖励: ${quest.rewards}</div>
+          `;
+          completedSection.appendChild(card);
+        });
+        container.appendChild(completedSection);
+      }
+    }
+
+    // Initial render
+    renderQuests();
+  </script>
+</body>
+</html>

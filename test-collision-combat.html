@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>碰撞战斗测试 - 代号：饭</title>
+    <style>
+        * {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        html, body {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            overflow: hidden;
+            touch-action: pan-x pan-y;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+        
+        #game-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        #info-panel {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+        }
+        
+        #battle-scene {
+            flex: 1;
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+        
+        .battle-character-container {
+            position: absolute;
+        }
+        
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            background: #667eea;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        button:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <div id="info-panel">
+            <h2>碰撞战斗系统测试</h2>
+            <p>说明：冒险者和敌人碰撞时会造成伤害并被弹开。敌人死亡会消失，冒险者死亡会进入重伤状态并在60秒后复活。</p>
+            <div>
+                <button onclick="spawnAdventurer()">生成冒险者</button>
+                <button onclick="spawnEnemy()">生成敌人</button>
+                <button onclick="clearAll()">清空所有</button>
+            </div>
+            <div id="stats" style="margin-top: 10px;">
+                冒险者: <span id="adventurer-count">0</span> | 
+                敌人: <span id="enemy-count">0</span>
+            </div>
+        </div>
+        <div id="battle-scene"></div>
+    </div>
+
+    <script type="module">
+        import { BattleSystem } from './dist/game/systems/BattleSystem.js';
+        import { NPCSystem } from './dist/game/systems/NPCSystem.js';
+        import { World } from './dist/ecs/World.js';
+
+        // Initialize systems
+        const world = new World();
+        const npcSystem = new NPCSystem(world);
+        const battleSystem = new BattleSystem();
+
+        // Initialize battle scene
+        const battleScene = document.getElementById('battle-scene');
+        battleSystem.initialize(battleScene);
+
+        // Update stats display
+        function updateStats() {
+            const adventurerCount = battleSystem.getSpawnedCharacterIds().filter(id => {
+                const char = npcSystem.getRecruitedCharacter(id);
+                return char && char.type !== 'Enemy';
+            }).length;
+            
+            const enemyCount = battleSystem.getEnemyCount();
+            
+            document.getElementById('adventurer-count').textContent = adventurerCount;
+            document.getElementById('enemy-count').textContent = enemyCount;
+        }
+
+        // Spawn adventurer
+        window.spawnAdventurer = function() {
+            const adventurer = npcSystem.createAdventurer();
+            npcSystem.recruitCharacter(adventurer);
+            battleSystem.spawnCharacter(adventurer);
+            updateStats();
+            console.log('Spawned adventurer:', adventurer.name);
+        };
+
+        // Spawn enemy
+        window.spawnEnemy = function() {
+            const enemy = {
+                id: `enemy_${Date.now()}_${Math.random()}`,
+                name: '史莱姆',
+                emoji: 'images/touxiang_diren_chizong.png',
+                type: 'Enemy',
+                level: 1,
+                currentHP: 50,
+                maxHP: 50,
+                currentMP: 0,
+                maxMP: 0,
+                maxEXP: 0,
+                job: '怪物',
+                skills: [],
+                equipment: [],
+                strength: 2,
+                agility: 1,
+                wisdom: 1,
+                skill: 1,
+                attack: 15,
+                defense: 5,
+                moveSpeed: 30,
+                dodgeRate: 0,
+                critRate: 0,
+                critDamage: 0,
+                resistance: 0,
+                magicPower: 0,
+                carryWeight: 0,
+                accuracy: 100,
+                expRate: 100,
+                hpRegen: 0,
+                mpRegen: 0,
+                weight: 30,
+                volume: 50,
+                affinity: 0
+            };
+            
+            battleSystem.spawnCharacterAwayFromAdventurers(enemy, 150);
+            updateStats();
+            console.log('Spawned enemy:', enemy.name);
+        };
+
+        // Clear all
+        window.clearAll = function() {
+            battleSystem.clearAll();
+            updateStats();
+            console.log('Cleared all characters');
+        };
+
+        // Initial spawn
+        setTimeout(() => {
+            spawnAdventurer();
+            spawnAdventurer();
+            spawnEnemy();
+            spawnEnemy();
+        }, 500);
+
+        // Update stats periodically
+        setInterval(updateStats, 1000);
+    </script>
+</body>
+</html>

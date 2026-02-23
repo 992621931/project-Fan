@@ -1,0 +1,346 @@
+{
+  "jobs": [
+    {
+      "id": "warrior",
+      "name": "战士",
+      "description": "近战物理职业，擅长使用剑盾进行战斗。",
+      "attributeGrowth": {
+        "strength": 5,
+        "agility": 0,
+        "wisdom": 0,
+        "technique": 0
+      },
+      "grantedSkills": ["combat_stance"],
+      "unlockConditions": [
+        {
+          "type": "noJob",
+          "description": "需要无职业"
+        },
+        {
+          "type": "attribute",
+          "attribute": "strength",
+          "value": 5,
+          "description": "需要力量≥5"
+        }
+      ],
+      "prerequisiteJob": null
+    },
+    {
+      "id": "mage",
+      "name": "魔法师",
+      "description": "远程魔法职业，使用元素魔法攻击敌人。",
+      "attributeGrowth": {
+        "strength": 0,
+        "agility": 0,
+        "wisdom": 5,
+        "technique": 0
+      },
+      "grantedSkills": ["fireball"],
+      "unlockConditions": [
+        {
+          "type": "noJob",
+          "description": "需要无职业"
+        },
+        {
+          "type": "attribute",
+          "attribute": "wisdom",
+          "value": 5,
+          "description": "需要智慧≥5"
+        }
+      ],
+      "prerequisiteJob": null
+    },
+
+    {
+      "id": "ranger",
+      "name": "游侠",
+      "description": "远程物理职业，使用弓箭进行精准射击。",
+      "attributeGrowth": {
+        "strength": 0,
+        "agility": 5,
+        "wisdom": 0,
+        "technique": 0
+      },
+      "grantedSkills": ["piercing_arrow"],
+      "unlockConditions": [
+        {
+          "type": "noJob",
+          "description": "需要无职业"
+        },
+        {
+          "type": "attribute",
+          "attribute": "agility",
+          "value": 5,
+          "description": "需要敏捷≥5"
+        }
+      ],
+      "prerequisiteJob": null
+    },
+    {
+      "id": "priest",
+      "name": "牧师",
+      "description": "支援职业，专门治疗和辅助队友。",
+      "attributeGrowth": {
+        "strength": 2,
+        "agility": 2,
+        "wisdom": 2,
+        "technique": 2
+      },
+      "grantedSkills": ["sanctuary"],
+      "unlockConditions": [
+        {
+          "type": "noJob",
+          "description": "需要无职业"
+        },
+        {
+          "type": "attribute",
+          "attribute": "strength",
+          "value": 3,
+          "description": "需要力量≥3"
+        },
+        {
+          "type": "attribute",
+          "attribute": "wisdom",
+          "value": 3,
+          "description": "需要智慧≥3"
+        },
+        {
+          "type": "attribute",
+          "attribute": "agility",
+          "value": 3,
+          "description": "需要敏捷≥3"
+        },
+        {
+          "type": "attribute",
+          "attribute": "technique",
+          "value": 3,
+          "description": "需要技巧≥3"
+        }
+      ],
+      "prerequisiteJob": null
+    },
+
+    {
+      "id": "berserker",
+      "name": "狂战士",
+      "description": "狂暴的战士，以力量压制敌人。",
+      "attributeGrowth": {
+        "strength": 15,
+        "agility": 0,
+        "wisdom": 0,
+        "technique": 0
+      },
+      "grantedMasterSkill": "hot_blood_soul",
+      "unlockConditions": [
+        {
+          "type": "level",
+          "value": 10,
+          "description": "需要等级≥10"
+        },
+        {
+          "type": "attribute",
+          "attribute": "strength",
+          "value": 15,
+          "description": "需要力量≥15"
+        }
+      ],
+      "prerequisiteJob": "warrior"
+    },
+    {
+      "id": "guardian",
+      "name": "守卫",
+      "description": "坚不可摧的防御者，保护队友免受伤害。",
+      "attributeGrowth": {
+        "strength": 0,
+        "agility": 0,
+        "wisdom": 0,
+        "technique": 0,
+        "maxHP": 100
+      },
+      "grantedMasterSkill": "iron_fortress",
+      "unlockConditions": [
+        {
+          "type": "level",
+          "value": 10,
+          "description": "需要等级≥10"
+        },
+        {
+          "type": "derivedStat",
+          "stat": "defense",
+          "value": 20,
+          "description": "需要防御力≥20"
+        }
+      ],
+      "prerequisiteJob": "warrior"
+    },
+
+    {
+      "id": "elementalist",
+      "name": "元素师",
+      "description": "掌控元素之力的魔法大师。",
+      "attributeGrowth": {
+        "strength": 0,
+        "agility": 0,
+        "wisdom": 15,
+        "technique": 0
+      },
+      "grantedMasterSkill": "mana_burst",
+      "unlockConditions": [
+        {
+          "type": "level",
+          "value": 10,
+          "description": "需要等级≥10"
+        },
+        {
+          "type": "attribute",
+          "attribute": "wisdom",
+          "value": 15,
+          "description": "需要智慧≥15"
+        }
+      ],
+      "prerequisiteJob": "mage"
+    },
+    {
+      "id": "warlock",
+      "name": "咒术师",
+      "description": "精通诅咒与黑暗魔法的施法者。",
+      "attributeGrowth": {
+        "strength": 0,
+        "agility": 0,
+        "wisdom": 8,
+        "technique": 8
+      },
+      "grantedMasterSkill": "double_pupil",
+      "unlockConditions": [
+        {
+          "type": "level",
+          "value": 10,
+          "description": "需要等级≥10"
+        },
+        {
+          "type": "attribute",
+          "attribute": "wisdom",
+          "value": 10,
+          "description": "需要智慧≥10"
+        },
+        {
+          "type": "attribute",
+          "attribute": "technique",
+          "value": 5,
+          "description": "需要技巧≥5"
+        }
+      ],
+      "prerequisiteJob": "mage"
+    },
+
+    {
+      "id": "hunter",
+      "name": "猎杀者",
+      "description": "致命的猎手，追踪并消灭目标。",
+      "attributeGrowth": {
+        "strength": 0,
+        "agility": 15,
+        "wisdom": 0,
+        "technique": 0
+      },
+      "grantedMasterSkill": "hunt",
+      "unlockConditions": [
+        {
+          "type": "level",
+          "value": 10,
+          "description": "需要等级≥10"
+        },
+        {
+          "type": "attribute",
+          "attribute": "agility",
+          "value": 15,
+          "description": "需要敏捷≥15"
+        }
+      ],
+      "prerequisiteJob": "ranger"
+    },
+    {
+      "id": "dancer",
+      "name": "舞者",
+      "description": "灵动的战斗艺术家，以优雅的身姿躲避攻击。",
+      "attributeGrowth": {
+        "strength": 0,
+        "agility": 8,
+        "wisdom": 0,
+        "technique": 8
+      },
+      "grantedMasterSkill": "phantom_step",
+      "unlockConditions": [
+        {
+          "type": "level",
+          "value": 10,
+          "description": "需要等级≥10"
+        },
+        {
+          "type": "attribute",
+          "attribute": "agility",
+          "value": 10,
+          "description": "需要敏捷≥10"
+        },
+        {
+          "type": "attribute",
+          "attribute": "technique",
+          "value": 5,
+          "description": "需要技巧≥5"
+        }
+      ],
+      "prerequisiteJob": "ranger"
+    },
+
+    {
+      "id": "divine_messenger",
+      "name": "神使",
+      "description": "神圣的使者，守护队友的生命。",
+      "attributeGrowth": {
+        "strength": 5,
+        "agility": 5,
+        "wisdom": 5,
+        "technique": 5
+      },
+      "grantedMasterSkill": "divine_proclamation",
+      "unlockConditions": [
+        {
+          "type": "level",
+          "value": 10,
+          "description": "需要等级≥10"
+        },
+        {
+          "type": "equalAttributes",
+          "count": 2,
+          "description": "需要任意两项主属性相等"
+        }
+      ],
+      "prerequisiteJob": "priest"
+    },
+    {
+      "id": "dark_messenger",
+      "name": "邪使",
+      "description": "黑暗的使者，以生命为代价释放禁忌之力。",
+      "attributeGrowth": {
+        "strength": 0,
+        "agility": 0,
+        "wisdom": 0,
+        "technique": 0,
+        "random": 20
+      },
+      "grantedMasterSkill": "death_aura",
+      "unlockConditions": [
+        {
+          "type": "level",
+          "value": 10,
+          "description": "需要等级≥10"
+        },
+        {
+          "type": "allDifferentAttributes",
+          "description": "需要四项主属性均不相等"
+        }
+      ],
+      "prerequisiteJob": "priest"
+    }
+  ]
+}

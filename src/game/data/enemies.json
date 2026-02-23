@@ -1,0 +1,344 @@
+{
+  "enemies": [
+    {
+      "id": "enemy_wetland_two_headed_snake",
+      "name": "湿地双头蛇",
+      "type": "Enemy",
+      "emoji": "images/touxiang_diren_shidishuangtoushe.png",
+      "level": 1,
+      "maxHP": 35,
+      "maxMP": 100,
+      "attack": 10,
+      "defense": 1,
+      "moveSpeed": 25,
+      "weight": 25,
+      "size": 1.0,
+      "skills": [],
+      "drops": [
+        {
+          "itemId": "smooth_snake_skin",
+          "quantity": 1,
+          "chance": 0.4
+        },
+        {
+          "itemId": "two_headed_snake_liver",
+          "quantity": 1,
+          "chance": 0.1
+        }
+      ]
+    },
+    {
+      "id": "enemy_sweet_syrup_slime",
+      "name": "甜浆史莱姆",
+      "type": "Enemy",
+      "emoji": "images/touxiang_diren_tianjiangshilaimu.png",
+      "level": 1,
+      "maxHP": 45,
+      "maxMP": 100,
+      "attack": 8,
+      "defense": 0,
+      "moveSpeed": 15,
+      "weight": 44,
+      "size": 1.0,
+      "skills": [],
+      "drops": [
+        {
+          "itemId": "slime_sweet_pearl",
+          "quantity": 1,
+          "chance": 0.4
+        },
+        {
+          "itemId": "sweet_syrup_gland",
+          "quantity": 1,
+          "chance": 0.1
+        }
+      ]
+    },
+    {
+      "id": "enemy_giant_grass_mushroom_worm",
+      "name": "巨型草菇虫",
+      "type": "Enemy",
+      "emoji": "images/touxiang_diren_juxingcaoguchong.png",
+      "level": 1,
+      "maxHP": 38,
+      "maxMP": 100,
+      "attack": 12,
+      "defense": 2,
+      "moveSpeed": 33,
+      "weight": 65,
+      "size": 1.0,
+      "skills": [],
+      "drops": [
+        {
+          "itemId": "mystic_mushroom",
+          "quantity": 1,
+          "chance": 0.4
+        },
+        {
+          "itemId": "grass_mushroom_worm_thin_wing",
+          "quantity": 1,
+          "chance": 0.1
+        }
+      ]
+    },
+    {
+      "id": "enemy_red_mane",
+      "name": "赤鬃",
+      "type": "Enemy",
+      "emoji": "images/touxiang_diren_chizong.png",
+      "level": 1,
+      "maxHP": 150,
+      "maxMP": 100,
+      "attack": 19,
+      "defense": 3,
+      "moveSpeed": 50,
+      "weight": 54,
+      "size": 1.5,
+      "skills": [],
+      "drops": [
+        {
+          "itemId": "red_mane_fang",
+          "quantity": 1,
+          "chance": 0.4
+        },
+        {
+          "itemId": "red_mane_fur",
+          "quantity": 1,
+          "chance": 0.1
+        }
+      ]
+    },
+    {
+      "id": "enemy_bitter_root_sunflower",
+      "name": "苦根葵",
+      "type": "Enemy",
+      "emoji": "images/touxiang_diren_kugenkui.png",
+      "level": 1,
+      "maxHP": 88,
+      "maxMP": 100,
+      "attack": 25,
+      "defense": 5,
+      "moveSpeed": 28,
+      "weight": 21,
+      "size": 1.0,
+      "skills": [],
+      "drops": [
+        {
+          "itemId": "bitter_root",
+          "quantity": 1,
+          "chance": 0.4
+        },
+        {
+          "itemId": "bitter_juice",
+          "quantity": 1,
+          "chance": 0.1
+        }
+      ]
+    },
+    {
+      "id": "enemy_blue_mushroom_spider",
+      "name": "蓝芝蛛",
+      "type": "Enemy",
+      "emoji": "images/touxiang_diren_lanzhizhu.png",
+      "level": 1,
+      "maxHP": 80,
+      "maxMP": 100,
+      "attack": 28,
+      "defense": 7,
+      "moveSpeed": 30,
+      "weight": 32,
+      "size": 1.0,
+      "skills": [],
+      "drops": [
+        {
+          "itemId": "blue_spider_front_leg",
+          "quantity": 1,
+          "chance": 0.4
+        },
+        {
+          "itemId": "blue_cheese_ball",
+          "quantity": 1,
+          "chance": 0.1
+        }
+      ]
+    },
+    {
+      "id": "enemy_honey_tooth_pig",
+      "name": "蜜牙猪",
+      "type": "Enemy",
+      "emoji": "images/touxiang_diren_miyazhu.png",
+      "level": 1,
+      "maxHP": 71,
+      "maxMP": 100,
+      "attack": 25,
+      "defense": 4,
+      "moveSpeed": 24,
+      "weight": 23,
+      "size": 1.0,
+      "skills": [],
+      "drops": []
+    },
+    {
+      "id": "enemy_salt_stone_behemoth",
+      "name": "盐石怪",
+      "type": "Enemy",
+      "emoji": "images/touxiang_diren_yanshiguai.png",
+      "level": 1,
+      "maxHP": 105,
+      "maxMP": 100,
+      "attack": 21,
+      "defense": 10,
+      "moveSpeed": 5,
+      "weight": 82,
+      "size": 1.0,
+      "skills": [],
+      "drops": [
+        {
+          "itemId": "coarse_salt_block",
+          "quantity": 1,
+          "chance": 0.4
+        },
+        {
+          "itemId": "salt_stone_crystal",
+          "quantity": 1,
+          "chance": 0.1
+        }
+      ]
+    },
+    {
+      "id": "enemy_huke",
+      "name": "胡克",
+      "type": "Enemy",
+      "emoji": "images/touxiang_diren_huke.png",
+      "level": 1,
+      "maxHP": 320,
+      "maxMP": 100,
+      "attack": 42,
+      "defense": 13,
+      "moveSpeed": 50,
+      "weight": 74,
+      "size": 1.5,
+      "skills": [],
+      "drops": [
+        {
+          "itemId": "huke_leg_bone",
+          "quantity": 1,
+          "chance": 0.4
+        },
+        {
+          "itemId": "huke_curved_fang",
+          "quantity": 1,
+          "chance": 0.1
+        }
+      ]
+    },
+    {
+      "id": "enemy_corpse_potato_plant",
+      "name": "骷髅瓜",
+      "type": "Enemy",
+      "emoji": "images/touxiang_diren_kulougua.png",
+      "level": 1,
+      "maxHP": 150,
+      "maxMP": 100,
+      "attack": 48,
+      "defense": 10,
+      "moveSpeed": 30,
+      "weight": 36,
+      "size": 1.0,
+      "skills": [],
+      "drops": [
+        {
+          "itemId": "corpse_potato",
+          "quantity": 1,
+          "chance": 0.4
+        },
+        {
+          "itemId": "three_color_eyeball",
+          "quantity": 1,
+          "chance": 0.1
+        }
+      ]
+    },
+    {
+      "id": "enemy_fire_tongue_frog",
+      "name": "火舌蛙",
+      "type": "Enemy",
+      "emoji": "images/touxiang_diren_huoshewa.png",
+      "level": 1,
+      "maxHP": 163,
+      "maxMP": 100,
+      "attack": 50,
+      "defense": 15,
+      "moveSpeed": 11,
+      "weight": 47,
+      "size": 1.0,
+      "skills": [],
+      "drops": [
+        {
+          "itemId": "fire_tongue_frog_leg",
+          "quantity": 1,
+          "chance": 0.4
+        },
+        {
+          "itemId": "spicy_tongue",
+          "quantity": 1,
+          "chance": 0.1
+        }
+      ]
+    },
+    {
+      "id": "enemy_giant_tooth_vine",
+      "name": "巨齿藤",
+      "type": "Enemy",
+      "emoji": "images/touxiang_diren_juchiteng.png",
+      "level": 1,
+      "maxHP": 174,
+      "maxMP": 100,
+      "attack": 52,
+      "defense": 18,
+      "moveSpeed": 21,
+      "weight": 41,
+      "size": 1.0,
+      "skills": [],
+      "drops": [
+        {
+          "itemId": "twitching_vine_core",
+          "quantity": 1,
+          "chance": 0.4
+        },
+        {
+          "itemId": "beating_gallbladder",
+          "quantity": 1,
+          "chance": 0.1
+        }
+      ]
+    },
+    {
+      "id": "enemy_ghost_lizard",
+      "name": "幽灵蜥蜴",
+      "type": "Enemy",
+      "emoji": "images/touxiang_diren_youlingxiyi.png",
+      "level": 1,
+      "maxHP": 620,
+      "maxMP": 100,
+      "attack": 76,
+      "defense": 20,
+      "moveSpeed": 50,
+      "weight": 1,
+      "size": 1.5,
+      "skills": [],
+      "drops": [
+        {
+          "itemId": "ghost_lizard_skin",
+          "quantity": 1,
+          "chance": 0.4
+        },
+        {
+          "itemId": "ghost_lizard_sucker",
+          "quantity": 1,
+          "chance": 0.1
+        }
+      ]
+    }
+  ]
+}

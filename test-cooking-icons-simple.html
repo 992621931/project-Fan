@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>烹饪图标测试 - 简化版</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #2c3e50;
+            color: white;
+        }
+        .info {
+            background: #34495e;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        #status {
+            background: #1abc9c;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+        .error {
+            background: #e74c3c !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="info">
+        <h1>🍳 烹饪图标测试 - 简化版</h1>
+        <p>这个页面用于测试新的烹饪面板代码是否已加载</p>
+        <p><strong>构建时间戳：</strong> <span id="buildTime"></span></p>
+    </div>
+
+    <button onclick="testCookingPanel()">测试烹饪面板</button>
+    <button onclick="checkVersion()">检查代码版本</button>
+
+    <div id="status">等待测试...</div>
+
+    <script type="module">
+        import { World } from './dist/ecs/World.js';
+        import { ItemSystem } from './dist/game/systems/ItemSystem.js';
+        import { CookingSystem } from './dist/game/systems/CookingSystem.js';
+        import { UIManager } from './dist/ui/UIManager.js';
+        import { EventSystem } from './dist/ecs/EventSystem.js';
+        import { CookingPanel } from './dist/ui/components/CookingPanel.js';
+
+        // 显示构建时间
+        document.getElementById('buildTime').textContent = new Date().toLocaleString();
+
+        // 初始化系统
+        const world = new World();
+        const eventSystem = new EventSystem();
+        const itemSystem = new ItemSystem(world);
+        const cookingSystem = new CookingSystem();
+        const uiManager = new UIManager(eventSystem);
+
+        world.addSystem(itemSystem);
+        world.addSystem(cookingSystem);
+        world.initialize();
+
+        cookingSystem.setItemSystem(itemSystem);
+
+        // 创建烹饪面板
+        const cookingPanel = new CookingPanel(uiManager, eventSystem, world, cookingSystem);
+        cookingPanel.setPlayerId(1);
+
+        // 添加测试材料
+        itemSystem.addItem('mystic_mushroom', 10);
+        itemSystem.addItem('sweet_syrup_gland', 5);
+
+        // 加载配方
+        fetch('src/game/data/cooking-recipes.json')
+            .then(res => res.json())
+            .then(data => {
+                cookingSystem.loadRecipes(data);
+                console.log('✅ 配方加载完成');
+                updateStatus('✅ 配方加载完成，可以开始测试', false);
+            })
+            .catch(err => {
+                console.error('❌ 配方加载失败:', err);
+                updateStatus('❌ 配方加载失败: ' + err.message, true);
+            });
+
+        window.testCookingPanel = function() {
+            console.log('=== 开始测试烹饪面板 ===');
+            updateStatus('正在测试...', false);
+
+            try {
+                // 显示面板
+                cookingPanel.show();
+                cookingPanel.render();
+
+                // 检查 renderIngredients 方法
+                const hasNewMethod = cookingPanel.toString().includes('ingredients-grid');
+                console.log('新代码检测:', hasNewMethod ? '✅ 已加载' : '❌ 未加载');
+
+                if (hasNewMethod) {
+                    updateStatus('✅ 新代码已加载！烹饪面板应该显示图标网格。', false);
+                } else {
+                    updateStatus('❌ 旧代码仍在运行。请清除浏览器缓存后重试。', true);
+                }
+
+                // 等待一下让面板渲染
+                setTimeout(() => {
+                    const grid = document.querySelector('[class*="ingredients-grid"]');
+                    if (grid) {
+                        console.log('✅ 找到材料网格容器');
+                        updateStatus('✅ 找到材料网格容器！图标应该正在显示。', false);
+                    } else {
+                        console.log('❌ 未找到材料网格容器');
+                        updateStatus('❌ 未找到材料网格容器。可能需要选择一个配方。', true);
+                    }
+                }, 500);
+
+            } catch (error) {
+                console.error('测试失败:', error);
+                updateStatus('❌ 测试失败: ' + error.message, true);
+            }
+        };
+
+        window.checkVersion = function() {
+            console.log('=== 检查代码版本 ===');
+            
+            // 检查 CookingPanel 的方法
+            const panelMethods = Object.getOwnPropertyNames(Object.getPrototypeOf(cookingPanel));
+            console.log('CookingPanel 方法:', panelMethods);
+
+            // 尝试读取 renderIngredients 的源码
+            const renderIngredientsStr = cookingPanel.constructor.prototype.renderIngredients?.toString() || '';
+            const hasGridLayout = renderIngredientsStr.includes('ingredients-grid');
+            const hasIconContainer = renderIngredientsStr.includes('ingredient-icon');
+            const hasQuantityBadge = renderIngredientsStr.includes('quantity-badge');
+
+            console.log('代码特征检测:');
+            console.log('- 网格布局:', hasGridLayout ? '✅' : '❌');
+            console.log('- 图标容器:', hasIconContainer ? '✅' : '❌');
+            console.log('- 数量标签:', hasQuantityBadge ? '✅' : '❌');
+
+            if (hasGridLayout && hasIconContainer && hasQuantityBadge) {
+                updateStatus('✅ 新代码已正确加载！所有特征都存在。', false);
+            } else {
+                updateStatus('❌ 代码版本不正确。请清除缓存并重新构建。', true);
+            }
+        };
+
+        function updateStatus(message, isError) {
+            const statusDiv = document.getElementById('status');
+            statusDiv.textContent = message;
+            if (isError) {
+                statusDiv.classList.add('error');
+            } else {
+                statusDiv.classList.remove('error');
+            }
+        }
+
+        // 自动检查版本
+        setTimeout(() => {
+            window.checkVersion();
+        }, 1000);
+    </script>
+</body>
+</html>

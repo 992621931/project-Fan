@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>属性计算测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        .character-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 6px;
+            background: #fafafa;
+        }
+        .character-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        .attributes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .attr-section {
+            background: white;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .attr-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 4px;
+        }
+        .attr-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+            font-size: 14px;
+        }
+        .attr-label {
+            color: #666;
+        }
+        .attr-value {
+            font-weight: bold;
+            color: #333;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px 10px 0;
+        }
+        button:hover {
+            background: #5568d3;
+        }
+        .formula {
+            background: #e8f4f8;
+            padding: 15px;
+            border-left: 4px solid #667eea;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .formula-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .formula-item {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 属性计算测试</h1>
+        
+        <div class="formula">
+            <div class="formula-title">📐 属性计算公式</div>
+            <div class="formula-item"><strong>主属性:</strong> 每个角色初始1点，随机分配10点</div>
+            <div class="formula-item" style="margin-top: 10px; font-weight: bold; color: #667eea;">副属性 = 基础值 + 主属性加成</div>
+            <div class="formula-item"><strong>攻击力:</strong> 10 + 力量</div>
+            <div class="formula-item"><strong>防御力:</strong> 1 + 力量 + 敏捷</div>
+            <div class="formula-item"><strong>移动速度:</strong> 50 + 敏捷</div>
+            <div class="formula-item"><strong>闪避率:</strong> 0% + 敏捷 × 0.5%</div>
+            <div class="formula-item"><strong>暴击率:</strong> 5% + 技巧 × 0.5%</div>
+            <div class="formula-item"><strong>暴击伤害:</strong> 150% + 技巧 × 2%</div>
+            <div class="formula-item"><strong>抗性:</strong> 0 + 智慧 × 0.5</div>
+            <div class="formula-item"><strong>魔法强度:</strong> 0 + 智慧</div>
+            <div class="formula-item"><strong>负重:</strong> 10 + 力量</div>
+            <div class="formula-item"><strong>命中率:</strong> 100% + 技巧 × 0.5%</div>
+            <div class="formula-item"><strong>生命回复:</strong> 1 + 力量 × 0.2</div>
+            <div class="formula-item"><strong>魔法回复:</strong> 10 + 智慧 × 0.2</div>
+            <div class="formula-item"><strong>体重:</strong> 50 + 力量</div>
+            <div class="formula-item"><strong>最大HP:</strong> 100 + (所有主属性之和) + (等级-1) × 10</div>
+            <div class="formula-item"><strong>最大MP:</strong> 100 (固定值)</div>
+        </div>
+
+        <button onclick="generateCharacter()">生成新角色</button>
+        <button onclick="clearCharacters()">清空</button>
+        
+        <div id="characters"></div>
+    </div>
+
+    <script type="module">
+        // 简化的NPC系统模拟
+        class NPCSystemTest {
+            constructor() {
+                this.counter = 0;
+                this.namePool = ['李', '王', '林', '刘', '肯尼', '塞拉', '本田', '五藏', '奥拉', '拉尔'];
+                this.titlePool = ['勇敢的', '胆小的', '好色的', '冷酷的', '目光呆滞的', '口齿不清的', '莽撞的', '谨慎的', '乐观的', '结巴的'];
+            }
+
+            getRandomElement(array) {
+                return array[Math.floor(Math.random() * array.length)];
+            }
+
+            calculateSecondaryAttributes(strength, agility, wisdom, skill) {
+                return {
+                    attack: 10 + strength,
+                    defense: 1 + strength + agility,
+                    moveSpeed: 50 + agility,
+                    dodgeRate: 0 + agility * 0.5,
+                    critRate: 5 + skill * 0.5,
+                    critDamage: 150 + skill * 2,
+                    resistance: 0 + wisdom * 0.5,
+                    magicPower: 0 + wisdom,
+                    carryWeight: 10 + strength,
+                    accuracy: 100 + skill * 0.5,
+                    expRate: 100,
+                    hpRegen: 1 + strength * 0.2,
+                    mpRegen: 10 + wisdom * 0.2,
+                    weight: 50 + strength,
+                    volume: 100
+                };
+            }
+
+            calculateMaxHPMP(strength, agility, wisdom, skill, level) {
+                const attributeHPBonus = strength + agility + wisdom + skill;
+                const maxHP = 100 + attributeHPBonus + (level - 1) * 10;
+                const maxMP = 100; // Fixed value
+                return { maxHP, maxMP };
+            }
+
+            createAdventurer() {
+                this.counter++;
+                const randomName = this.getRandomElement(this.namePool);
+                const randomTitle = this.getRandomElement(this.titlePool);
+                
+                // 随机分配10点属性
+                const totalPoints = 10;
+                const attributes = { strength: 1, agility: 1, wisdom: 1, skill: 1 };
+                
+                for (let i = 0; i < totalPoints; i++) {
+                    const attributeKeys = Object.keys(attributes);
+                    const randomAttribute = this.getRandomElement(attributeKeys);
+                    attributes[randomAttribute]++;
+                }
+                
+                // 计算副属性
+                const secondaryAttrs = this.calculateSecondaryAttributes(
+                    attributes.strength,
+                    attributes.agility,
+                    attributes.wisdom,
+                    attributes.skill
+                );
+                
+                // 计算最大HP和MP
+                const { maxHP, maxMP } = this.calculateMaxHPMP(
+                    attributes.strength,
+                    attributes.agility,
+                    attributes.wisdom,
+                    attributes.skill,
+                    1
+                );
+                
+                return {
+                    id: `adventurer_${this.counter}`,
+                    name: randomName,
+                    title: randomTitle,
+                    level: 1,
+                    ...attributes,
+                    ...secondaryAttrs,
+                    maxHP,
+                    maxMP,
+                    currentHP: maxHP,
+                    currentMP: 0
+                };
+            }
+        }
+
+        const npcSystem = new NPCSystemTest();
+        window.npcSystem = npcSystem;
+
+        window.generateCharacter = function() {
+            const character = npcSystem.createAdventurer();
+            displayCharacter(character);
+        };
+
+        window.clearCharacters = function() {
+            document.getElementById('characters').innerHTML = '';
+        };
+
+        function displayCharacter(char) {
+            const container = document.getElementById('characters');
+            const card = document.createElement('div');
+            card.className = 'character-card';
+            
+            card.innerHTML = `
+                <div class="character-name">${char.title}${char.name} (LV ${char.level})</div>
+                <div class="attributes">
+                    <div class="attr-section">
+                        <div class="attr-title">💪 主属性</div>
+                        <div class="attr-item">
+                            <span class="attr-label">力量 (STR)</span>
+                            <span class="attr-value">${char.strength}</span>
+                        </div>
+                        <div class="attr-item">
+                            <span class="attr-label">敏捷 (AGI)</span>
+                            <span class="attr-value">${char.agility}</span>
+                        </div>
+                        <div class="attr-item">
+                            <span class="attr-label">智慧 (WIS)</span>
+                            <span class="attr-value">${char.wisdom}</span>
+                        </div>
+                        <div class="attr-item">
+                            <span class="attr-label">技巧 (SKL)</span>
+                            <span class="attr-value">${char.skill}</span>
+                        </div>
+                        <div class="attr-item" style="border-top: 1px solid #eee; margin-top: 5px; padding-top: 5px;">
+                            <span class="attr-label">总和</span>
+                            <span class="attr-value">${char.strength + char.agility + char.wisdom + char.skill}</span>
+                        </div>
+                    </div>
+                    <div class="attr-section">
+                        <div class="attr-title">⚔️ 副属性</div>
+                        <div class="attr-item">
+                            <span class="attr-label">攻击力</span>
+                            <span class="attr-value">${char.attack}</span>
+                        </div>
+                        <div class="attr-item">
+                            <span class="attr-label">防御力</span>
+                            <span class="attr-value">${char.defense}</span>
+                        </div>
+                        <div class="attr-item">
+                            <span class="attr-label">移动速度</span>
+                            <span class="attr-value">${char.moveSpeed}</span>
+                        </div>
+                        <div class="attr-item">
+                            <span class="attr-label">闪避率</span>
+                            <span class="attr-value">${char.dodgeRate.toFixed(1)}%</span>
+                        </div>
+                        <div class="attr-item">
+                            <span class="attr-label">暴击率</span>
+                            <span class="attr-value">${char.critRate.toFixed(1)}%</span>
+                        </div>
+                        <div class="attr-item">
+                            <span class="attr-label">暴击伤害</span>
+                            <span class="attr-value">${char.critDamage.toFixed(0)}%</span>
+                        </div>
+                        <div class="attr-item">
+                            <span class="attr-label">抗性</span>
+                            <span class="attr-value">${char.resistance.toFixed(1)}</span>
+                        </div>
+                        <div class="attr-item">
+                            <span class="attr-label">魔法强度</span>
+                            <span class="attr-value">${char.magicPower}</span>
+                        </div>
+                        <div class="attr-item">
+                            <span class="attr-label">负重</span>
+                            <span class="attr-value">${char.carryWeight}</span>
+                        </div>
+                        <div class="attr-item">
+                            <span class="attr-label">命中率</span>
+                            <span class="attr-value">${char.accuracy.toFixed(1)}%</span>
+                        </div>
+                        <div class="attr-item">
+                            <span class="attr-label">生命回复</span>
+                            <span class="attr-value">${char.hpRegen.toFixed(1)}/s</span>
+                        </div>
+                        <div class="attr-item">
+                            <span class="attr-label">魔法回复</span>
+                            <span class="attr-value">${char.mpRegen.toFixed(1)}/s</span>
+                        </div>
+                        <div class="attr-item">
+                            <span class="attr-label">体重</span>
+                            <span class="attr-value">${char.weight}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="attributes" style="margin-top: 10px;">
+                    <div class="attr-section">
+                        <div class="attr-title">❤️ 生命值</div>
+                        <div class="attr-item">
+                            <span class="attr-label">当前/最大</span>
+                            <span class="attr-value">${char.currentHP} / ${char.maxHP}</span>
+                        </div>
+                    </div>
+                    <div class="attr-section">
+                        <div class="attr-title">💙 魔法值</div>
+                        <div class="attr-item">
+                            <span class="attr-label">当前/最大</span>
+                            <span class="attr-value">${char.currentMP} / ${char.maxMP}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            container.appendChild(card);
+        }
+
+        // 自动生成一个角色作为示例
+        window.generateCharacter();
+    </script>
+</body>
+</html>

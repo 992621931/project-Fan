@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>烹饪UI测试 - 材料图标网格显示</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .test-info {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .test-info h1 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        .test-info p {
+            margin: 5px 0;
+            color: #666;
+        }
+        .feature {
+            background: #e8f5e9;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            border-left: 4px solid #4caf50;
+        }
+        .preview {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+            border-left: 4px solid #2196f3;
+        }
+        .preview h3 {
+            margin: 0 0 10px 0;
+            color: #2196f3;
+        }
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 12px;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+        }
+        .preview-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px;
+            background: white;
+            border-radius: 8px;
+            border: 2px solid #4caf50;
+        }
+        .preview-icon {
+            width: 64px;
+            height: 64px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 6px;
+        }
+        .preview-name {
+            font-size: 11px;
+            text-align: center;
+            color: #333;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        button:hover {
+            background: #5568d3;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        .controls {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="test-info">
+        <h1>🍳 烹饪UI测试 - 材料图标网格显示</h1>
+        <p>测试烹饪面板中所需材料的网格图标显示功能</p>
+        
+        <div class="feature">
+            <strong>✨ 新功能：</strong>
+            <ul>
+                <li>材料以网格形式显示在红框区域内</li>
+                <li>每个材料显示为卡片：图标 + 名称</li>
+                <li>图标尺寸：64x64px</li>
+                <li>数量显示在图标右下角（拥有/需要）</li>
+                <li>状态指示器在卡片右上角（✓ 或 ✗）</li>
+                <li>材料不足时显示红色边框，充足时显示绿色边框</li>
+                <li>鼠标悬停时卡片上浮效果</li>
+                <li>自适应网格布局，自动调整列数</li>
+            </ul>
+        </div>
+
+        <div class="preview">
+            <h3>📋 布局预览</h3>
+            <p>材料将以这种网格形式显示：</p>
+            <div class="preview-grid">
+                <div class="preview-item">
+                    <div class="preview-icon">🍬</div>
+                    <div class="preview-name">史莱姆甜珠</div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-icon">🍄</div>
+                    <div class="preview-name">迷香菇</div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-icon">🐍</div>
+                    <div class="preview-name">光滑蛇皮</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <h2>测试操作</h2>
+        <button onclick="openCooking()">打开烹饪面板</button>
+        <button onclick="addTestMaterials()">添加测试材料</button>
+        <button onclick="addPartialMaterials()">添加部分材料（测试不足状态）</button>
+        <button onclick="clearInventory()">清空背包</button>
+        <button onclick="showInventory()">查看背包</button>
+    </div>
+
+    <script type="module">
+        import { World } from './dist/ecs/World.js';
+        import { ItemSystem } from './dist/game/systems/ItemSystem.js';
+        import { CookingSystem } from './dist/game/systems/CookingSystem.js';
+        import { UIManager } from './dist/ui/UIManager.js';
+        import { EventSystem } from './dist/ecs/EventSystem.js';
+        import { CookingPanel } from './dist/ui/components/CookingPanel.js';
+
+        // Initialize systems
+        const world = new World();
+        const eventSystem = new EventSystem();
+        const itemSystem = new ItemSystem(world);
+        const cookingSystem = new CookingSystem();
+        const uiManager = new UIManager(eventSystem);
+
+        world.addSystem(itemSystem);
+        world.addSystem(cookingSystem);
+        world.initialize();
+
+        cookingSystem.setItemSystem(itemSystem);
+
+        // Create cooking panel
+        const cookingPanel = new CookingPanel(uiManager, eventSystem, world, cookingSystem);
+        cookingPanel.setPlayerId(1);
+
+        // Load cooking recipes
+        fetch('src/game/data/cooking-recipes.json')
+            .then(res => res.json())
+            .then(data => {
+                cookingSystem.loadRecipes(data);
+                console.log('✅ 烹饪配方加载完成');
+            })
+            .catch(err => {
+                console.error('❌ 加载烹饪配方失败:', err);
+            });
+
+        window.openCooking = function() {
+            cookingPanel.show();
+            cookingPanel.render();
+            console.log('🍳 烹饪面板已打开');
+        };
+
+        window.addTestMaterials = function() {
+            // Add materials for different recipes
+            const materials = [
+                { id: 'slime_sweet_pearl', qty: 10, name: '史莱姆甜珠' },
+                { id: 'two_headed_snake_liver', qty: 5, name: '双头蛇肝' },
+                { id: 'smooth_snake_skin', qty: 10, name: '光滑蛇皮' },
+                { id: 'mystic_mushroom', qty: 10, name: '迷香菇' },
+                { id: 'sweet_syrup_gland', qty: 5, name: '甜浆腺体' },
+                { id: 'grass_mushroom_worm_thin_wing', qty: 5, name: '草菇虫薄翼' },
+                { id: 'lavender', qty: 10, name: '兰香草' },
+                { id: 'bitter_root', qty: 10, name: '苦根' },
+                { id: 'salt_stone_crystal', qty: 5, name: '盐石结晶' },
+                { id: 'blue_spider_front_leg', qty: 10, name: '蓝蛛前腿' },
+                { id: 'bitter_juice', qty: 5, name: '苦汁' },
+                { id: 'coarse_salt_block', qty: 10, name: '粗盐块' },
+                { id: 'blue_cheese_ball', qty: 5, name: '蓝奶酪球' },
+                { id: 'burst_fruit', qty: 10, name: '爆裂果' }
+            ];
+
+            materials.forEach(mat => {
+                itemSystem.addItem(mat.id, mat.qty);
+            });
+
+            console.log('✅ 已添加测试材料到背包');
+            alert('已添加测试材料！现在可以打开烹饪面板查看材料图标网格。');
+        };
+
+        window.addPartialMaterials = function() {
+            // Add only partial materials to test insufficient state
+            itemSystem.addItem('slime_sweet_pearl', 1); // Need 3
+            itemSystem.addItem('bitter_root', 2); // Need 3
+            
+            console.log('✅ 已添加部分材料（不足状态）');
+            alert('已添加部分材料！打开烹饪面板可以看到红色边框表示材料不足。');
+        };
+
+        window.clearInventory = function() {
+            itemSystem.clearInventory();
+            console.log('🗑️ 背包已清空');
+            alert('背包已清空！');
+        };
+
+        window.showInventory = function() {
+            const inventory = itemSystem.getInventory();
+            console.log('📦 当前背包:', inventory);
+            
+            if (inventory.length === 0) {
+                alert('背包是空的！');
+            } else {
+                const items = inventory.map(slot => {
+                    const item = itemSystem.getItem(slot.itemId);
+                    return `${item?.name || slot.itemId}: ${slot.quantity}`;
+                }).join('\n');
+                alert('背包物品：\n\n' + items);
+            }
+        };
+
+        // Auto-add some materials on load
+        setTimeout(() => {
+            console.log('💡 提示：点击"添加测试材料"按钮来添加烹饪材料');
+        }, 1000);
+    </script>
+</body>
+</html>

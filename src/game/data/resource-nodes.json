@@ -1,0 +1,97 @@
+{
+  "resourceNodes": [
+    {
+      "id": "ore_vein",
+      "name": "矿脉",
+      "icon": "images/ziyuandian_kuangmai.png",
+      "size": 50,
+      "maxHP": 50,
+      "type": "ore",
+      "drops": {
+        "grassland": [
+          {
+            "itemId": "copper_ore",
+            "quantity": 1,
+            "chance": 1.0
+          }
+        ],
+        "forest": [
+          {
+            "itemId": "iron_ore",
+            "quantity": 1,
+            "chance": 1.0
+          }
+        ],
+        "cave": [
+          {
+            "itemId": "amber_ore",
+            "quantity": 1,
+            "chance": 1.0
+          }
+        ]
+      }
+    },
+    {
+      "id": "grass_patch",
+      "name": "草丛",
+      "icon": "images/ziyuandian_caocong.png",
+      "size": 50,
+      "maxHP": 50,
+      "type": "grass",
+      "drops": {
+        "grassland": [
+          {
+            "itemId": "lavender",
+            "quantity": 1,
+            "chance": 1.0
+          }
+        ],
+        "forest": [
+          {
+            "itemId": "burst_fruit",
+            "quantity": 1,
+            "chance": 1.0
+          }
+        ],
+        "cave": [
+          {
+            "itemId": "night_vision_grass",
+            "quantity": 1,
+            "chance": 1.0
+          }
+        ]
+      }
+    },
+    {
+      "id": "tree",
+      "name": "树",
+      "icon": "images/ziyuandian_shu.png",
+      "size": 50,
+      "maxHP": 50,
+      "type": "tree",
+      "drops": {
+        "grassland": [
+          {
+            "itemId": "oak_wood",
+            "quantity": 1,
+            "chance": 1.0
+          }
+        ],
+        "forest": [
+          {
+            "itemId": "birch_wood",
+            "quantity": 1,
+            "chance": 1.0
+          }
+        ],
+        "cave": [
+          {
+            "itemId": "blue_tan_wood",
+            "quantity": 1,
+            "chance": 1.0
+          }
+        ]
+      }
+    }
+  ]
+}

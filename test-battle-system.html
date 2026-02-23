@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>战斗系统测试</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      color: white;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .battle-area {
+      width: 100%;
+      height: 600px;
+      background: url('images/changjing_caoyuan.png') center/cover;
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .controls {
+      margin-top: 20px;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .button-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    button:hover {
+      background: #5568d3;
+      transform: translateY(-2px);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .info {
+      margin-top: 15px;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 6px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .info h3 {
+      margin: 0 0 10px 0;
+      color: #333;
+    }
+
+    .info p {
+      margin: 5px 0;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎮 战斗系统测试</h1>
+    
+    <div class="battle-area" id="battle-area"></div>
+    
+    <div class="controls">
+      <h3>控制面板</h3>
+      <div class="button-group">
+        <button onclick="spawnCharacter()">➕ 生成角色</button>
+        <button onclick="clearAll()">🗑️ 清除所有</button>
+      </div>
+      
+      <div class="info">
+        <h3>📋 说明</h3>
+        <p>✅ 角色会在随机位置生成</p>
+        <p>✅ 头像上方显示角色名称（称号+名字）</p>
+        <p>✅ 头像下方显示HP条（红色）和MP条（蓝色）</p>
+        <p>✅ 角色会朝随机方向移动（速度 = 20 + 移动速度属性）</p>
+        <p>✅ 角色碰到边界会反弹</p>
+        <p>✅ 每秒恢复生命值（根据"每秒回血"属性）</p>
+        <p>✅ 每秒恢复魔法值（根据"每秒回魔"属性）</p>
+        <p>✅ 初始魔法值为 0</p>
+        <p>💡 鼠标悬停在角色上可以放大查看</p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { BattleSystem } from './dist/game/systems/BattleSystem.js';
+    
+    const battleArea = document.getElementById('battle-area');
+    const battleSystem = new BattleSystem();
+    battleSystem.initialize(battleArea);
+    
+    let characterCounter = 0;
+    
+    // Make functions global for button onclick
+    window.spawnCharacter = function() {
+      characterCounter++;
+      
+      // Create a test character with random attributes
+      const names = ['李', '王', '林', '刘', '肯尼', '塞拉'];
+      const titles = ['勇敢的', '胆小的', '冷酷的', '谨慎的'];
+      const randomName = names[Math.floor(Math.random() * names.length)];
+      const randomTitle = titles[Math.floor(Math.random() * titles.length)];
+      
+      const character = {
+        id: `test_char_${characterCounter}`,
+        name: randomName,
+        title: randomTitle,
+        emoji: `images/touxiang_maoxianzhe_${String(Math.floor(Math.random() * 48) + 1).padStart(3, '0')}.png`,
+        type: 'Adventurer',
+        level: 1,
+        currentHP: 100,
+        maxHP: 100,
+        currentMP: 0, // Start with 0 MP
+        maxMP: 100,
+        moveSpeed: Math.floor(Math.random() * 100), // Random 0-100
+        hpRegen: Math.floor(Math.random() * 5) + 1, // Random 1-5
+        mpRegen: Math.floor(Math.random() * 15) + 5, // Random 5-20
+      };
+      
+      battleSystem.spawnCharacter(character);
+      console.log(`Spawned: ${character.title}${character.name} (Speed: ${20 + character.moveSpeed}, HP Regen: ${character.hpRegen}/s, MP Regen: ${character.mpRegen}/s)`);
+    };
+    
+    window.clearAll = function() {
+      battleSystem.clearAll();
+      console.log('Cleared all characters');
+    };
+    
+    // Spawn 3 characters on load
+    setTimeout(() => {
+      for (let i = 0; i < 3; i++) {
+        window.spawnCharacter();
+      }
+    }, 500);
+  </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>按钮测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            max-width: 300px;
+        }
+        .location-button {
+            padding: 15px 20px;
+            max-width: 120px;
+            background: #fff;
+            border: 2px solid #667eea;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            transition: all 0.2s;
+        }
+        .location-button:hover {
+            background: #f0f0ff;
+            transform: translateX(5px);
+        }
+        .location-button.locked {
+            background: #4a4a4a;
+            border-color: #666;
+            color: #999;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        .location-button.locked:hover {
+            background: #4a4a4a;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <h1>按钮切换测试</h1>
+    <p>点击按钮切换激活/锁定状态</p>
+    
+    <div class="button-container">
+        <button class="location-button" data-location="square">广场</button>
+        <button class="location-button" data-location="tavern">酒馆</button>
+        <button class="location-button" data-location="market">市场</button>
+        <button class="location-button" data-location="farm">农田</button>
+    </div>
+
+    <script>
+        // 状态管理
+        const locationStates = new Map([
+            ['square', true],
+            ['tavern', true],
+            ['market', true],
+            ['farm', true]
+        ]);
+
+        // 更新按钮样式
+        function updateButtonStyle(button, location) {
+            const isActive = locationStates.get(location);
+            console.log(`Updating ${location}: ${isActive ? 'active' : 'locked'}`);
+            
+            if (isActive) {
+                button.classList.remove('locked');
+            } else {
+                button.classList.add('locked');
+            }
+        }
+
+        // 获取所有按钮
+        const buttons = document.querySelectorAll('.location-button');
+        console.log(`Found ${buttons.length} buttons`);
+
+        // 为每个按钮添加点击事件
+        buttons.forEach(button => {
+            const location = button.getAttribute('data-location');
+            console.log(`Setting up button: ${location}`);
+            
+            button.addEventListener('click', () => {
+                console.log(`Button clicked: ${location}`);
+                
+                // 切换状态
+                const currentState = locationStates.get(location);
+                const newState = !currentState;
+                locationStates.set(location, newState);
+                
+                console.log(`State changed from ${currentState} to ${newState}`);
+                
+                // 更新样式
+                updateButtonStyle(button, location);
+            });
+        });
+
+        console.log('Button setup complete');
+    </script>
+</body>
+</html>

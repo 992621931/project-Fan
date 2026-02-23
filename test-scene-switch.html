@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>场景切换测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+        }
+        .button-container {
+            display: flex;
+            gap: 16px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+            margin-bottom: 20px;
+        }
+        .location-button {
+            padding: 15px 20px;
+            max-width: 120px;
+            background: #fff;
+            border: 2px solid #667eea;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            transition: all 0.2s;
+        }
+        .location-button.active {
+            background: #667eea;
+            color: #fff;
+        }
+        .location-button:hover:not(.active) {
+            background: #f0f0ff;
+        }
+        .scene-container {
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            min-height: 300px;
+        }
+        .scene-header {
+            text-align: center;
+            padding: 20px;
+        }
+        .scene-emoji {
+            font-size: 64px;
+            margin-bottom: 16px;
+        }
+        .scene-title {
+            margin: 0 0 8px 0;
+            font-size: 32px;
+        }
+        .scene-description {
+            margin: 0;
+            color: #666;
+            font-size: 16px;
+        }
+        .scene-content {
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+        }
+        .content-card {
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border-left: 4px solid;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>场景切换测试</h1>
+        <div class="button-container" id="buttonContainer">
+            <button class="location-button active" data-location="square">广场</button>
+            <button class="location-button" data-location="tavern">酒馆</button>
+            <button class="location-button" data-location="market">市场</button>
+            <button class="location-button" data-location="farm">农田</button>
+        </div>
+        <div class="scene-container" id="sceneContainer"></div>
+    </div>
+
+    <script>
+        let currentScene = 'square';
+        const sceneContainer = document.getElementById('sceneContainer');
+        const buttonContainer = document.getElementById('buttonContainer');
+
+        const scenes = {
+            square: {
+                title: '广场',
+                emoji: '🏛️',
+                description: '热闹的村庄广场，村民们在这里聚集交流',
+                color: '#667eea',
+                content: `
+                    <div class="content-card" style="background: #f0f0ff; border-color: #667eea;">
+                        <h3 style="margin: 0 0 8px 0; color: #667eea;">📢 公告栏</h3>
+                        <p style="margin: 0; color: #666;">欢迎来到村庄！这里是冒险的起点。</p>
+                    </div>
+                    <div class="content-card" style="background: #f0f0ff; border-color: #667eea;">
+                        <h3 style="margin: 0 0 8px 0; color: #667eea;">👥 村民聚集地</h3>
+                        <p style="margin: 0; color: #666;">村民们正在讨论最近的新闻...</p>
+                    </div>
+                `
+            },
+            tavern: {
+                title: '酒馆',
+                emoji: '🍺',
+                description: '温馨的酒馆，可以招募冒险者和听取情报',
+                color: '#f59e0b',
+                content: `
+                    <div class="content-card" style="background: #fff7ed; border-color: #f59e0b;">
+                        <h3 style="margin: 0 0 8px 0; color: #f59e0b;">🎭 招募冒险者</h3>
+                        <p style="margin: 0; color: #666;">在这里可以招募强大的冒险者加入你的队伍。</p>
+                    </div>
+                    <div class="content-card" style="background: #fff7ed; border-color: #f59e0b;">
+                        <h3 style="margin: 0 0 8px 0; color: #f59e0b;">📜 任务委托</h3>
+                        <p style="margin: 0; color: #666;">查看可用的任务和委托。</p>
+                    </div>
+                `
+            },
+            market: {
+                title: '市场',
+                emoji: '🏪',
+                description: '繁忙的市场，各种商品琳琅满目',
+                color: '#10b981',
+                content: `
+                    <div class="content-card" style="background: #f0fdf4; border-color: #10b981;">
+                        <h3 style="margin: 0 0 8px 0; color: #10b981;">🛒 商店</h3>
+                        <p style="margin: 0; color: #666;">购买和出售各种物品。</p>
+                    </div>
+                    <div class="content-card" style="background: #f0fdf4; border-color: #10b981;">
+                        <h3 style="margin: 0 0 8px 0; color: #10b981;">💎 特殊商品</h3>
+                        <p style="margin: 0; color: #666;">稀有物品和特殊道具。</p>
+                    </div>
+                `
+            },
+            farm: {
+                title: '农田',
+                emoji: '🌾',
+                description: '肥沃的农田，可以种植各种作物',
+                color: '#84cc16',
+                content: `
+                    <div class="content-card" style="background: #f7fee7; border-color: #84cc16;">
+                        <h3 style="margin: 0 0 8px 0; color: #84cc16;">🌱 种植作物</h3>
+                        <p style="margin: 0; color: #666;">种植各种作物来获取资源。</p>
+                    </div>
+                    <div class="content-card" style="background: #f7fee7; border-color: #84cc16;">
+                        <h3 style="margin: 0 0 8px 0; color: #84cc16;">🐄 畜牧养殖</h3>
+                        <p style="margin: 0; color: #666;">饲养动物获取产品。</p>
+                    </div>
+                `
+            }
+        };
+
+        function switchScene(sceneId) {
+            console.log('Switching to scene:', sceneId);
+            currentScene = sceneId;
+            const scene = scenes[sceneId];
+            
+            if (!scene) {
+                console.error('Scene not found:', sceneId);
+                return;
+            }
+
+            sceneContainer.innerHTML = `
+                <div class="scene-header">
+                    <div class="scene-emoji">${scene.emoji}</div>
+                    <h2 class="scene-title" style="color: ${scene.color};">${scene.title}</h2>
+                    <p class="scene-description">${scene.description}</p>
+                </div>
+                <div class="scene-content">
+                    ${scene.content}
+                </div>
+            `;
+        }
+
+        // Add click event listeners to buttons
+        const buttons = buttonContainer.querySelectorAll('.location-button');
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                const location = button.getAttribute('data-location');
+                console.log('Button clicked:', location);
+                
+                // Update button styles
+                buttons.forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                button.classList.add('active');
+                
+                // Switch scene
+                switchScene(location);
+            });
+        });
+
+        // Load initial scene
+        switchScene('square');
+        console.log('Scene switch test initialized');
+    </script>
+</body>
+</html>

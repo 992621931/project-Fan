@@ -1,0 +1,157 @@
+{
+  "shops": [
+    {
+      "id": "general_store",
+      "name": "杂货店",
+      "type": "general",
+      "items": [
+        {
+          "itemId": "health_potion",
+          "basePrice": 30,
+          "stock": 20,
+          "restockTime": 24,
+          "popularity": 0.8
+        },
+        {
+          "itemId": "mana_potion",
+          "basePrice": 35,
+          "stock": 15,
+          "restockTime": 24,
+          "popularity": 0.7
+        },
+        {
+          "itemId": "bread",
+          "basePrice": 10,
+          "stock": 50,
+          "restockTime": 12,
+          "popularity": 0.9
+        },
+        {
+          "itemId": "wheat_seed",
+          "basePrice": 2,
+          "stock": 100,
+          "restockTime": 48,
+          "popularity": 0.6
+        }
+      ],
+      "unlockConditions": []
+    },
+    {
+      "id": "weapon_shop",
+      "name": "武器店",
+      "type": "equipment",
+      "items": [
+        {
+          "itemId": "basic_sword",
+          "basePrice": 60,
+          "stock": 5,
+          "restockTime": 72,
+          "popularity": 0.7
+        },
+        {
+          "itemId": "steel_sword",
+          "basePrice": 180,
+          "stock": 3,
+          "restockTime": 120,
+          "popularity": 0.5
+        },
+        {
+          "itemId": "wooden_staff",
+          "basePrice": 50,
+          "stock": 4,
+          "restockTime": 72,
+          "popularity": 0.6
+        },
+        {
+          "itemId": "leather_armor",
+          "basePrice": 70,
+          "stock": 6,
+          "restockTime": 96,
+          "popularity": 0.8
+        }
+      ],
+      "unlockConditions": [
+        {
+          "type": "reputation",
+          "value": 10,
+          "description": "需要声望达到10点"
+        }
+      ]
+    },
+    {
+      "id": "magic_shop",
+      "name": "魔法商店",
+      "type": "specialty",
+      "items": [
+        {
+          "itemId": "crystal_staff",
+          "basePrice": 500,
+          "stock": 1,
+          "restockTime": 240,
+          "popularity": 0.3
+        },
+        {
+          "itemId": "strength_buff",
+          "basePrice": 100,
+          "stock": 8,
+          "restockTime": 48,
+          "popularity": 0.4
+        },
+        {
+          "itemId": "mithril_ore",
+          "basePrice": 120,
+          "stock": 2,
+          "restockTime": 168,
+          "popularity": 0.2
+        }
+      ],
+      "unlockConditions": [
+        {
+          "type": "level",
+          "value": 10,
+          "description": "需要角色等级达到10级"
+        },
+        {
+          "type": "reputation",
+          "value": 50,
+          "description": "需要声望达到50点"
+        }
+      ]
+    },
+    {
+      "id": "material_trader",
+      "name": "材料商人",
+      "type": "materials",
+      "items": [
+        {
+          "itemId": "iron_ore",
+          "basePrice": 6,
+          "stock": 30,
+          "restockTime": 24,
+          "popularity": 0.9
+        },
+        {
+          "itemId": "wheat",
+          "basePrice": 3,
+          "stock": 80,
+          "restockTime": 12,
+          "popularity": 0.8
+        },
+        {
+          "itemId": "healing_herb",
+          "basePrice": 15,
+          "stock": 20,
+          "restockTime": 36,
+          "popularity": 0.6
+        }
+      ],
+      "unlockConditions": [
+        {
+          "type": "reputation",
+          "value": 5,
+          "description": "需要声望达到5点"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,857 @@
+{
+  "items": [
+    {
+      "id": "copper_ore",
+      "name": "铜矿石",
+      "description": "用于锻造的基础铜矿石。",
+      "type": "material",
+      "subTypes": [
+        "ore"
+      ],
+      "rarity": 0,
+      "stackSize": 999,
+      "canSell": false,
+      "canBuy": true,
+      "buyPrice": 50,
+      "canUse": false,
+      "icon": "images/wupin_tongkuangshi.png",
+      "weight": 1
+    },
+    {
+      "id": "lavender",
+      "name": "兰香草",
+      "description": "芳香的药草，可用于制作药剂。",
+      "type": "material",
+      "subTypes": [
+        "herb",
+        "ingredient"
+      ],
+      "rarity": 0,
+      "stackSize": 999,
+      "canSell": false,
+      "canBuy": true,
+      "buyPrice": 50,
+      "canUse": false,
+      "icon": "images/wupin_lanxiangcao.png",
+      "weight": 1
+    },
+    {
+      "id": "oak_wood",
+      "name": "橡木材",
+      "description": "坚固的橡木材料，可用于建造和制作。",
+      "type": "material",
+      "subTypes": [
+        "wood"
+      ],
+      "rarity": 0,
+      "stackSize": 999,
+      "canSell": false,
+      "canBuy": true,
+      "buyPrice": 50,
+      "canUse": false,
+      "icon": "images/wupin_xiangmucai.png",
+      "weight": 1
+    },
+    {
+      "id": "slime_qq_candy",
+      "name": "史莱姆QQ糖",
+      "description": "酸酸甜甜，QQ弹弹",
+      "type": "food",
+      "rarity": 0,
+      "stackSize": 99,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 220,
+      "canUse": true,
+      "icon": "images/wupin_caiyao_shilaimuQQtang.png",
+      "weight": 1
+    },
+    {
+      "id": "sugar_pickled_snake_liver",
+      "name": "糖腌蛇肝",
+      "description": "甜中带腥，别有一番风味",
+      "type": "food",
+      "rarity": 1,
+      "stackSize": 99,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 200,
+      "canUse": true,
+      "icon": "images/wupin_caiyao_tangyanshegan.png",
+      "weight": 1
+    },
+    {
+      "id": "fried_mushroom_slices",
+      "name": "香煎菇片",
+      "description": "简单的煎制，保留了蘑菇的原汁原味",
+      "type": "food",
+      "rarity": 0,
+      "stackSize": 99,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 50,
+      "canUse": true,
+      "icon": "images/wupin_caiyao_xiangjiangupian.png",
+      "weight": 1
+    },
+    {
+      "id": "candied_mystic_mushroom",
+      "name": "冰糖迷香菇",
+      "description": "甜蜜的糖浆包裹着香菇，口感独特",
+      "type": "food",
+      "rarity": 1,
+      "stackSize": 99,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 240,
+      "canUse": true,
+      "icon": "images/wupin_caiyao_bingtangmixianggu.png",
+      "weight": 1
+    },
+    {
+      "id": "two_headed_snake_skin_jelly",
+      "name": "双头蛇皮冻",
+      "description": "Q弹爽滑，冰冰凉凉",
+      "type": "food",
+      "rarity": 0,
+      "stackSize": 99,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 150,
+      "canUse": true,
+      "icon": "images/wupin_caiyao_shuangtoushepidong.png",
+      "weight": 1
+    },
+    {
+      "id": "crispy_wing_snake_skin_roll",
+      "name": "酥翼蛇皮卷",
+      "description": "外酥里嫩，层次分明",
+      "type": "food",
+      "rarity": 1,
+      "stackSize": 99,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 215,
+      "canUse": true,
+      "icon": "images/wupin_caiyao_suyishepijuan.png",
+      "weight": 1
+    },
+    {
+      "id": "slime_sweet_pearl",
+      "name": "史莱姆甜珠",
+      "description": "从甜浆史莱姆身上采集到的红色结晶，甜甜的，有人称这其实是史莱姆的肾结石。",
+      "type": "material",
+      "subTypes": [
+        "ingredient",
+        "medicine",
+        "material"
+      ],
+      "rarity": 0,
+      "stackSize": 999,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 50,
+      "canUse": false,
+      "icon": "images/wupin_sanseyanzhu.png",
+      "weight": 1
+    },
+    {
+      "id": "sweet_syrup_gland",
+      "name": "甜浆腺体",
+      "description": "甜浆史莱姆体内的特殊腺体，能分泌甜美的浆液。",
+      "type": "material",
+      "subTypes": [
+        "ingredient"
+      ],
+      "rarity": 1,
+      "stackSize": 999,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 70,
+      "canUse": false,
+      "icon": "images/wupin_tiaodongdedannang.png",
+      "weight": 1
+    },
+    {
+      "id": "two_headed_snake_liver",
+      "name": "双头蛇肝",
+      "description": "湿地双头蛇的肝脏，据说有特殊的药用价值。",
+      "type": "material",
+      "subTypes": [
+        "ingredient"
+      ],
+      "rarity": 1,
+      "stackSize": 999,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 70,
+      "canUse": false,
+      "icon": "images/wupin_shuangtoushegan.png",
+      "weight": 1
+    },
+    {
+      "id": "smooth_snake_skin",
+      "name": "光滑蛇皮",
+      "description": "湿地双头蛇的蛇皮，光滑而有韧性。",
+      "type": "material",
+      "subTypes": [
+        "ingredient"
+      ],
+      "rarity": 0,
+      "stackSize": 999,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 50,
+      "canUse": false,
+      "icon": "images/wupin_guanghuashepi.png",
+      "weight": 1
+    },
+    {
+      "id": "mystic_mushroom",
+      "name": "迷香菇",
+      "description": "散发着迷人香气的蘑菇，是烹饪的好材料。",
+      "type": "material",
+      "subTypes": [
+        "ingredient"
+      ],
+      "rarity": 0,
+      "stackSize": 999,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 50,
+      "canUse": false,
+      "icon": "images/wupin_mixianggu.png",
+      "weight": 1
+    },
+    {
+      "id": "grass_mushroom_worm_thin_wing",
+      "name": "草菇虫薄翼",
+      "description": "巨型草菇虫的薄翼，轻盈而坚韧。",
+      "type": "material",
+      "subTypes": [
+        "ingredient"
+      ],
+      "rarity": 1,
+      "stackSize": 999,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 70,
+      "canUse": false,
+      "icon": "images/wupin_caoguchongbaoyi.png",
+      "weight": 1
+    },
+    {
+      "id": "red_mane_fang",
+      "name": "赤鬃獠牙",
+      "description": "赤鬃的獠牙，锋利而坚硬。",
+      "type": "material",
+      "subTypes": [
+        "ingredient"
+      ],
+      "rarity": 0,
+      "stackSize": 999,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 200,
+      "canUse": false,
+      "icon": "images/wupin_chizongliaoya.png",
+      "weight": 1
+    },
+    {
+      "id": "red_mane_fur",
+      "name": "赤鬃毛皮",
+      "description": "赤鬃的毛皮，柔软而保暖。",
+      "type": "material",
+      "subTypes": [
+        "ingredient"
+      ],
+      "rarity": 1,
+      "stackSize": 999,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 300,
+      "canUse": false,
+      "icon": "images/wupin_chizongmaopi.png",
+      "weight": 1
+    },
+    {
+      "id": "bitter_root",
+      "name": "苦根",
+      "description": "味道苦涩的植物根茎，是烹饪的基础材料。",
+      "type": "material",
+      "subTypes": [
+        "ingredient"
+      ],
+      "rarity": 0,
+      "stackSize": 999,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 60,
+      "canUse": false,
+      "icon": "images/wupin_kugen.png",
+      "weight": 1
+    },
+    {
+      "id": "salt_stone_crystal",
+      "name": "盐石结晶",
+      "description": "从盐石中提取的结晶，咸味十足。",
+      "type": "material",
+      "subTypes": [
+        "ingredient"
+      ],
+      "rarity": 1,
+      "stackSize": 999,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 80,
+      "canUse": false,
+      "icon": "images/wupin_yanshijiejing.png",
+      "weight": 1
+    },
+    {
+      "id": "blue_spider_front_leg",
+      "name": "蓝蛛前腿",
+      "description": "蓝色蜘蛛的前腿，肉质鲜美。",
+      "type": "material",
+      "subTypes": [
+        "ingredient"
+      ],
+      "rarity": 0,
+      "stackSize": 999,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 60,
+      "canUse": false,
+      "icon": "images/wupin_lanzhuqiantui.png",
+      "weight": 1
+    },
+    {
+      "id": "bitter_juice",
+      "name": "苦汁",
+      "description": "从某种植物中提取的苦味汁液。",
+      "type": "material",
+      "subTypes": [
+        "ingredient"
+      ],
+      "rarity": 1,
+      "stackSize": 999,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 80,
+      "canUse": false,
+      "icon": "images/wupin_kuzhi.png",
+      "weight": 1
+    },
+    {
+      "id": "coarse_salt_block",
+      "name": "粗盐块",
+      "description": "未经精炼的盐块，咸味浓郁。",
+      "type": "material",
+      "subTypes": [
+        "ingredient"
+      ],
+      "rarity": 0,
+      "stackSize": 999,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 60,
+      "canUse": false,
+      "icon": "images/wupin_cuyankuai.png",
+      "weight": 1
+    },
+    {
+      "id": "blue_cheese_ball",
+      "name": "蓝奶酪球",
+      "description": "散发着独特气味的蓝色奶酪。",
+      "type": "material",
+      "subTypes": [
+        "ingredient"
+      ],
+      "rarity": 1,
+      "stackSize": 999,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 80,
+      "canUse": false,
+      "icon": "images/wupin_lannailuoqiu.png",
+      "weight": 1
+    },
+    {
+      "id": "burst_fruit",
+      "name": "爆裂果",
+      "description": "触碰时会爆裂的奇特果实。",
+      "type": "material",
+      "subTypes": [
+        "ingredient"
+      ],
+      "rarity": 0,
+      "stackSize": 999,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 80,
+      "canUse": false,
+      "icon": "images/wupin_baolieguo.png",
+      "weight": 1
+    },
+    {
+      "id": "corpse_potato",
+      "name": "尸薯",
+      "description": "生长在阴暗处的块茎植物，营养丰富。",
+      "type": "material",
+      "subTypes": [
+        "ingredient"
+      ],
+      "rarity": 0,
+      "stackSize": 999,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 80,
+      "canUse": false,
+      "icon": "images/wupin_shishu.png",
+      "weight": 1
+    },
+    {
+      "id": "beating_gallbladder",
+      "name": "跳动的胆囊",
+      "description": "某种生物的胆囊，即使离体仍在跳动。",
+      "type": "material",
+      "subTypes": [
+        "ingredient"
+      ],
+      "rarity": 1,
+      "stackSize": 999,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 100,
+      "canUse": false,
+      "icon": "images/wupin_tiaodongdedannang.png",
+      "weight": 1
+    },
+    {
+      "id": "fire_tongue_frog_leg",
+      "name": "火舌蛙腿",
+      "description": "火舌蛙的后腿，肉质紧致。",
+      "type": "material",
+      "subTypes": [
+        "ingredient"
+      ],
+      "rarity": 0,
+      "stackSize": 999,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 80,
+      "canUse": false,
+      "icon": "images/wupin_huoshewatui.png",
+      "weight": 1
+    },
+    {
+      "id": "three_color_eyeball",
+      "name": "三色眼珠",
+      "description": "拥有三种颜色的奇异眼珠。",
+      "type": "material",
+      "subTypes": [
+        "ingredient"
+      ],
+      "rarity": 1,
+      "stackSize": 999,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 100,
+      "canUse": false,
+      "icon": "images/wupin_sanseyanzhu.png",
+      "weight": 1
+    },
+    {
+      "id": "twitching_vine_core",
+      "name": "抽动藤芯",
+      "description": "会自主抽动的藤蔓核心。",
+      "type": "material",
+      "subTypes": [
+        "ingredient"
+      ],
+      "rarity": 0,
+      "stackSize": 999,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 80,
+      "canUse": false,
+      "icon": "images/wupin_choudongtenxin.png",
+      "weight": 1
+    },
+    {
+      "id": "spicy_tongue",
+      "name": "辣舌",
+      "description": "某种生物的舌头，带有强烈的辣味。",
+      "type": "material",
+      "subTypes": [
+        "ingredient"
+      ],
+      "rarity": 1,
+      "stackSize": 999,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 100,
+      "canUse": false,
+      "icon": "images/wupin_lashe.png",
+      "weight": 1
+    },
+    {
+      "id": "night_vision_grass",
+      "name": "夜视草",
+      "description": "能够增强夜间视力的神奇草药。",
+      "type": "material",
+      "subTypes": [
+        "ingredient"
+      ],
+      "rarity": 0,
+      "stackSize": 999,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 120,
+      "canUse": false,
+      "icon": "images/wupin_yeshicao.png",
+      "weight": 1
+    },
+    {
+      "id": "grassland_set_meal",
+      "name": "草原套餐",
+      "description": "草原上的珍馐美馔，集合了多种食材的精华",
+      "type": "food",
+      "rarity": 2,
+      "stackSize": 99,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 350,
+      "canUse": true,
+      "icon": "images/wupin_caiyao_caoyuantaocan.png",
+      "weight": 1
+    },
+    {
+      "id": "bitter_ball",
+      "name": "苦团",
+      "description": "软糯微苦，小巧扛饿",
+      "type": "food",
+      "rarity": 0,
+      "stackSize": 99,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 70,
+      "canUse": true,
+      "icon": "images/wupin_caiyao_kutuan.png",
+      "weight": 1
+    },
+    {
+      "id": "suffocating_special_drink",
+      "name": "窒息特饮",
+      "description": "只需一口，提神醒脑",
+      "type": "food",
+      "rarity": 1,
+      "stackSize": 99,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 350,
+      "canUse": true,
+      "icon": "images/wupin_caiyao_zhixiteying.png",
+      "weight": 1
+    },
+    {
+      "id": "steamed_spider_leg",
+      "name": "清蒸蛛腿",
+      "description": "鲜甜饱满，一口满足",
+      "type": "food",
+      "rarity": 0,
+      "stackSize": 99,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 255,
+      "canUse": true,
+      "icon": "images/wupin_caiyao_qingzhengzhutui.png",
+      "weight": 1
+    },
+    {
+      "id": "braised_spider_leg",
+      "name": "酱烧蛛腿",
+      "description": "酸苦酱汁，别具风味",
+      "type": "food",
+      "rarity": 1,
+      "stackSize": 99,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 305,
+      "canUse": true,
+      "icon": "images/wupin_caiyao_jiangshaozhutui.png",
+      "weight": 1
+    },
+    {
+      "id": "salty_concubine_candy",
+      "name": "咸妃糖",
+      "description": "咸咸糯糯，小孩最爱",
+      "type": "food",
+      "rarity": 0,
+      "stackSize": 99,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 300,
+      "canUse": true,
+      "icon": "images/wupin_caiyao_xianfeitang.png",
+      "weight": 1
+    },
+    {
+      "id": "dehydrated_compressed_biscuit",
+      "name": "脱水压缩饼",
+      "description": "一块下肚，一天不饿",
+      "type": "food",
+      "rarity": 1,
+      "stackSize": 99,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 50,
+      "canUse": true,
+      "icon": "images/wupin_caiyao_tuoshuiyasuobing.png",
+      "weight": 1
+    },
+    {
+      "id": "forest_set_meal",
+      "name": "森林套餐",
+      "description": "森林精华，此刻尽享",
+      "type": "food",
+      "rarity": 2,
+      "stackSize": 99,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 500,
+      "canUse": true,
+      "icon": "images/wupin_caiyao_senlintaocan.png",
+      "weight": 1
+    },
+    {
+      "id": "finger_fries",
+      "name": "手指薯条",
+      "description": "一口一根，停不下来",
+      "type": "food",
+      "rarity": 0,
+      "stackSize": 99,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 400,
+      "canUse": true,
+      "icon": "images/wupin_caiyao_shouzhishutiao.png",
+      "weight": 1
+    },
+    {
+      "id": "bile_noodles",
+      "name": "胆汁拌面",
+      "description": "劲爽酱汁，一口升天",
+      "type": "food",
+      "rarity": 1,
+      "stackSize": 99,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 430,
+      "canUse": true,
+      "icon": "images/wupin_caiyao_danzhibanmian.png",
+      "weight": 1
+    },
+    {
+      "id": "frog_leg_sashimi",
+      "name": "蛙腿刺身",
+      "description": "紧致Q弹，经典原味",
+      "type": "food",
+      "rarity": 0,
+      "stackSize": 99,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 325,
+      "canUse": true,
+      "icon": "images/wupin_caiyao_watuicishen.png",
+      "weight": 1
+    },
+    {
+      "id": "dry_pot_eye_frog",
+      "name": "干锅眼蛙",
+      "description": "咸香爽口，一锅尽有",
+      "type": "food",
+      "rarity": 1,
+      "stackSize": 99,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 485,
+      "canUse": true,
+      "icon": "images/wupin_caiyao_ganguoyanwa.png",
+      "weight": 1
+    },
+    {
+      "id": "charcoal_grilled_crispy_vine",
+      "name": "碳烤脆藤",
+      "description": "脆爽焦香，无需多言",
+      "type": "food",
+      "rarity": 0,
+      "stackSize": 99,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 370,
+      "canUse": true,
+      "icon": "images/wupin_caiyao_tankaocuiteng.png",
+      "weight": 1
+    },
+    {
+      "id": "explosive_double_crispy",
+      "name": "火爆双脆",
+      "description": "香脆暴辣，闭眼享受",
+      "type": "food",
+      "rarity": 1,
+      "stackSize": 99,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 470,
+      "canUse": true,
+      "icon": "images/wupin_caiyao_huobaoshuangcui.png",
+      "weight": 1
+    },
+    {
+      "id": "cave_set_meal",
+      "name": "洞穴套餐",
+      "description": "洞穴精华，此刻尽享",
+      "type": "food",
+      "rarity": 2,
+      "stackSize": 99,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 700,
+      "canUse": true,
+      "icon": "images/wupin_caiyaodongxuetaocan.png",
+      "weight": 1
+    },
+    {
+      "id": "apprentice_healing_potion",
+      "name": "学徒级治疗药剂",
+      "description": "恢复30点生命值",
+      "type": "potion",
+      "subTypes": [
+        "consumable",
+        "healing"
+      ],
+      "rarity": 0,
+      "stackSize": 99,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 320,
+      "canUse": true,
+      "icon": "images/touxiang_yaoji_xuetujizhiliaoyaoji.png",
+      "weight": 1,
+      "healAmount": 30
+    },
+    {
+      "id": "apprentice_mana_potion",
+      "name": "学徒级魔力药剂",
+      "description": "恢复30点魔法值",
+      "type": "potion",
+      "subTypes": [
+        "consumable",
+        "mana"
+      ],
+      "rarity": 0,
+      "stackSize": 99,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 320,
+      "canUse": true,
+      "icon": "images/touxiang_yaoji_xuetujimoliyaoji.png",
+      "weight": 1,
+      "manaAmount": 30
+    },
+    {
+      "id": "apprentice_hardening_potion",
+      "name": "学徒级硬化药剂",
+      "description": "获得硬化增益效果，持续30秒",
+      "type": "potion",
+      "subTypes": [
+        "consumable",
+        "buff"
+      ],
+      "rarity": 0,
+      "stackSize": 99,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 360,
+      "canUse": true,
+      "icon": "images/touxiang_yaoji_xuetujiyinghuayaoji.png",
+      "weight": 1,
+      "buffId": "hardening"
+    },
+    {
+      "id": "apprentice_strength_potion",
+      "name": "学徒级大力药剂",
+      "description": "获得大力增益效果，持续30秒",
+      "type": "potion",
+      "subTypes": [
+        "consumable",
+        "buff"
+      ],
+      "rarity": 0,
+      "stackSize": 99,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 360,
+      "canUse": true,
+      "icon": "images/touxiang_yaoji_xuetujidaliyaoji.png",
+      "weight": 1,
+      "buffId": "strength"
+    },
+    {
+      "id": "apprentice_speed_potion",
+      "name": "学徒级急速药剂",
+      "description": "获得急速增益效果，持续30秒",
+      "type": "potion",
+      "subTypes": [
+        "consumable",
+        "buff"
+      ],
+      "rarity": 0,
+      "stackSize": 99,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 360,
+      "canUse": true,
+      "icon": "images/touxiang_yaoji_xuetujijisuyaoji.png",
+      "weight": 1,
+      "buffId": "speed"
+    },
+    {
+      "id": "skill_book_heavy_punch",
+      "name": "《重拳出击》技能书",
+      "description": "学习后可以掌握「重拳出击」技能。",
+      "type": "consumable",
+      "subTypes": [
+        "skill_book"
+      ],
+      "rarity": 1,
+      "stackSize": 99,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 500,
+      "canUse": true,
+      "icon": "images/zhudongjineng_zhongquanchuji.png",
+      "weight": 1,
+      "skillId": "heavy_punch"
+    },
+    {
+      "id": "skill_book_simple_bandage",
+      "name": "《简易包扎》技能书",
+      "description": "学习后可以掌握「简易包扎」技能。",
+      "type": "consumable",
+      "subTypes": [
+        "skill_book"
+      ],
+      "rarity": 1,
+      "stackSize": 99,
+      "canSell": true,
+      "canBuy": false,
+      "buyPrice": 500,
+      "canUse": true,
+      "icon": "images/zhudongjineng_jianyibaozhao.png",
+      "weight": 1,
+      "skillId": "simple_bandage"
+    }
+  ]
+}

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exploration Panel Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 16px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+    .container {
+      display: flex;
+      gap: 16px;
+      height: calc(100vh - 32px);
+    }
+    .action-panel {
+      width: 490px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 12px;
+      padding: 16px;
+      overflow-y: auto;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      display: flex;
+      flex-direction: column;
+    }
+    .action-panel h3 {
+      margin: 0 0 16px 0;
+      color: #333;
+      font-size: 18px;
+    }
+    .party-section, .inventory-section {
+      background: white;
+      border-radius: 12px;
+      padding: 16px;
+      overflow-y: auto;
+    }
+    .party-section {
+      height: calc(50% - 8px);
+      margin-bottom: 16px;
+    }
+    .inventory-section {
+      height: calc(50% - 8px);
+    }
+    .section-title {
+      margin: 0 0 12px 0;
+      color: #667eea;
+      font-size: 16px;
+    }
+    .party-slots {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .party-slot {
+      background: #f8f9fa;
+      border: 2px dashed #ccc;
+      border-radius: 8px;
+      padding: 8px;
+      height: 180px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow: hidden;
+    }
+    .party-slot.empty {
+      justify-content: center;
+    }
+    .party-slot.empty:hover {
+      border-color: #667eea;
+      background: #f0f4ff;
+    }
+    .party-slot.filled {
+      border: 2px solid #667eea;
+      background: white;
+      cursor: default;
+    }
+    .avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 6px;
+      overflow: hidden;
+      border: 2px solid white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      font-size: 25px;
+      flex-shrink: 0;
+    }
+    .character-name {
+      font-size: 12px;
+      font-weight: bold;
+      color: #333;
+      text-align: center;
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+    }
+    .character-info {
+      font-size: 10px;
+      color: #666;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+    .progress-bars {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      flex-shrink: 0;
+    }
+    .progress-bar {
+      width: 100%;
+    }
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: #666;
+      margin-bottom: 2px;
+    }
+    .progress-bg {
+      width: 100%;
+      height: 6px;
+      background: #e9ecef;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      transition: width 0.3s ease;
+    }
+    .progress-fill.hp { background: #dc3545; }
+    .progress-fill.mp { background: #007bff; }
+    .progress-fill.exp { background: #ffc107; }
+    .remove-btn {
+      margin-top: 6px;
+      padding: 3px 10px;
+      background: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .remove-btn:hover {
+      background: #c82333;
+    }
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      max-width: 600px;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+    .modal h3 {
+      margin: 0 0 16px 0;
+      color: #333;
+      font-size: 20px;
+    }
+    .character-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .character-card {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 2px solid transparent;
+    }
+    .character-card:hover {
+      border-color: #667eea;
+      background: #e7f1ff;
+    }
+    .character-card.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .close-btn {
+      width: 100%;
+      padding: 12px;
+      background: #6c757d;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .close-btn:hover {
+      background: #5a6268;
+    }
+    .notification {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 16px 24px;
+      background: #28a745;
+      color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      display: none;
+      z-index: 3000;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="action-panel">
+      <h3>探险面板</h3>
+      
+      <div class="party-section">
+        <h4 class="section-title">编队界面</h4>
+        <div class="party-slots" id="party-slots"></div>
+      </div>
+      
+      <div class="inventory-section">
+        <h4 class="section-title">背包界面</h4>
+        <div style="text-align: center; padding: 40px 20px; color: #999;">
+          背包功能开发中...
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="notification" class="notification"></div>
+
+  <script>
+    // Mock character data
+    const availableCharacters = [
+      { id: 1, name: '艾莉娅', title: '剑士', emoji: '⚔️', level: 5, job: '战士', maxHp: 120, currentHp: 120, maxMp: 30, currentMp: 30, currentExp: 50, expToNextLevel: 100 },
+      { id: 2, name: '莉娜', title: '法师', emoji: '🔮', level: 4, job: '法师', maxHp: 80, currentHp: 80, maxMp: 100, currentMp: 100, currentExp: 30, expToNextLevel: 80 },
+      { id: 3, name: '托马斯', title: '弓箭手', emoji: '🏹', level: 6, job: '游侠', maxHp: 100, currentHp: 100, maxMp: 50, currentMp: 50, currentExp: 70, expToNextLevel: 120 },
+      { id: 4, name: '索菲亚', title: '牧师', emoji: '✨', level: 3, job: '牧师', maxHp: 90, currentHp: 90, maxMp: 80, currentMp: 80, currentExp: 20, expToNextLevel: 60 },
+      { id: 5, name: '雷克斯', title: '骑士', emoji: '🛡️', level: 7, job: '骑士', maxHp: 150, currentHp: 150, maxMp: 40, currentMp: 40, currentExp: 90, expToNextLevel: 140 }
+    ];
+
+    let partySlots = [null, null, null, null];
+
+    function showNotification(message) {
+      const notification = document.getElementById('notification');
+      notification.textContent = message;
+      notification.style.display = 'block';
+      setTimeout(() => {
+        notification.style.display = 'none';
+      }, 3000);
+    }
+
+    function renderPartySlots() {
+      const container = document.getElementById('party-slots');
+      container.innerHTML = '';
+      
+      for (let i = 0; i < 4; i++) {
+        const slot = createPartySlot(i);
+        container.appendChild(slot);
+      }
+    }
+
+    function createPartySlot(index) {
+      const slot = document.createElement('div');
+      const character = partySlots[index];
+      
+      if (character) {
+        slot.className = 'party-slot filled';
+        slot.innerHTML = `
+          <div class="avatar">${character.emoji}</div>
+          <div class="character-name">${character.title}${character.name}</div>
+          <div class="character-info">Lv.${character.level} ${character.job}</div>
+          <div class="progress-bars">
+            ${createProgressBar('HP', character.currentHp, character.maxHp, 'hp')}
+            ${createProgressBar('MP', character.currentMp, character.maxMp, 'mp')}
+            ${createProgressBar('EXP', character.currentExp, character.expToNextLevel, 'exp')}
+          </div>
+          <button class="remove-btn" onclick="removeCharacter(${index})">移除</button>
+        `;
+      } else {
+        slot.className = 'party-slot empty';
+        slot.innerHTML = `
+          <div style="text-align: center; color: #999;">
+            <div style="font-size: 32px; margin-bottom: 8px;">➕</div>
+            <div style="font-size: 12px;">点击添加角色</div>
+          </div>
+        `;
+        slot.onclick = () => showCharacterSelection(index);
+      }
+      
+      return slot;
+    }
+
+    function createProgressBar(label, current, max, type) {
+      const percentage = Math.min(100, (current / max) * 100);
+      return `
+        <div class="progress-bar">
+          <div class="progress-label">
+            <span>${label}</span>
+            <span>${current}/${max}</span>
+          </div>
+          <div class="progress-bg">
+            <div class="progress-fill ${type}" style="width: ${percentage}%"></div>
+          </div>
+        </div>
+      `;
+    }
+
+    function showCharacterSelection(slotIndex) {
+      const overlay = document.createElement('div');
+      overlay.className = 'modal-overlay';
+      
+      const modal = document.createElement('div');
+      modal.className = 'modal';
+      
+      modal.innerHTML = `
+        <h3>选择角色</h3>
+        <div class="character-grid" id="character-grid"></div>
+        <button class="close-btn" onclick="closeModal()">关闭</button>
+      `;
+      
+      overlay.appendChild(modal);
+      document.body.appendChild(overlay);
+      
+      const grid = modal.querySelector('#character-grid');
+      availableCharacters.forEach(char => {
+        const isInParty = partySlots.some(slot => slot && slot.id === char.id);
+        const card = document.createElement('div');
+        card.className = `character-card ${isInParty ? 'disabled' : ''}`;
+        card.innerHTML = `
+          <div class="avatar">${char.emoji}</div>
+          <div class="character-name">${char.title}${char.name}</div>
+          <div class="character-info">Lv.${char.level} ${char.job}</div>
+        `;
+        
+        if (!isInParty) {
+          card.onclick = () => {
+            addCharacter(char, slotIndex);
+            closeModal();
+          };
+        }
+        
+        grid.appendChild(card);
+      });
+      
+      overlay.onclick = (e) => {
+        if (e.target === overlay) {
+          closeModal();
+        }
+      };
+      
+      window.currentOverlay = overlay;
+    }
+
+    function addCharacter(character, slotIndex) {
+      partySlots[slotIndex] = character;
+      renderPartySlots();
+      showNotification(`${character.name} 已加入编队`);
+    }
+
+    function removeCharacter(slotIndex) {
+      const character = partySlots[slotIndex];
+      if (character) {
+        partySlots[slotIndex] = null;
+        renderPartySlots();
+        showNotification(`${character.name} 已移出编队`);
+      }
+    }
+
+    function closeModal() {
+      if (window.currentOverlay) {
+        document.body.removeChild(window.currentOverlay);
+        window.currentOverlay = null;
+      }
+    }
+
+    // Initial render
+    renderPartySlots();
+  </script>
+</body>
+</html>

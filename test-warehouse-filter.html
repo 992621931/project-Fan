@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warehouse Filter Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #2c3e50;
+            font-family: Arial, sans-serif;
+        }
+        
+        .warehouse-container {
+            width: 800px;
+            height: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .item-grid-wrapper {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        .item-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 12px;
+            align-content: start;
+            padding-bottom: 60px;
+            overflow-y: auto;
+        }
+        
+        .item-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .item-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .filter-tabs {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-tab {
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.6);
+            border: none;
+            border-radius: 6px;
+            color: #333;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .filter-tab.active {
+            background: rgba(102, 126, 234, 0.8);
+            color: white;
+        }
+        
+        .filter-tab:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.8);
+        }
+        
+        .pagination {
+            position: absolute;
+            bottom: 10px;
+            right: 0;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        
+        .pagination button {
+            padding: 6px 12px;
+            background: rgba(102, 126, 234, 0.8);
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .pagination button:disabled {
+            background: rgba(100, 100, 100, 0.5);
+            color: #666;
+            cursor: not-allowed;
+        }
+        
+        .page-indicator {
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="warehouse-container">
+        <div class="item-grid-wrapper">
+            <div class="item-grid" id="itemGrid">
+                <!-- Items will be rendered here -->
+            </div>
+            
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-filter="all">全部</button>
+                <button class="filter-tab" data-filter="material">材料</button>
+                <button class="filter-tab" data-filter="food">菜肴</button>
+                <button class="filter-tab" data-filter="book">书</button>
+                <button class="filter-tab" data-filter="equipment">装备</button>
+                <button class="filter-tab" data-filter="consumable">消耗品</button>
+            </div>
+            
+            <div class="pagination">
+                <button id="prevBtn">上一页</button>
+                <div class="page-indicator" id="pageIndicator">1/3</div>
+                <button id="nextBtn">下一页</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Mock data
+        const items = [
+            { id: 1, name: '史莱姆甜珠', type: 'material' },
+            { id: 2, name: '甜浆腺体', type: 'material' },
+            { id: 3, name: '光滑蛇皮', type: 'material' },
+            { id: 4, name: '史莱姆QQ糖', type: 'food' },
+            { id: 5, name: '糖腌蛇肝', type: 'food' },
+            { id: 6, name: '香煎菇片', type: 'food' },
+            { id: 7, name: '《重拳出击》技能书', type: 'book' },
+            { id: 8, name: '《激怒》技能书', type: 'book' },
+            { id: 9, name: '铁剑', type: 'equipment' },
+            { id: 10, name: '皮甲', type: 'equipment' },
+            { id: 11, name: '生命药水', type: 'consumable' },
+            { id: 12, name: '魔法药水', type: 'consumable' },
+            { id: 13, name: '双头蛇肝', type: 'material' },
+            { id: 14, name: '迷香菇', type: 'material' },
+            { id: 15, name: '冰糖迷香菇', type: 'food' },
+            { id: 16, name: '双头蛇皮冻', type: 'food' },
+            { id: 17, name: '《简易包扎》技能书', type: 'book' },
+            { id: 18, name: '钢剑', type: 'equipment' },
+            { id: 19, name: '解毒药水', type: 'consumable' },
+            { id: 20, name: '赤鬃獠牙', type: 'material' },
+        ];
+        
+        let currentFilter = 'all';
+        let currentPage = 0;
+        const itemsPerPage = 12;
+        
+        function filterItems(filter) {
+            if (filter === 'all') return items;
+            return items.filter(item => item.type === filter);
+        }
+        
+        function renderItems() {
+            const filteredItems = filterItems(currentFilter);
+            const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+            const startIndex = currentPage * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const pageItems = filteredItems.slice(startIndex, endIndex);
+            
+            const itemGrid = document.getElementById('itemGrid');
+            itemGrid.innerHTML = '';
+            
+            pageItems.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'item-card';
+                card.innerHTML = `<div>${item.name}</div><div style="font-size: 10px; color: #666;">${item.type}</div>`;
+                itemGrid.appendChild(card);
+            });
+            
+            // Update pagination
+            document.getElementById('pageIndicator').textContent = `${currentPage + 1}/${totalPages}`;
+            document.getElementById('prevBtn').disabled = currentPage === 0;
+            document.getElementById('nextBtn').disabled = currentPage >= totalPages - 1;
+            
+            // Hide pagination if only one page
+            document.querySelector('.pagination').style.display = totalPages > 1 ? 'flex' : 'none';
+        }
+        
+        // Filter tabs
+        document.querySelectorAll('.filter-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                currentFilter = tab.dataset.filter;
+                currentPage = 0;
+                renderItems();
+            });
+        });
+        
+        // Pagination
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            if (currentPage > 0) {
+                currentPage--;
+                renderItems();
+            }
+        });
+        
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            const filteredItems = filterItems(currentFilter);
+            const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+            if (currentPage < totalPages - 1) {
+                currentPage++;
+                renderItems();
+            }
+        });
+        
+        // Initial render
+        renderItems();
+    </script>
+</body>
+</html>

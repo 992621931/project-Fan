@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Equipment Affix System - Manual Validation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #1a1a1a;
+      color: #ffffff;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h1 {
+      color: #4CAF50;
+      border-bottom: 2px solid #4CAF50;
+      padding-bottom: 10px;
+    }
+    h2 {
+      color: #2196F3;
+      margin-top: 30px;
+    }
+    .test-section {
+      background-color: #2a2a2a;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+      border: 1px solid #444;
+    }
+    .button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 5px;
+      font-size: 14px;
+    }
+    .button:hover {
+      background-color: #45a049;
+    }
+    .button.secondary {
+      background-color: #2196F3;
+    }
+    .button.secondary:hover {
+      background-color: #0b7dda;
+    }
+    .equipment-item {
+      background-color: #333;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 4px;
+      border-left: 4px solid #666;
+    }
+    .equipment-item.common {
+      border-left-color: #9e9e9e;
+    }
+    .equipment-item.rare {
+      border-left-color: #2196F3;
+    }
+    .equipment-item.epic {
+      border-left-color: #9c27b0;
+    }
+    .equipment-item.legendary {
+      border-left-color: #ff9800;
+    }
+    .affix-display {
+      margin-top: 10px;
+      padding: 8px;
+      background-color: #1a1a1a;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    .stats {
+      margin: 10px 0;
+      font-size: 14px;
+      color: #ccc;
+    }
+    .validation-result {
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 4px;
+    }
+    .validation-result.pass {
+      background-color: #1b5e20;
+      border: 1px solid #4CAF50;
+    }
+    .validation-result.fail {
+      background-color: #b71c1c;
+      border: 1px solid #f44336;
+    }
+    .validation-result.info {
+      background-color: #01579b;
+      border: 1px solid #2196F3;
+    }
+    #results {
+      margin-top: 20px;
+    }
+    .log-entry {
+      padding: 5px;
+      margin: 2px 0;
+      font-family: monospace;
+      font-size: 12px;
+      background-color: #1a1a1a;
+      border-left: 3px solid #666;
+      padding-left: 10px;
+    }
+    .log-entry.success {
+      border-left-color: #4CAF50;
+    }
+    .log-entry.error {
+      border-left-color: #f44336;
+    }
+    .log-entry.warning {
+      border-left-color: #ff9800;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎮 Equipment Affix System - Manual Validation</h1>
+    
+    <div class="test-section">
+      <h2>📋 Validation Checklist</h2>
+      <p>This test validates three critical aspects of the Equipment Affix System:</p>
+      <ol>
+        <li><strong>Affix Display Colors:</strong> Verify affixes display with correct rarity colors</li>
+        <li><strong>Affix Value Ranges:</strong> Verify affix values are reasonable and within expected ranges</li>
+        <li><strong>Save/Load Persistence:</strong> Verify save/load preserves affixes correctly</li>
+      </ol>
+    </div>
+
+    <div class="test-section">
+      <h2>🎨 Test 1: Affix Display Colors</h2>
+      <p>Craft equipment of each rarity and verify the affix displays with the correct color outline.</p>
+      <button class="button" onclick="testAffixColors()">Run Color Test</button>
+      <button class="button secondary" onclick="clearResults()">Clear Results</button>
+      <div id="color-test-results"></div>
+    </div>
+
+    <div class="test-section">
+      <h2>📊 Test 2: Affix Value Ranges</h2>
+      <p>Generate multiple affixes and verify all values are within their defined ranges.</p>
+      <button class="button" onclick="testAffixRanges()">Run Range Test (100 samples)</button>
+      <div id="range-test-results"></div>
+    </div>
+
+    <div class="test-section">
+      <h2>💾 Test 3: Save/Load Persistence</h2>
+      <p>Craft equipment with affixes, save the game, load it back, and verify affixes are preserved.</p>
+      <button class="button" onclick="testSaveLoad()">Run Save/Load Test</button>
+      <button class="button secondary" onclick="clearSaveData()">Clear Save Data</button>
+      <div id="saveload-test-results"></div>
+    </div>
+
+    <div class="test-section">
+      <h2>📝 Test Log</h2>
+      <div id="results"></div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { World } from './dist/ecs/World.js';
+    import { EquipmentCraftingSystem } from './dist/game/systems/EquipmentCraftingSystem.js';
+    import { AffixSelector } from './dist/game/systems/AffixSelector.js';
+    import { SaveSystem } from './dist/ecs/SaveSystem.js';
+    import { RarityType } from './dist/game/types/RarityTypes.js';
+    import affixDefinitions from './src/game/data/affix-definitions.json' assert { type: 'json' };
+
+    // Initialize world and systems
+    const world = new World();
+    const craftingSystem = new EquipmentCraftingSystem(world);
+    const saveSystem = new SaveSystem(world);
+    let affixSelector;
+
+    // Initialize systems
+    async function initSystems() {
+      try {
+        await craftingSystem.initialize();
+        affixSelector = new AffixSelector(affixDefinitions);
+        log('Systems initialized successfully', 'success');
+      } catch (error) {
+        log(`Failed to initialize systems: ${error.message}`, 'error');
+      }
+    }
+
+    // Utility functions
+    function log(message, type = 'info') {
+      const results = document.getElementById('results');
+      const entry = document.createElement('div');
+      entry.className = `log-entry ${type}`;
+      entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+      results.appendChild(entry);
+      results.scrollTop = results.scrollHeight;
+    }
+
+    function clearResults() {
+      document.getElementById('results').innerHTML = '';
+      document.getElementById('color-test-results').innerHTML = '';
+      document.getElementById('range-test-results').innerHTML = '';
+      document.getElementById('saveload-test-results').innerHTML = '';
+      log('Results cleared', 'info');
+    }
+
+    function clearSaveData() {
+      localStorage.removeItem('gameSave');
+      log('Save data cleared', 'warning');
+    }
+
+    // Get rarity color
+    function getRarityColor(rarity) {
+      const colors = {
+        [RarityType.Common]: '#9e9e9e',
+        [RarityType.Rare]: '#2196F3',
+        [RarityType.Epic]: '#9c27b0',
+        [RarityType.Legendary]: '#ff9800'
+      };
+      return colors[rarity] || '#9e9e9e';
+    }
+
+    // Get rarity name
+    function getRarityName(rarity) {
+      const names = {
+        [RarityType.Common]: 'Common',
+        [RarityType.Rare]: 'Rare',
+        [RarityType.Epic]: 'Epic',
+        [RarityType.Legendary]: 'Legendary'
+      };
+      return names[rarity] || 'Unknown';
+    }
+
+    // Format affix display
+    function formatAffixDisplay(affix) {
+      if (!affix) return 'No affix';
+      const value = affix.isPercentage ? `${affix.value}%` : affix.value;
+      return `${affix.displayName} +${value}`;
+    }
+
+    // Test 1: Affix Display Colors
+    window.testAffixColors = async function() {
+      const container = document.getElementById('color-test-results');
+      container.innerHTML = '<p>Generating equipment with affixes...</p>';
+      log('Starting affix color display test', 'info');
+
+      const rarities = [
+        RarityType.Common,
+        RarityType.Rare,
+        RarityType.Epic,
+        RarityType.Legendary
+      ];
+
+      let html = '';
+      let allPassed = true;
+
+      for (const rarity of rarities) {
+        try {
+          // Generate affix
+          const affix = affixSelector.selectAffix(rarity);
+          const affixColor = getRarityColor(affix.rarity);
+          const expectedColor = getRarityColor(affix.rarity);
+          const colorMatch = affixColor === expectedColor;
+
+          if (!colorMatch) allPassed = false;
+
+          html += `
+            <div class="equipment-item ${getRarityName(rarity).toLowerCase()}">
+              <strong>${getRarityName(rarity)} Equipment</strong>
+              <div class="affix-display" style="color: ${affixColor}; text-shadow: 0 0 2px ${affixColor};">
+                ${formatAffixDisplay(affix)} (${getRarityName(affix.rarity)} Affix)
+              </div>
+              <div class="validation-result ${colorMatch ? 'pass' : 'fail'}">
+                ${colorMatch ? '✓' : '✗'} Color: ${affixColor} ${colorMatch ? '(Correct)' : `(Expected: ${expectedColor})`}
+              </div>
+            </div>
+          `;
+
+          log(`${getRarityName(rarity)} equipment: ${formatAffixDisplay(affix)} - Color ${colorMatch ? 'correct' : 'incorrect'}`, colorMatch ? 'success' : 'error');
+        } catch (error) {
+          allPassed = false;
+          html += `
+            <div class="equipment-item">
+              <strong>${getRarityName(rarity)} Equipment</strong>
+              <div class="validation-result fail">
+                ✗ Error: ${error.message}
+              </div>
+            </div>
+          `;
+          log(`Error testing ${getRarityName(rarity)} equipment: ${error.message}`, 'error');
+        }
+      }
+
+      html += `
+        <div class="validation-result ${allPassed ? 'pass' : 'fail'}">
+          <strong>${allPassed ? '✓ All color tests passed!' : '✗ Some color tests failed'}</strong>
+        </div>
+      `;
+
+      container.innerHTML = html;
+      log(`Color test completed: ${allPassed ? 'PASSED' : 'FAILED'}`, allPassed ? 'success' : 'error');
+    };
+
+    // Test 2: Affix Value Ranges
+    window.testAffixRanges = async function() {
+      const container = document.getElementById('range-test-results');
+      container.innerHTML = '<p>Testing affix value ranges (100 samples per rarity)...</p>';
+      log('Starting affix value range test', 'info');
+
+      const rarities = [
+        RarityType.Common,
+        RarityType.Rare,
+        RarityType.Epic,
+        RarityType.Legendary
+      ];
+
+      const sampleCount = 100;
+      let html = '';
+      let allPassed = true;
+      const violations = [];
+
+      for (const rarity of rarities) {
+        const affixCounts = {};
+        const valueRanges = {};
+        let rangeViolations = 0;
+
+        for (let i = 0; i < sampleCount; i++) {
+          try {
+            const affix = affixSelector.selectAffix(rarity);
+            const key = `${affix.type}_${affix.rarity}`;
+            
+            if (!affixCounts[key]) {
+              affixCounts[key] = 0;
+              valueRanges[key] = { min: Infinity, max: -Infinity, values: [] };
+            }
+            
+            affixCounts[key]++;
+            valueRanges[key].values.push(affix.value);
+            valueRanges[key].min = Math.min(valueRanges[key].min, affix.value);
+            valueRanges[key].max = Math.max(valueRanges[key].max, affix.value);
+
+            // Check if value is within expected range
+            const definition = affixDefinitions[getRarityName(affix.rarity).toLowerCase()]
+              .find(def => def.type === affix.type);
+            
+            if (definition) {
+              if (affix.value < definition.minValue || affix.value > definition.maxValue) {
+                rangeViolations++;
+                violations.push({
+                  rarity: getRarityName(rarity),
+                  affix: affix.type,
+                  value: affix.value,
+                  expected: `${definition.minValue}-${definition.maxValue}`
+                });
+              }
+            }
+          } catch (error) {
+            log(`Error generating affix: ${error.message}`, 'error');
+          }
+        }
+
+        const passed = rangeViolations === 0;
+        if (!passed) allPassed = false;
+
+        html += `
+          <div class="validation-result ${passed ? 'pass' : 'fail'}">
+            <strong>${getRarityName(rarity)} Equipment (${sampleCount} samples)</strong><br>
+            ${passed ? '✓' : '✗'} Range violations: ${rangeViolations}<br>
+            Unique affixes generated: ${Object.keys(affixCounts).length}
+          </div>
+        `;
+
+        log(`${getRarityName(rarity)}: ${rangeViolations} violations, ${Object.keys(affixCounts).length} unique affixes`, passed ? 'success' : 'error');
+      }
+
+      if (violations.length > 0) {
+        html += '<div class="validation-result fail"><strong>Range Violations:</strong><br>';
+        violations.forEach(v => {
+          html += `${v.rarity} - ${v.affix}: ${v.value} (expected ${v.expected})<br>`;
+        });
+        html += '</div>';
+      }
+
+      html += `
+        <div class="validation-result ${allPassed ? 'pass' : 'fail'}">
+          <strong>${allPassed ? '✓ All range tests passed!' : '✗ Some values out of range'}</strong>
+        </div>
+      `;
+
+      container.innerHTML = html;
+      log(`Range test completed: ${allPassed ? 'PASSED' : 'FAILED'}`, allPassed ? 'success' : 'error');
+    };
+
+    // Test 3: Save/Load Persistence
+    window.testSaveLoad = async function() {
+      const container = document.getElementById('saveload-test-results');
+      container.innerHTML = '<p>Testing save/load persistence...</p>';
+      log('Starting save/load persistence test', 'info');
+
+      const rarities = [
+        RarityType.Common,
+        RarityType.Rare,
+        RarityType.Epic,
+        RarityType.Legendary
+      ];
+
+      let html = '';
+      let allPassed = true;
+      const testAffixes = [];
+
+      // Generate affixes
+      for (const rarity of rarities) {
+        try {
+          const affix = affixSelector.selectAffix(rarity);
+          testAffixes.push({ equipmentRarity: rarity, affix });
+          log(`Generated ${getRarityName(rarity)} affix: ${formatAffixDisplay(affix)}`, 'info');
+        } catch (error) {
+          log(`Error generating affix: ${error.message}`, 'error');
+          allPassed = false;
+        }
+      }
+
+      // Simulate save
+      const saveData = {
+        affixes: testAffixes.map(t => ({
+          equipmentRarity: t.equipmentRarity,
+          affix: {
+            type: t.affix.type,
+            rarity: t.affix.rarity,
+            displayName: t.affix.displayName,
+            value: t.affix.value,
+            isPercentage: t.affix.isPercentage
+          }
+        }))
+      };
+
+      try {
+        localStorage.setItem('affixTestSave', JSON.stringify(saveData));
+        log('Save data written to localStorage', 'success');
+      } catch (error) {
+        log(`Failed to save: ${error.message}`, 'error');
+        allPassed = false;
+      }
+
+      // Simulate load
+      try {
+        const loadedData = JSON.parse(localStorage.getItem('affixTestSave'));
+        log('Save data loaded from localStorage', 'success');
+
+        // Verify each affix
+        for (let i = 0; i < testAffixes.length; i++) {
+          const original = testAffixes[i].affix;
+          const loaded = loadedData.affixes[i].affix;
+
+          const typeMatch = original.type === loaded.type;
+          const rarityMatch = original.rarity === loaded.rarity;
+          const valueMatch = Math.abs(original.value - loaded.value) < 0.001;
+          const percentageMatch = original.isPercentage === loaded.isPercentage;
+          const allMatch = typeMatch && rarityMatch && valueMatch && percentageMatch;
+
+          if (!allMatch) allPassed = false;
+
+          html += `
+            <div class="validation-result ${allMatch ? 'pass' : 'fail'}">
+              <strong>${getRarityName(testAffixes[i].equipmentRarity)} Equipment Affix</strong><br>
+              Original: ${formatAffixDisplay(original)} (${getRarityName(original.rarity)})<br>
+              Loaded: ${formatAffixDisplay(loaded)} (${getRarityName(loaded.rarity)})<br>
+              ${allMatch ? '✓ Perfect match' : '✗ Mismatch detected'}<br>
+              ${!typeMatch ? '✗ Type mismatch<br>' : ''}
+              ${!rarityMatch ? '✗ Rarity mismatch<br>' : ''}
+              ${!valueMatch ? '✗ Value mismatch<br>' : ''}
+              ${!percentageMatch ? '✗ Percentage flag mismatch<br>' : ''}
+            </div>
+          `;
+
+          log(`${getRarityName(testAffixes[i].equipmentRarity)} affix: ${allMatch ? 'MATCH' : 'MISMATCH'}`, allMatch ? 'success' : 'error');
+        }
+      } catch (error) {
+        log(`Failed to load: ${error.message}`, 'error');
+        allPassed = false;
+        html += `<div class="validation-result fail">✗ Load failed: ${error.message}</div>`;
+      }
+
+      html += `
+        <div class="validation-result ${allPassed ? 'pass' : 'fail'}">
+          <strong>${allPassed ? '✓ All save/load tests passed!' : '✗ Some save/load tests failed'}</strong>
+        </div>
+      `;
+
+      container.innerHTML = html;
+      log(`Save/load test completed: ${allPassed ? 'PASSED' : 'FAILED'}`, allPassed ? 'success' : 'error');
+    };
+
+    // Initialize on load
+    initSystems();
+  </script>
+</body>
+</html>

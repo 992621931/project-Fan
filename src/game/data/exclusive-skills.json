@@ -1,0 +1,482 @@
+{
+  "exclusiveSkills": [
+    {
+      "id": "fumo_zhan",
+      "name": "伏魔斩",
+      "description": "朝水平方向发射剑气，对满血敌人必定暴击",
+      "type": "exclusive",
+      "icon": "images/zhudongjineng_fumozhan.png",
+      "tags": ["投射物"],
+      "maxLevel": 10,
+      "manaCost": 15,
+      "cooldown": 3,
+      "projectile": {
+        "image": "images/texiao_chongjibo.png",
+        "speed": 400,
+        "lifetime": 1.5,
+        "directions": [
+          {
+            "type": "horizontal",
+            "side": "left"
+          },
+          {
+            "type": "horizontal",
+            "side": "right"
+          }
+        ],
+        "rotateWithDirection": true,
+        "collisionBehavior": "destroy"
+      },
+      "damageFormula": {
+        "baseDamage": 10,
+        "attackScaling": 1.25,
+        "attributeType": "attack"
+      },
+      "particleEffects": [
+        {
+          "type": "explosion",
+          "color": "darkred",
+          "trigger": "onHit",
+          "position": "target",
+          "intensity": 0.8,
+          "duration": 0.5
+        }
+      ],
+      "effects": [
+        {
+          "type": "spawn_projectile",
+          "projectileType": "straight",
+          "image": "images/texiao_chongjibo.png",
+          "size": 100,
+          "speed": {
+            "base": 400
+          },
+          "maxDistance": {
+            "base": 300
+          },
+          "damage": {
+            "base": 10,
+            "attackMultiplier": 1.25
+          },
+          "tracking": false,
+          "piercing": false,
+          "destroyOnHit": true,
+          "destroyOnMaxDistance": true,
+          "particleColor": "darkred",
+          "critOnFullHP": true,
+          "hasTrail": true,
+          "trailColor": "red",
+          "trailFadeColor": "darkred",
+          "trailOpacity": 0.5,
+          "lifetime": 1500,
+          "directions": ["left", "right"]
+        }
+      ],
+      "learnConditions": []
+    },
+    {
+      "id": "dangji_lingyu",
+      "name": "宕机领域",
+      "description": "让周围的敌人无法移动并受到一次伤害，伤害受攻击力影响。范围受技巧影响",
+      "type": "exclusive",
+      "icon": "images/zhudongjineng_dangjilingyu.png",
+      "tags": ["BUFF", "范围"],
+      "maxLevel": 10,
+      "manaCost": 20,
+      "cooldown": 8,
+      "effects": [
+        {
+          "type": "spawn_area",
+          "areaType": "circle",
+          "diameterBase": 300,
+          "diameterTechniqueMultiplier": 4.0,
+          "lifetime": 4000,
+          "damage": {
+            "base": 5,
+            "attackMultiplier": 0.5
+          },
+          "applyBuff": "dangji",
+          "affectCaster": true,
+          "affectEnemies": true
+        }
+      ],
+      "learnConditions": []
+    },
+    {
+      "id": "shouhu_zhiguang",
+      "name": "守护之光",
+      "description": "给所有友方角色添加护盾，自身防御越高，护盾数值越高",
+      "type": "exclusive",
+      "icon": "images/zhudongjineng_shouhuzhiguang.png",
+      "tags": ["护盾", "群体"],
+      "maxLevel": 10,
+      "manaCost": 20,
+      "cooldown": 8,
+      "effects": [
+        {
+          "type": "shield_all_allies",
+          "shieldAmount": {
+            "base": 15,
+            "defenseMultiplier": 1.0
+          },
+          "duration": 5000
+        }
+      ],
+      "learnConditions": []
+    },
+    {
+      "id": "daoren_zhiwu",
+      "name": "刀刃之舞",
+      "description": "快速移动并挥舞刀刃，伤害受攻击力影响，刀刃大小受技巧影响",
+      "type": "exclusive",
+      "icon": "images/zhudongjineng_daorenzhiwu.png",
+      "tags": ["BUFF", "环绕物", "近战"],
+      "maxLevel": 10,
+      "manaCost": 20,
+      "cooldown": 8,
+      "effects": [
+        {
+          "type": "buff_self",
+          "buffId": "speed_3",
+          "duration": 3000
+        },
+        {
+          "type": "spawn_orbit",
+          "image": "images/texiao_daoguang.png",
+          "scale": 3,
+          "skillScalePercent": 0.05,
+          "offsetY": -50,
+          "rotationDirection": "clockwise",
+          "rotationSpeed": 0.5,
+          "damage": {
+            "base": 5,
+            "attackMultiplier": 0.25
+          },
+          "hitCooldown": 300,
+          "lifetime": 3000
+        }
+      ],
+      "learnConditions": []
+    },
+    {
+      "id": "shihua_xianjing",
+      "name": "湿滑陷阱",
+      "description": "放置一个陷阱，敌人碰到后会受到伤害并且移动会打滑，肚子越饿伤害越高，技巧越高陷阱越大",
+      "type": "exclusive",
+      "icon": "images/zhudongjineng_shihuaxianjing.png",
+      "tags": ["BUFF", "陷阱"],
+      "maxLevel": 10,
+      "manaCost": 15,
+      "cooldown": 10,
+      "effects": [
+        {
+          "type": "spawn_trap",
+          "image": "images/texiao_dabian.png",
+          "diameter": 50,
+          "scalePerSkill": 0.04,
+          "lifetime": 15000,
+          "applyBuff": "slip",
+          "buffDuration": 6000,
+          "damage": {
+            "base": 5,
+            "attackMultiplier": 0.25,
+            "hungerMultiplier": 0.25
+          },
+          "destroyOnHit": true
+        }
+      ],
+      "learnConditions": []
+    },
+    {
+      "id": "mabi_jianshi",
+      "name": "麻痹箭矢",
+      "description": "射出一只麻痹箭矢，造成伤害并使敌人无法移动。伤害受攻击力影响，射程受技巧影响",
+      "type": "exclusive",
+      "icon": "images/zhudongjineng_mabijianshi.png",
+      "tags": ["BUFF", "投射物", "单体目标"],
+      "maxLevel": 10,
+      "manaCost": 15,
+      "cooldown": 5,
+      "effects": [
+        {
+          "type": "spawn_projectile",
+          "projectileType": "straight",
+          "image": "images/toushewu_jianshi.png",
+          "size": 30,
+          "speed": {
+            "base": 350
+          },
+          "maxDistance": {
+            "base": 400,
+            "skillPercentageMultiplier": 5
+          },
+          "damage": {
+            "base": 5,
+            "attackMultiplier": 1.0
+          },
+          "tracking": false,
+          "targetRandom": true,
+          "piercing": false,
+          "destroyOnHit": true,
+          "destroyOnMaxDistance": true,
+          "hasGlow": true,
+          "glowColor": "yellow",
+          "hasTrail": true,
+          "trailColor": "yellow",
+          "applyBuff": "paralysis",
+          "buffDuration": 3000,
+          "lifetime": 3000
+        }
+      ],
+      "learnConditions": []
+    },
+    {
+      "id": "zhentong_sheji",
+      "name": "针筒射击",
+      "description": "向四周射出多个针筒，伤害敌人并治疗友方角色。投射物数量受技巧影响",
+      "type": "exclusive",
+      "icon": "images/zhudongjineng_zhentongsheji.png",
+      "tags": ["投射物", "治疗", "群体"],
+      "maxLevel": 10,
+      "manaCost": 20,
+      "cooldown": 6,
+      "effects": [
+        {
+          "type": "spawn_projectile",
+          "projectileType": "straight",
+          "image": "images/texiao_zhentong.png",
+          "size": 50,
+          "speed": {
+            "base": 300
+          },
+          "maxDistance": {
+            "base": 500
+          },
+          "damage": {
+            "base": 5,
+            "attackMultiplier": 0.25
+          },
+          "heal": {
+            "base": 5,
+            "attackMultiplier": 0.25
+          },
+          "healAlly": true,
+          "multiProjectile": true,
+          "baseCount": 3,
+          "countPerSkill": 5,
+          "tracking": false,
+          "piercing": false,
+          "destroyOnHit": true,
+          "destroyOnMaxDistance": true,
+          "hasTrail": true,
+          "trailColor": "green",
+          "trailScale": 0.5,
+          "trailLifetime": 1.5,
+          "lifetime": 4000
+        }
+      ],
+      "learnConditions": []
+    },
+    {
+      "id": "shuiqiu_lianshe",
+      "name": "水球连射",
+      "description": "连续发射水球，伤害受攻击力影响，水球大小受技巧影响",
+      "type": "exclusive",
+      "icon": "images/zhudongjineng_shuiqiulianshe.png",
+      "tags": ["投射物"],
+      "maxLevel": 10,
+      "manaCost": 15,
+      "cooldown": 5,
+      "effects": [
+        {
+          "type": "spawn_projectile",
+          "projectileType": "burst",
+          "image": "images/texiao_shuiqiu.png",
+          "size": 21,
+          "sizePerSkill": 0.05,
+          "burstCount": 10,
+          "burstInterval": 300,
+          "directionMode": "facing",
+          "angleSpread": { "min": 1, "max": 10 },
+          "speed": {
+            "base": 800
+          },
+          "damage": {
+            "base": 1,
+            "attackMultiplier": 0.3
+          },
+          "tracking": false,
+          "piercing": false,
+          "destroyOnHit": true,
+          "hasTrail": true,
+          "trailColor": "blue",
+          "trailBlendMode": "screen",
+          "particleColor": "blue",
+          "particleOnHit": true,
+          "particleLarge": true,
+          "lifetime": 1000
+        }
+      ],
+      "learnConditions": []
+    },
+    {
+      "id": "zhiliao_lingyu",
+      "name": "治疗领域",
+      "description": "生成一个持续治疗友方的领域。治疗量受智慧影响，范围受技巧影响",
+      "type": "exclusive",
+      "icon": "images/zhudongjineng_zhiliaolingyu.png",
+      "tags": ["治疗"],
+      "maxLevel": 10,
+      "manaCost": 20,
+      "cooldown": 8,
+      "effects": [
+        {
+          "type": "healing_area",
+          "diameterBase": 300,
+          "diameterTechniqueMultiplier": 4.0,
+          "lifetime": 5000,
+          "healInterval": 1000,
+          "heal": {
+            "base": 1,
+            "wisdomMultiplier": 0.15
+          },
+          "color": "rgba(144, 238, 144, 0.3)",
+          "borderColor": "rgba(144, 238, 144, 0.8)",
+          "targetLowestHP": true
+        }
+      ],
+      "learnConditions": []
+    },
+    {
+      "id": "shenmi_zhiyao",
+      "name": "神秘之耀",
+      "description": "在一小片范围内造成高频伤害，伤害受智慧影响，持续时间受技巧影响",
+      "type": "exclusive",
+      "icon": "images/zhudongjineng_shenmizhiyao.png",
+      "tags": ["范围"],
+      "maxLevel": 10,
+      "manaCost": 20,
+      "cooldown": 6,
+      "effects": [
+        {
+          "type": "damage_area",
+          "diameter": 150,
+          "lifetime": 3000,
+          "lifetimePerSkill": 200,
+          "damageInterval": 250,
+          "damage": {
+            "base": 0,
+            "wisdomMultiplier": 0.2
+          },
+          "color": "rgba(255, 255, 150, 0.3)",
+          "borderColor": "rgba(255, 255, 100, 0.8)",
+          "particleInterval": 100,
+          "particleColor": "yellow",
+          "particleBlendMode": "screen",
+          "randomPosition": true
+        }
+      ],
+      "learnConditions": []
+    },
+    {
+      "id": "cangshu_xifa",
+      "name": "仓鼠戏法",
+      "description": "使随机一个敌人变成仓鼠，减少攻防和移速。持续时间受技巧影响",
+      "type": "exclusive",
+      "icon": "images/zhudongjineng_cangshuxifa.png",
+      "tags": ["BUFF", "单体目标"],
+      "maxLevel": 10,
+      "manaCost": 15,
+      "cooldown": 8,
+      "effects": [
+        {
+          "type": "buff_enemy",
+          "buffId": "hamster",
+          "baseDuration": 8000,
+          "durationPerSkill": 200,
+          "preferBoss": true
+        }
+      ],
+      "learnConditions": []
+    },
+    {
+      "id": "aoshu_feidan",
+      "name": "奥术飞弹",
+      "description": "发射一枚会在敌人间弹跳的魔法飞弹，伤害受攻击力影响，持续时间受技巧影响",
+      "type": "exclusive",
+      "icon": "images/zhudongjineng_aoshufeidan.png",
+      "tags": ["投射物", "单体目标"],
+      "maxLevel": 10,
+      "manaCost": 15,
+      "cooldown": 5,
+      "effects": [
+        {
+          "type": "spawn_projectile",
+          "projectileType": "straight",
+          "image": "images/texiao_mofadan.png",
+          "size": 80,
+          "speed": {
+            "base": 800
+          },
+          "damage": {
+            "base": 2,
+            "attackMultiplier": 0.5
+          },
+          "tracking": true,
+          "piercing": false,
+          "destroyOnHit": false,
+          "bounceOnHit": true,
+          "hasTrail": true,
+          "trailColor": "purple",
+          "trailScale": 0.7,
+          "trailBlendMode": "screen",
+          "particleColor": "purple",
+          "particleOnHit": true,
+          "lifetime": 4000,
+          "lifetimePerSkill": 200
+        }
+      ],
+      "learnConditions": []
+    },
+    {
+      "id": "daozei_gousuo",
+      "name": "盗贼钩锁",
+      "description": "发射一枚钩爪投射物，伤害受攻击力影响，持续时间受技巧影响。",
+      "type": "exclusive",
+      "icon": "images/beidongjineng_daozeigouzhua.png",
+      "tags": ["投射物"],
+      "maxLevel": 10,
+      "manaCost": 15,
+      "cooldown": 6,
+      "effects": [
+        {
+          "type": "spawn_projectile",
+          "projectileType": "straight",
+          "image": "images/texiao_gouzhua.png",
+          "size": 60,
+          "speed": {
+            "base": 800
+          },
+          "damage": {
+            "base": 5,
+            "attackMultiplier": 0
+          },
+          "tracking": false,
+          "piercing": true,
+          "destroyOnHit": false,
+          "hasTrail": true,
+          "trailColor": "lightblue",
+          "trailScale": 0.5,
+          "trailBlendMode": "screen",
+          "rotateWithDirection": true,
+          "grapple": true,
+          "grappleTetherColor": "rgba(139, 90, 43, 0.8)",
+          "grappleDragSpeed": 800,
+          "grappleKnockback": 150,
+          "grappleCollisionDamage": 5
+        }
+      ],
+      "learnConditions": []
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>测试异界角色功能</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .info {
+      background: #e3f2fd;
+      padding: 15px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+    .success {
+      background: #c8e6c9;
+      padding: 15px;
+      border-radius: 4px;
+      margin-top: 20px;
+    }
+    code {
+      background: #f5f5f5;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🌟 异界角色功能测试</h1>
+    
+    <div class="info">
+      <h3>功能说明</h3>
+      <p>已为开发者功能添加"获得异界角色"按钮。</p>
+      <p><strong>使用方法：</strong></p>
+      <ol>
+        <li>在游戏中按 <code>D</code> 键打开开发者面板</li>
+        <li>点击 <code>🌟 获得异界角色</code> 按钮</li>
+        <li>从弹出的列表中选择一个异界角色</li>
+        <li>角色将被添加到你的队伍中</li>
+      </ol>
+    </div>
+    
+    <div class="success">
+      <h3>✅ 实现内容</h3>
+      <ul>
+        <li>✅ 添加了"获得异界角色"按钮到开发者面板</li>
+        <li>✅ 从异界角色库中筛选出类型为"异界"的角色</li>
+        <li>✅ 显示角色选择界面，包含角色名称、称号、类型和属性</li>
+        <li>✅ 点击角色后创建完整的角色实体，包含所有必需组件</li>
+        <li>✅ 使用异界角色配置中的初始状态和技能</li>
+        <li>✅ 触发角色招募事件</li>
+      </ul>
+    </div>
+    
+    <div class="info">
+      <h3>📋 技术细节</h3>
+      <ul>
+        <li>使用 <code>ConfigManager.getInstance().getOtherworldCharacters()</code> 获取异界角色列表</li>
+        <li>筛选条件：<code>characterTypes.includes('异界')</code></li>
+        <li>创建的角色包含完整的ECS组件：
+          <ul>
+            <li>CharacterInfo（角色信息）</li>
+            <li>Attribute（属性）</li>
+            <li>Health/Mana/Hunger（状态）</li>
+            <li>Level（等级）</li>
+            <li>Job（职业）</li>
+            <li>Affinity（好感度）</li>
+            <li>EquipmentSlots（装备槽）</li>
+          </ul>
+        </li>
+        <li>使用配置文件中的初始状态（等级、生命值、魔法值、饱腹度）</li>
+        <li>使用配置文件中的初始技能列表</li>
+      </ul>
+    </div>
+    
+    <div class="success">
+      <h3>🎮 当前可用的异界角色</h3>
+      <p>根据 <code>otherworld-characters.json</code> 配置：</p>
+      <ul>
+        <li><strong>Allenes</strong> - 异界旅者
+          <ul>
+            <li>类型：异界、冒险者</li>
+            <li>属性：力量10、敏捷5、智慧3、技巧2</li>
+            <li>初始职业：战士</li>
+            <li>专属技能：伏魔斩</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,205 @@
+{
+  "recipes": [
+    {
+      "id": "craft_iron_sword",
+      "name": "锻造铁剑",
+      "description": "使用铁矿石锻造基础的铁剑。",
+      "type": "equipment",
+      "requirements": [
+        {
+          "type": "skill",
+          "id": "blacksmithing",
+          "level": 1,
+          "required": true
+        }
+      ],
+      "materials": [
+        {
+          "itemId": "iron_ore",
+          "quantity": 3,
+          "qualityMin": 30,
+          "consumeOnUse": true
+        }
+      ],
+      "result": {
+        "itemId": "basic_sword",
+        "baseQuantity": 1,
+        "qualityInfluence": {
+          "attributeMultiplier": 0.1,
+          "quantityChance": 0.05,
+          "rarityBonus": 0.02
+        },
+        "rarityChance": [
+          {
+            "rarity": 0,
+            "baseChance": 0.9,
+            "qualityBonus": 0.001,
+            "skillBonus": 0.01
+          },
+          {
+            "rarity": 1,
+            "baseChance": 0.1,
+            "qualityBonus": 0.002,
+            "skillBonus": 0.015
+          }
+        ],
+        "bonusResults": []
+      },
+      "successRate": 0.95,
+      "experienceGain": 10,
+      "craftingTime": 300,
+      "unlockConditions": []
+    },
+    {
+      "id": "craft_steel_sword",
+      "name": "锻造钢剑",
+      "description": "使用精钢锻造更强的钢剑。",
+      "type": "equipment",
+      "requirements": [
+        {
+          "type": "skill",
+          "id": "blacksmithing",
+          "level": 3,
+          "required": true
+        }
+      ],
+      "materials": [
+        {
+          "itemId": "iron_ore",
+          "quantity": 5,
+          "qualityMin": 50,
+          "consumeOnUse": true
+        }
+      ],
+      "result": {
+        "itemId": "steel_sword",
+        "baseQuantity": 1,
+        "qualityInfluence": {
+          "attributeMultiplier": 0.15,
+          "quantityChance": 0.03,
+          "rarityBonus": 0.03
+        },
+        "rarityChance": [
+          {
+            "rarity": 1,
+            "baseChance": 0.8,
+            "qualityBonus": 0.002,
+            "skillBonus": 0.02
+          },
+          {
+            "rarity": 2,
+            "baseChance": 0.2,
+            "qualityBonus": 0.003,
+            "skillBonus": 0.025
+          }
+        ],
+        "bonusResults": []
+      },
+      "successRate": 0.85,
+      "experienceGain": 25,
+      "craftingTime": 600,
+      "unlockConditions": [
+        {
+          "type": "skill",
+          "id": "blacksmithing",
+          "value": 3,
+          "description": "需要锻造技能等级3"
+        }
+      ]
+    },
+    {
+      "id": "bake_bread",
+      "name": "烘焙面包",
+      "description": "使用小麦制作香甜的面包。",
+      "type": "food",
+      "requirements": [
+        {
+          "type": "skill",
+          "id": "cooking",
+          "level": 1,
+          "required": true
+        }
+      ],
+      "materials": [
+        {
+          "itemId": "wheat",
+          "quantity": 2,
+          "qualityMin": 20,
+          "consumeOnUse": true
+        }
+      ],
+      "result": {
+        "itemId": "bread",
+        "baseQuantity": 3,
+        "qualityInfluence": {
+          "attributeMultiplier": 0.2,
+          "quantityChance": 0.1,
+          "rarityBonus": 0.01
+        },
+        "rarityChance": [
+          {
+            "rarity": 0,
+            "baseChance": 1.0,
+            "qualityBonus": 0.0,
+            "skillBonus": 0.0
+          }
+        ],
+        "bonusResults": []
+      },
+      "successRate": 0.98,
+      "experienceGain": 5,
+      "craftingTime": 120,
+      "unlockConditions": []
+    },
+    {
+      "id": "brew_health_potion",
+      "name": "调制生命药水",
+      "description": "使用草药调制恢复生命的药水。",
+      "type": "alchemy",
+      "requirements": [
+        {
+          "type": "skill",
+          "id": "alchemy",
+          "level": 1,
+          "required": true
+        }
+      ],
+      "materials": [
+        {
+          "itemId": "healing_herb",
+          "quantity": 1,
+          "qualityMin": 25,
+          "consumeOnUse": true
+        }
+      ],
+      "result": {
+        "itemId": "health_potion",
+        "baseQuantity": 2,
+        "qualityInfluence": {
+          "attributeMultiplier": 0.3,
+          "quantityChance": 0.15,
+          "rarityBonus": 0.02
+        },
+        "rarityChance": [
+          {
+            "rarity": 0,
+            "baseChance": 0.9,
+            "qualityBonus": 0.001,
+            "skillBonus": 0.01
+          },
+          {
+            "rarity": 1,
+            "baseChance": 0.1,
+            "qualityBonus": 0.002,
+            "skillBonus": 0.015
+          }
+        ],
+        "bonusResults": []
+      },
+      "successRate": 0.9,
+      "experienceGain": 8,
+      "craftingTime": 180,
+      "unlockConditions": []
+    }
+  ]
+}

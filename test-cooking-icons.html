@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>烹饪材料图标测试</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(20, 20, 30, 0.95);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #ffffff;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 10px;
+        }
+        .ingredients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 12px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        .ingredient-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border: 2px solid rgba(46, 204, 113, 0.5);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        .ingredient-card.insufficient {
+            border-color: rgba(231, 76, 60, 0.5);
+        }
+        .ingredient-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        .ingredient-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-bottom: 6px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+        .ingredient-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .quantity-badge {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            background: rgba(46, 204, 113, 0.9);
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 2px 4px;
+            border-radius: 4px;
+            line-height: 1;
+        }
+        .insufficient .quantity-badge {
+            background: rgba(231, 76, 60, 0.9);
+        }
+        .status-indicator {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #2ecc71;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .insufficient .status-indicator {
+            background: #e74c3c;
+        }
+        .item-name {
+            color: #ffffff;
+            font-size: 11px;
+            text-align: center;
+            line-height: 1.2;
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        .info {
+            background: rgba(52, 152, 219, 0.2);
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍳 烹饪材料图标显示测试</h1>
+
+        <div class="info">
+            <strong>测试说明：</strong> 此页面测试烹饪配方中材料图标的显示效果。每个材料卡片应该显示：
+            <ul style="margin: 10px 0 0 0; padding-left: 20px;">
+                <li>材料图标（从images文件夹加载）</li>
+                <li>拥有数量/需要数量（右下角徽章）</li>
+                <li>状态指示器（右上角 ✓ 或 ✗）</li>
+                <li>材料名称</li>
+            </ul>
+        </div>
+
+        <h2>史莱姆QQ糖 - 所需材料</h2>
+        <div class="ingredients-grid">
+            <div class="ingredient-card">
+                <div class="status-indicator">✓</div>
+                <div class="ingredient-icon">
+                    <img src="images/wupin_sanseyanzhu.png" alt="史莱姆甜珠" onerror="this.parentElement.innerHTML='📦'">
+                    <div class="quantity-badge">10/3</div>
+                </div>
+                <div class="item-name">史莱姆甜珠</div>
+            </div>
+        </div>
+
+        <h2>糖腌蛇肝 - 所需材料</h2>
+        <div class="ingredients-grid">
+            <div class="ingredient-card">
+                <div class="status-indicator">✓</div>
+                <div class="ingredient-icon">
+                    <img src="images/wupin_sanseyanzhu.png" alt="史莱姆甜珠" onerror="this.parentElement.innerHTML='📦'">
+                    <div class="quantity-badge">10/2</div>
+                </div>
+                <div class="item-name">史莱姆甜珠</div>
+            </div>
+            <div class="ingredient-card insufficient">
+                <div class="status-indicator">✗</div>
+                <div class="ingredient-icon">
+                    <img src="images/wupin_shuangtoushegan.png" alt="双头蛇肝" onerror="this.parentElement.innerHTML='📦'">
+                    <div class="quantity-badge">0/1</div>
+                </div>
+                <div class="item-name">双头蛇肝</div>
+            </div>
+        </div>
+
+        <h2>草原套餐 - 所需材料（多种材料）</h2>
+        <div class="ingredients-grid">
+            <div class="ingredient-card">
+                <div class="status-indicator">✓</div>
+                <div class="ingredient-icon">
+                    <img src="images/wupin_tiaodongdedannang.png" alt="甜浆腺体" onerror="this.parentElement.innerHTML='📦'">
+                    <div class="quantity-badge">10/2</div>
+                </div>
+                <div class="item-name">甜浆腺体</div>
+            </div>
+            <div class="ingredient-card">
+                <div class="status-indicator">✓</div>
+                <div class="ingredient-icon">
+                    <img src="images/wupin_shuangtoushegan.png" alt="双头蛇肝" onerror="this.parentElement.innerHTML='📦'">
+                    <div class="quantity-badge">8/2</div>
+                </div>
+                <div class="item-name">双头蛇肝</div>
+            </div>
+            <div class="ingredient-card insufficient">
+                <div class="status-indicator">✗</div>
+                <div class="ingredient-icon">
+                    <img src="images/wupin_caoguchongbaoyi.png" alt="草菇虫薄翼" onerror="this.parentElement.innerHTML='📦'">
+                    <div class="quantity-badge">1/2</div>
+                </div>
+                <div class="item-name">草菇虫薄翼</div>
+            </div>
+            <div class="ingredient-card">
+                <div class="status-indicator">✓</div>
+                <div class="ingredient-icon">
+                    <img src="images/wupin_lanxiangcao.png" alt="兰香草" onerror="this.parentElement.innerHTML='📦'">
+                    <div class="quantity-badge">5/2</div>
+                </div>
+                <div class="item-name">兰香草</div>
+            </div>
+        </div>
+
+        <div class="info" style="margin-top: 30px;">
+            <strong>💡 提示：</strong>
+            <ul style="margin: 10px 0 0 0; padding-left: 20px;">
+                <li>如果图标显示为 📦，说明图片文件未找到或路径不正确</li>
+                <li>绿色边框表示材料充足，红色边框表示材料不足</li>
+                <li>鼠标悬停在材料卡片上会有上浮效果</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

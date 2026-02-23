@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试饱腹度奖励</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 4px;
+            border-left: 4px solid #4CAF50;
+        }
+        .character-card {
+            margin: 10px 0;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .hunger-bar {
+            width: 100%;
+            height: 20px;
+            background: #eee;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+        .hunger-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b6b, #ffd93d);
+            transition: width 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>饱腹度奖励测试</h1>
+        <p>点击按钮招募角色，查看他们的初始饱腹度值（应该在 30-50 之间）</p>
+        
+        <button onclick="recruitCharacter()">招募一个角色</button>
+        <button onclick="recruitMultiple()">招募 10 个角色</button>
+        <button onclick="clearResults()">清空结果</button>
+        
+        <div id="results" class="result"></div>
+    </div>
+
+    <script type="module">
+        import { World } from './dist/main.js';
+        
+        // 初始化游戏世界
+        const world = new World();
+        await world.initialize();
+        
+        // 获取玩家ID
+        const playerEntity = world.entityManager.getEntitiesByComponent('player')[0];
+        const playerId = playerEntity.id;
+        
+        // 获取招募系统
+        const recruitmentSystem = world.getSystem('CharacterRecruitmentSystem');
+        const componentManager = world.componentManager;
+        
+        // 确保玩家有足够的金币
+        const currency = componentManager.getComponent(playerId, 'currency');
+        if (currency.gold < 10000) {
+            currency.gold = 10000;
+        }
+        
+        window.recruitCharacter = function() {
+            const result = recruitmentSystem.recruitWithGold(playerId);
+            
+            if (result.success && result.character) {
+                const charId = result.character;
+                const info = componentManager.getComponent(charId, 'characterInfo');
+                const hunger = componentManager.getComponent(charId, 'hunger');
+                
+                displayCharacter(info, hunger);
+            }
+        };
+        
+        window.recruitMultiple = function() {
+            for (let i = 0; i < 10; i++) {
+                recruitCharacter();
+            }
+        };
+        
+        window.clearResults = function() {
+            document.getElementById('results').innerHTML = '';
+        };
+        
+        function displayCharacter(info, hunger) {
+            const resultsDiv = document.getElementById('results');
+            const percentage = (hunger.current / hunger.maximum) * 100;
+            
+            const card = document.createElement('div');
+            card.className = 'character-card';
+            card.innerHTML = `
+                <strong>${info.title} ${info.name}</strong> (${info.rarity})
+                <div>饱腹度: ${hunger.current}/${hunger.maximum}</div>
+                <div class="hunger-bar">
+                    <div class="hunger-fill" style="width: ${percentage}%"></div>
+                </div>
+            `;
+            
+            resultsDiv.insertBefore(card, resultsDiv.firstChild);
+        }
+        
+        console.log('测试页面已加载，可以开始招募角色');
+    </script>
+</body>
+</html>

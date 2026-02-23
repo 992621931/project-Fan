@@ -1,0 +1,547 @@
+{
+  "otherworldCharacters": [
+    {
+      "id": "allenes",
+      "name": "Allenes",
+      "title": "异界旅者",
+      "characterTypes": ["异界", "冒险者"],
+      "portrait": "images/touxiang_yijie_Allenes",
+      "rarity": 2,
+      "isSpecial": true,
+      "initialState": {
+        "level": 1,
+        "maxHealth": 100,
+        "maxMana": 100,
+        "maxHunger": 100
+      },
+      "baseAttributes": {
+        "strength": 10,
+        "agility": 5,
+        "wisdom": 3,
+        "technique": 2
+      },
+      "startingJob": "none",
+      "availableJobs": ["warrior", "rogue"],
+      "initialSkills": {
+        "passive": [],
+        "active": ["fumo_zhan"]
+      },
+      "description": "来自异界的神秘战士，掌握着独特的战斗技巧。"
+    },
+    {
+      "id": "coki",
+      "name": "Coki",
+      "title": "异界法师",
+      "characterTypes": ["异界", "冒险者"],
+      "portrait": "images/touxiang_yijie_Coki",
+      "rarity": 2,
+      "isSpecial": true,
+      "initialState": {
+        "level": 1,
+        "maxHealth": 140,
+        "maxMana": 100,
+        "maxHunger": 100
+      },
+      "baseAttributes": {
+        "strength": 4,
+        "agility": 3,
+        "wisdom": 5,
+        "technique": 8
+      },
+      "startingJob": "none",
+      "availableJobs": ["mage", "elementalist"],
+      "initialSkills": {
+        "passive": [],
+        "active": ["dangji_lingyu"]
+      },
+      "description": "来自异界的神秘法师，擅长控制领域魔法。"
+    },
+    {
+      "id": "zhagu",
+      "name": "扎古",
+      "title": "异界守卫",
+      "characterTypes": ["异界", "冒险者"],
+      "portrait": "images/touxiang_yijie_zhagu",
+      "rarity": 2,
+      "isSpecial": true,
+      "initialState": {
+        "level": 1,
+        "maxHealth": 200,
+        "maxMana": 100,
+        "maxHunger": 100
+      },
+      "baseAttributes": {
+        "strength": 6,
+        "agility": 2,
+        "wisdom": 6,
+        "technique": 6
+      },
+      "combatStats": {
+        "defense": 10,
+        "moveSpeed": 21,
+        "dodgeRate": 0,
+        "critRate": 0,
+        "critDamage": 125,
+        "resistance": 10,
+        "magicPower": 0,
+        "carryWeight": 60,
+        "volume": 100,
+        "expRate": 100,
+        "healthRegen": 1,
+        "manaRegen": 10,
+        "weight": 65
+      },
+      "startingJob": "none",
+      "availableJobs": ["warrior"],
+      "initialSkills": {
+        "passive": [],
+        "active": ["shouhu_zhiguang"]
+      },
+      "description": "来自异界的守卫战士，擅长使用护盾保护队友。"
+    },
+    {
+      "id": "ni",
+      "name": "逆",
+      "title": "异界刺客",
+      "characterTypes": ["异界", "冒险者"],
+      "portrait": "images/touxiang_yijie_ni",
+      "rarity": 2,
+      "isSpecial": true,
+      "initialState": {
+        "level": 1,
+        "maxHealth": 100,
+        "maxMana": 100,
+        "maxHunger": 100
+      },
+      "baseAttributes": {
+        "strength": 6,
+        "agility": 6,
+        "wisdom": 4,
+        "technique": 4
+      },
+      "combatStats": {
+        "defense": 1,
+        "moveSpeed": 36,
+        "dodgeRate": 0,
+        "critRate": 0,
+        "critDamage": 125,
+        "resistance": 1,
+        "magicPower": 0,
+        "carryWeight": 30,
+        "volume": 100,
+        "expRate": 100,
+        "healthRegen": 1,
+        "manaRegen": 8,
+        "weight": 43
+      },
+      "startingJob": "none",
+      "availableJobs": ["ranger"],
+      "initialSkills": {
+        "passive": [],
+        "active": ["daoren_zhiwu"]
+      },
+      "description": "来自异界的刺客，擅长快速移动和近战攻击。"
+    },
+    {
+      "id": "wangdana",
+      "name": "王大拿",
+      "title": "异界陷阱师",
+      "characterTypes": ["异界", "冒险者"],
+      "portrait": "images/touxiang_yijie_wangdana",
+      "rarity": 2,
+      "isSpecial": true,
+      "initialState": {
+        "level": 1,
+        "maxHealth": 115,
+        "maxMana": 100,
+        "maxHunger": 100
+      },
+      "baseAttributes": {
+        "strength": 4,
+        "agility": 1,
+        "wisdom": 9,
+        "technique": 6
+      },
+      "combatStats": {
+        "attack": 12,
+        "defense": 3,
+        "moveSpeed": 38,
+        "dodgeRate": 6,
+        "critRate": 2,
+        "critDamage": 125,
+        "resistance": 1,
+        "magicPower": 0,
+        "carryWeight": 46,
+        "volume": 100,
+        "expRate": 100,
+        "healthRegen": 1,
+        "manaRegen": 10,
+        "weight": 12
+      },
+      "startingJob": "none",
+      "availableJobs": ["mage"],
+      "initialSkills": {
+        "passive": [],
+        "active": ["shihua_xianjing"]
+      },
+      "description": "来自异界的陷阱师，擅长放置各种恶心的陷阱。"
+    },
+    {
+      "id": "yuan",
+      "name": "金佬",
+      "title": "异界猎手",
+      "characterTypes": ["异界", "冒险者"],
+      "portrait": "images/touxiang_yijie_jinlao",
+      "rarity": 2,
+      "isSpecial": true,
+      "initialState": {
+        "level": 1,
+        "maxHealth": 103,
+        "maxMana": 100,
+        "maxHunger": 100
+      },
+      "baseAttributes": {
+        "strength": 2,
+        "agility": 11,
+        "wisdom": 3,
+        "technique": 4
+      },
+      "combatStats": {
+        "attack": 11,
+        "defense": 0,
+        "moveSpeed": 50,
+        "dodgeRate": 0,
+        "critRate": 0,
+        "critDamage": 125,
+        "resistance": 1,
+        "magicPower": 0,
+        "carryWeight": 38,
+        "volume": 100,
+        "expRate": 100,
+        "healthRegen": 1,
+        "manaRegen": 10,
+        "weight": 42
+      },
+      "startingJob": "none",
+      "availableJobs": ["ranger"],
+      "initialSkills": {
+        "passive": [],
+        "active": ["mabi_jianshi"]
+      },
+      "description": "来自异界的猎手，擅长使用麻痹箭矢控制敌人。"
+    },
+    {
+      "id": "arnold",
+      "name": "Arnold",
+      "title": "异界医师",
+      "characterTypes": ["异界", "冒险者"],
+      "portrait": "images/touxiang_yijie_Arnold",
+      "rarity": 2,
+      "isSpecial": true,
+      "initialState": {
+        "level": 1,
+        "maxHealth": 122,
+        "maxMana": 100,
+        "maxHunger": 100
+      },
+      "baseAttributes": {
+        "strength": 3,
+        "agility": 3,
+        "wisdom": 8,
+        "technique": 6
+      },
+      "combatStats": {
+        "attack": 8,
+        "defense": 8,
+        "moveSpeed": 47,
+        "dodgeRate": 5,
+        "critRate": 5,
+        "critDamage": 125,
+        "resistance": 1,
+        "magicPower": 0,
+        "carryWeight": 36,
+        "volume": 100,
+        "expRate": 100,
+        "healthRegen": 1,
+        "manaRegen": 10,
+        "weight": 47
+      },
+      "startingJob": "none",
+      "availableJobs": ["priest"],
+      "initialSkills": {
+        "passive": [],
+        "active": ["zhentong_sheji"]
+      },
+      "description": "来自异界的医师，擅长使用针筒射击治疗队友并伤害敌人。"
+    },
+    {
+      "id": "yeyun",
+      "name": "夜纭",
+      "title": "异界水法师",
+      "characterTypes": ["异界", "冒险者"],
+      "portrait": "images/touxiang_yijie_yeyun",
+      "rarity": 2,
+      "isSpecial": true,
+      "initialState": {
+        "level": 1,
+        "maxHealth": 118,
+        "maxMana": 100,
+        "currentMana": 0,
+        "maxHunger": 100
+      },
+      "baseAttributes": {
+        "strength": 3,
+        "agility": 2,
+        "wisdom": 6,
+        "technique": 9
+      },
+      "combatStats": {
+        "attack": 10,
+        "defense": 4,
+        "moveSpeed": 12,
+        "dodgeRate": 2,
+        "critRate": 3,
+        "critDamage": 150,
+        "resistance": 1,
+        "magicPower": 0,
+        "carryWeight": 12,
+        "volume": 100,
+        "expRate": 100,
+        "healthRegen": 1,
+        "manaRegen": 10,
+        "weight": 54
+      },
+      "startingJob": "none",
+      "availableJobs": ["mage"],
+      "initialSkills": {
+        "passive": [],
+        "active": ["shuiqiu_lianshe"]
+      },
+      "description": "来自异界的水法师，擅长连续发射水球攻击敌人。"
+    },
+    {
+      "id": "mekoko",
+      "name": "Mekoko",
+      "title": "异界魔术师",
+      "characterTypes": ["异界", "冒险者"],
+      "portrait": "images/touxiang_yijie_Mekoko",
+      "rarity": 2,
+      "isSpecial": true,
+      "initialState": {
+        "level": 1,
+        "maxHealth": 118,
+        "maxMana": 100,
+        "currentMana": 0,
+        "maxHunger": 100
+      },
+      "baseAttributes": {
+        "strength": 2,
+        "agility": 5,
+        "wisdom": 1,
+        "technique": 12
+      },
+      "combatStats": {
+        "attack": 7,
+        "defense": 7,
+        "moveSpeed": 28,
+        "dodgeRate": 5,
+        "critRate": 5,
+        "critDamage": 125,
+        "resistance": 1,
+        "magicPower": 0,
+        "carryWeight": 11,
+        "volume": 100,
+        "expRate": 100,
+        "healthRegen": 1,
+        "manaRegen": 10,
+        "weight": 37
+      },
+      "startingJob": "none",
+      "availableJobs": ["mage"],
+      "initialSkills": {
+        "passive": [],
+        "active": ["cangshu_xifa"]
+      },
+      "description": "来自异界的魔术师，擅长将敌人变成仓鼠削弱其战斗力。"
+    },
+    {
+      "id": "dafeng",
+      "name": "大凤",
+      "title": "异界治疗师",
+      "characterTypes": ["异界", "冒险者"],
+      "portrait": "images/touxiang_yijie_dafeng",
+      "rarity": 2,
+      "isSpecial": true,
+      "initialState": {
+        "level": 1,
+        "maxHealth": 152,
+        "maxMana": 100,
+        "currentMana": 0,
+        "maxHunger": 100
+      },
+      "baseAttributes": {
+        "strength": 1,
+        "agility": 3,
+        "wisdom": 10,
+        "technique": 6
+      },
+      "combatStats": {
+        "attack": 3,
+        "defense": 8,
+        "moveSpeed": 41,
+        "dodgeRate": 4,
+        "critRate": 6,
+        "critDamage": 110,
+        "resistance": 1,
+        "magicPower": 0,
+        "carryWeight": 15,
+        "volume": 100,
+        "expRate": 100,
+        "healthRegen": 1,
+        "manaRegen": 10,
+        "weight": 45
+      },
+      "startingJob": "none",
+      "availableJobs": ["priest"],
+      "initialSkills": {
+        "passive": [],
+        "active": ["zhiliao_lingyu"]
+      },
+      "description": "来自异界的治疗师，擅长生成治疗领域持续治愈友方角色。"
+    },
+    {
+      "id": "galiguoguo",
+      "name": "咖喱锅锅",
+      "title": "异界法师",
+      "characterTypes": ["异界", "冒险者"],
+      "portrait": "images/touxiang_yijie_galiguoguo",
+      "rarity": 2,
+      "isSpecial": true,
+      "initialState": {
+        "level": 1,
+        "maxHealth": 101,
+        "maxMana": 100,
+        "currentMana": 0,
+        "maxHunger": 100
+      },
+      "baseAttributes": {
+        "strength": 1,
+        "agility": 1,
+        "wisdom": 10,
+        "technique": 8
+      },
+      "combatStats": {
+        "attack": 4,
+        "defense": 4,
+        "moveSpeed": 26,
+        "dodgeRate": 2,
+        "critRate": 1,
+        "critDamage": 120,
+        "resistance": 1,
+        "magicPower": 0,
+        "carryWeight": 11,
+        "volume": 100,
+        "expRate": 100,
+        "healthRegen": 1,
+        "manaRegen": 10,
+        "weight": 50
+      },
+      "startingJob": "none",
+      "availableJobs": ["mage"],
+      "initialSkills": {
+        "passive": [],
+        "active": ["shenmi_zhiyao"]
+      },
+      "description": "来自异界的法师，擅长在小范围内造成高频伤害。"
+    },
+    {
+      "id": "jiasui",
+      "name": "嘉穗",
+      "title": "异界射手",
+      "characterTypes": ["异界", "冒险者"],
+      "portrait": "images/touxiang_yijie_jiasui",
+      "rarity": 2,
+      "isSpecial": true,
+      "initialState": {
+        "level": 1,
+        "maxHealth": 130,
+        "maxMana": 100,
+        "currentMana": 0,
+        "maxHunger": 100
+      },
+      "baseAttributes": {
+        "strength": 6,
+        "agility": 1,
+        "wisdom": 2,
+        "technique": 11
+      },
+      "combatStats": {
+        "attack": 6,
+        "defense": 3,
+        "moveSpeed": 22,
+        "dodgeRate": 5,
+        "critRate": 1,
+        "critDamage": 112,
+        "resistance": 1,
+        "magicPower": 0,
+        "carryWeight": 10,
+        "volume": 100,
+        "expRate": 100,
+        "healthRegen": 1,
+        "manaRegen": 10,
+        "weight": 35
+      },
+      "startingJob": "none",
+      "availableJobs": ["ranger"],
+      "initialSkills": {
+        "passive": [],
+        "active": ["aoshu_feidan"]
+      },
+      "description": "来自异界的射手，擅长发射在敌人间弹跳的奥术飞弹。"
+    },
+    {
+      "id": "yangchaoyue",
+      "name": "羊超越",
+      "title": "异界盗贼",
+      "characterTypes": ["异界", "冒险者"],
+      "portrait": "images/touxiang_yijie_yangchaoyue",
+      "rarity": 2,
+      "isSpecial": true,
+      "initialState": {
+        "level": 1,
+        "maxHealth": 185,
+        "maxMana": 100,
+        "currentMana": 0,
+        "maxHunger": 100
+      },
+      "baseAttributes": {
+        "strength": 9,
+        "agility": 2,
+        "wisdom": 2,
+        "technique": 7
+      },
+      "combatStats": {
+        "defense": 7,
+        "moveSpeed": 30,
+        "dodgeRate": 10,
+        "critRate": 1,
+        "critDamage": 123,
+        "resistance": 1,
+        "magicPower": 0,
+        "carryWeight": 13,
+        "volume": 100,
+        "expRate": 100,
+        "healthRegen": 1,
+        "manaRegen": 10,
+        "weight": 58
+      },
+      "startingJob": "none",
+      "availableJobs": ["thief"],
+      "initialSkills": {
+        "passive": [],
+        "active": ["daozei_gousuo"]
+      },
+      "description": "来自异界的盗贼，擅长使用钩锁穿越战场并撞击敌人。"
+    }
+  ]
+}

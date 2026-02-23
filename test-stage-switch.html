@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stage Switch Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+    .container {
+      display: flex;
+      gap: 16px;
+      padding: 16px;
+      height: calc(100vh - 32px);
+    }
+    .stage-panel {
+      width: 200px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      overflow-y: auto;
+    }
+    .stage-panel h3 {
+      margin: 0 0 16px 0;
+      color: #333;
+      font-size: 18px;
+    }
+    .stage-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .stage-item {
+      padding: 12px;
+      background: #f0f0f0;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+    .stage-item.unlocked {
+      cursor: pointer;
+      opacity: 1;
+    }
+    .stage-item.locked {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+    .stage-item.unlocked:hover {
+      background: #e0e0e0;
+      transform: translateY(-2px);
+    }
+    .stage-item.active {
+      background: #667eea;
+    }
+    .stage-item.active .stage-name,
+    .stage-item.active .stage-description {
+      color: white !important;
+    }
+    .stage-name {
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+    .stage-name.unlocked {
+      color: #667eea;
+    }
+    .stage-name.locked {
+      color: #999;
+    }
+    .stage-description {
+      font-size: 12px;
+    }
+    .stage-description.unlocked {
+      color: #666;
+    }
+    .stage-description.locked {
+      color: #999;
+    }
+    .stage-area {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .scene-container {
+      flex: 1;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+    .scene-buttons {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: 20px;
+      display: flex;
+      gap: 16px;
+      z-index: 100;
+    }
+    .scene-button {
+      padding: 15px 20px;
+      max-width: 120px;
+      background: rgba(255, 255, 255, 0.5);
+      border: 2px solid #667eea;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      transition: all 0.2s;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+    .scene-button.active {
+      background: rgba(102, 126, 234, 0.5);
+      color: #fff;
+    }
+    .scene-button:hover {
+      background: rgba(240, 240, 255, 0.5);
+    }
+    .scene-button.active:hover {
+      background: rgba(102, 126, 234, 0.6);
+    }
+    .placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    .notification {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 16px 24px;
+      background: #28a745;
+      color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      display: none;
+      z-index: 1000;
+      animation: slideDown 0.3s ease;
+    }
+    @keyframes slideDown {
+      from {
+        transform: translateX(-50%) translateY(-20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="stage-panel">
+      <h3>关卡选择</h3>
+      <div class="stage-list" id="stage-list"></div>
+    </div>
+
+    <div class="stage-area">
+      <div class="scene-container" id="scene-container">
+        <div class="scene-buttons" id="scene-buttons"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="notification" class="notification"></div>
+
+  <script>
+    // Game state
+    const unlockedStages = new Set(['village', 'grassland']); // Grassland unlocked for testing
+    let currentStage = 'village';
+    let currentScene = 'square';
+    
+    const stages = [
+      { id: 'village', name: '村庄', icon: '🏘️', description: '起始地点' },
+      { id: 'grassland', name: '草原', icon: '🌾', description: '广阔的草原' },
+      { id: 'forest', name: '森林', icon: '🌲', description: '神秘的森林' }
+    ];
+
+    const villageScenes = [
+      { id: 'square', label: '广场' },
+      { id: 'tavern', label: '酒馆' },
+      { id: 'market', label: '市场' },
+      { id: 'farm', label: '农场' },
+      { id: 'camp', label: '营地' }
+    ];
+
+    const stageBackgrounds = {
+      village: {
+        square: 'images/changjing_guangchang.png',
+        tavern: 'images/changjing_jiuguan.png',
+        market: 'images/changjing_shichang.png',
+        farm: 'images/changjing_nongchang.png',
+        camp: 'images/changjing_yingdi.png'
+      },
+      grassland: 'images/changjing_caoyuan.png',
+      forest: 'images/changjing_senlin.png'
+    };
+
+    function showNotification(message) {
+      const notification = document.getElementById('notification');
+      notification.textContent = message;
+      notification.style.display = 'block';
+      setTimeout(() => {
+        notification.style.display = 'none';
+      }, 3000);
+    }
+
+    function updateStagePanel() {
+      const stageList = document.getElementById('stage-list');
+      stageList.innerHTML = '';
+      
+      stages.forEach(stage => {
+        const isUnlocked = unlockedStages.has(stage.id);
+        const isActive = currentStage === stage.id;
+        const stageItem = document.createElement('div');
+        stageItem.className = `stage-item ${isUnlocked ? 'unlocked' : 'locked'} ${isActive ? 'active' : ''}`;
+        
+        stageItem.innerHTML = `
+          <div class="stage-name ${isUnlocked ? 'unlocked' : 'locked'}">${stage.icon} ${stage.name}</div>
+          <div class="stage-description ${isUnlocked ? 'unlocked' : 'locked'}">${isUnlocked ? stage.description : '未解锁'}</div>
+        `;
+        
+        if (isUnlocked) {
+          stageItem.addEventListener('click', () => {
+            switchStage(stage.id);
+          });
+        }
+        
+        stageList.appendChild(stageItem);
+      });
+    }
+
+    function switchStage(stageId) {
+      if (!unlockedStages.has(stageId)) {
+        showNotification('该关卡尚未解锁');
+        return;
+      }
+      
+      if (currentStage === stageId) {
+        return;
+      }
+      
+      currentStage = stageId;
+      
+      const stageNames = {
+        village: '村庄',
+        grassland: '草原',
+        forest: '森林'
+      };
+      
+      showNotification(`已切换到${stageNames[stageId]}`);
+      
+      updateStagePanel();
+      updateSceneButtons();
+      loadStageDefaultScene();
+    }
+
+    function updateSceneButtons() {
+      const sceneButtons = document.getElementById('scene-buttons');
+      sceneButtons.innerHTML = '';
+      
+      if (currentStage === 'village') {
+        // Show village scene buttons
+        villageScenes.forEach(scene => {
+          const button = document.createElement('button');
+          button.className = `scene-button ${currentScene === scene.id ? 'active' : ''}`;
+          button.textContent = scene.label;
+          button.addEventListener('click', () => {
+            switchScene(scene.id);
+          });
+          sceneButtons.appendChild(button);
+        });
+      }
+    }
+
+    function switchScene(sceneId) {
+      if (currentStage !== 'village') {
+        return;
+      }
+      
+      currentScene = sceneId;
+      updateSceneButtons();
+      loadScene();
+    }
+
+    function loadStageDefaultScene() {
+      const sceneContainer = document.getElementById('scene-container');
+      sceneContainer.innerHTML = '';
+      
+      // Re-add scene buttons
+      const sceneButtons = document.createElement('div');
+      sceneButtons.id = 'scene-buttons';
+      sceneButtons.className = 'scene-buttons';
+      sceneContainer.appendChild(sceneButtons);
+      
+      if (currentStage === 'village') {
+        currentScene = 'square';
+        updateSceneButtons();
+        loadScene();
+      } else {
+        updateSceneButtons();
+        const background = stageBackgrounds[currentStage];
+        if (background) {
+          sceneContainer.style.backgroundImage = `url('${background}')`;
+        }
+        
+        const placeholder = document.createElement('div');
+        placeholder.className = 'placeholder';
+        placeholder.textContent = `${currentStage === 'grassland' ? '草原' : '森林'}场景开发中...`;
+        sceneContainer.appendChild(placeholder);
+      }
+    }
+
+    function loadScene() {
+      const sceneContainer = document.getElementById('scene-container');
+      
+      // Clear content but keep buttons
+      const buttons = sceneContainer.querySelector('#scene-buttons');
+      sceneContainer.innerHTML = '';
+      if (buttons) {
+        sceneContainer.appendChild(buttons);
+      }
+      
+      if (currentStage === 'village') {
+        const background = stageBackgrounds.village[currentScene];
+        if (background) {
+          sceneContainer.style.backgroundImage = `url('${background}')`;
+        }
+      }
+    }
+
+    // Initial render
+    updateStagePanel();
+    loadStageDefaultScene();
+  </script>
+</body>
+</html>

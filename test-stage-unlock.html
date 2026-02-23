@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stage Unlock Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      margin: 0;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      gap: 20px;
+    }
+    .stage-panel {
+      width: 200px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    .stage-panel h3 {
+      margin: 0 0 16px 0;
+      color: #333;
+      font-size: 18px;
+    }
+    .stage-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .stage-item {
+      padding: 12px;
+      background: #f0f0f0;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+    .stage-item.unlocked {
+      cursor: pointer;
+      opacity: 1;
+    }
+    .stage-item.locked {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+    .stage-item.unlocked:hover {
+      background: #e0e0e0;
+      transform: translateY(-2px);
+    }
+    .stage-name {
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+    .stage-name.unlocked {
+      color: #667eea;
+    }
+    .stage-name.locked {
+      color: #999;
+    }
+    .stage-description {
+      font-size: 12px;
+    }
+    .stage-description.unlocked {
+      color: #666;
+    }
+    .stage-description.locked {
+      color: #999;
+    }
+    .quest-panel {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    .quest-card {
+      background: white;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border: 2px solid transparent;
+      transition: all 0.3s;
+    }
+    .quest-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+      border-color: #667eea;
+    }
+    .quest-name {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 8px;
+    }
+    .quest-progress {
+      font-size: 14px;
+      color: #667eea;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .quest-rewards {
+      font-size: 14px;
+      color: #28a745;
+      margin-bottom: 12px;
+    }
+    .complete-btn {
+      width: 100%;
+      padding: 8px;
+      background: #ffc107;
+      color: #333;
+      border: none;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .complete-btn:hover {
+      background: #e0a800;
+    }
+    .notification {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 16px 24px;
+      background: #28a745;
+      color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      display: none;
+      z-index: 1000;
+      animation: slideDown 0.3s ease;
+    }
+    @keyframes slideDown {
+      from {
+        transform: translateX(-50%) translateY(-20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+      }
+    }
+    .unlock-animation {
+      animation: unlock 0.5s ease;
+    }
+    @keyframes unlock {
+      0% {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="stage-panel">
+      <h3>关卡选择</h3>
+      <div class="stage-list" id="stage-list"></div>
+    </div>
+
+    <div class="quest-panel">
+      <h2 style="margin-top: 0;">任务系统 - 关卡解锁测试</h2>
+      <p>完成"初到村庄"任务后，草原关卡将自动解锁！</p>
+      <div id="quest-container"></div>
+    </div>
+  </div>
+
+  <div id="notification" class="notification"></div>
+
+  <script>
+    // Game state
+    const unlockedStages = new Set(['village']);
+    
+    const stages = [
+      { id: 'village', name: '村庄', icon: '🏘️', description: '起始地点' },
+      { id: 'grassland', name: '草原', icon: '🌾', description: '广阔的草原' },
+      { id: 'forest', name: '森林', icon: '🌲', description: '神秘的森林' }
+    ];
+
+    const quests = {
+      inProgress: [
+        {
+          id: 'quest_main_1',
+          name: '初到村庄',
+          progress: '1/1',
+          rewards: '💰 500金币',
+          status: 'inProgress'
+        }
+      ],
+      completed: []
+    };
+
+    function showNotification(message, type = 'success') {
+      const notification = document.getElementById('notification');
+      notification.textContent = message;
+      notification.style.background = type === 'success' ? '#28a745' : '#dc3545';
+      notification.style.display = 'block';
+      setTimeout(() => {
+        notification.style.display = 'none';
+      }, 5000);
+    }
+
+    function unlockStage(stageId) {
+      if (unlockedStages.has(stageId)) return;
+      
+      unlockedStages.add(stageId);
+      updateStagePanel();
+      
+      const stageNames = {
+        grassland: '草原',
+        forest: '森林'
+      };
+      const stageName = stageNames[stageId] || stageId;
+      showNotification(`🎉 新关卡已解锁：${stageName}！`, 'success');
+    }
+
+    function updateStagePanel() {
+      const stageList = document.getElementById('stage-list');
+      stageList.innerHTML = '';
+      
+      stages.forEach(stage => {
+        const isUnlocked = unlockedStages.has(stage.id);
+        const stageItem = document.createElement('div');
+        stageItem.className = `stage-item ${isUnlocked ? 'unlocked' : 'locked'}`;
+        
+        if (!isUnlocked && unlockedStages.has(stage.id)) {
+          stageItem.classList.add('unlock-animation');
+        }
+        
+        stageItem.innerHTML = `
+          <div class="stage-name ${isUnlocked ? 'unlocked' : 'locked'}">${stage.icon} ${stage.name}</div>
+          <div class="stage-description ${isUnlocked ? 'unlocked' : 'locked'}">${isUnlocked ? stage.description : '未解锁'}</div>
+        `;
+        
+        if (isUnlocked) {
+          stageItem.addEventListener('click', () => {
+            showNotification(`切换到${stage.name}`, 'success');
+          });
+        }
+        
+        stageList.appendChild(stageItem);
+      });
+    }
+
+    function isQuestObjectiveCompleted(progress) {
+      const match = progress.match(/(\d+)\/(\d+)/);
+      if (!match) return false;
+      
+      const current = parseInt(match[1], 10);
+      const total = parseInt(match[2], 10);
+      
+      return current >= total;
+    }
+
+    function completeQuest(quest) {
+      const questIndex = quests.inProgress.findIndex(q => q.id === quest.id);
+      if (questIndex === -1) return;
+      
+      const completedQuest = quests.inProgress.splice(questIndex, 1)[0];
+      completedQuest.status = 'completed';
+      quests.completed.push(completedQuest);
+      
+      showNotification(`任务完成！获得 500 金币`, 'success');
+      
+      // Check for special quest unlocks
+      if (quest.id === 'quest_main_1') {
+        setTimeout(() => {
+          unlockStage('grassland');
+        }, 1000);
+      }
+      
+      renderQuests();
+    }
+
+    function renderQuests() {
+      const container = document.getElementById('quest-container');
+      container.innerHTML = '';
+      
+      if (quests.inProgress.length === 0) {
+        container.innerHTML = '<p style="color: #999;">暂无进行中的任务</p>';
+      } else {
+        quests.inProgress.forEach(quest => {
+          const card = document.createElement('div');
+          card.className = 'quest-card';
+          
+          const isCompleted = isQuestObjectiveCompleted(quest.progress);
+          
+          card.innerHTML = `
+            <div class="quest-name">${quest.name}</div>
+            <div class="quest-progress">进度: ${quest.progress}</div>
+            <div class="quest-rewards">奖励: ${quest.rewards}</div>
+            ${isCompleted ? `
+              <button class="complete-btn">完成任务</button>
+            ` : '<div style="color: #999; font-size: 12px;">任务进行中...</div>'}
+          `;
+          
+          if (isCompleted) {
+            const btn = card.querySelector('.complete-btn');
+            btn.addEventListener('click', () => completeQuest(quest));
+          }
+          
+          container.appendChild(card);
+        });
+      }
+      
+      if (quests.completed.length > 0) {
+        const completedTitle = document.createElement('h3');
+        completedTitle.textContent = '已完成任务';
+        completedTitle.style.marginTop = '24px';
+        completedTitle.style.color = '#667eea';
+        container.appendChild(completedTitle);
+        
+        quests.completed.forEach(quest => {
+          const card = document.createElement('div');
+          card.className = 'quest-card';
+          card.style.opacity = '0.7';
+          card.innerHTML = `
+            <div class="quest-name">✓ ${quest.name}</div>
+            <div class="quest-progress">进度: ${quest.progress}</div>
+            <div class="quest-rewards">奖励: ${quest.rewards}</div>
+            <div style="color: #28a745; font-size: 12px; margin-top: 8px;">已完成</div>
+          `;
+          container.appendChild(card);
+        });
+      }
+    }
+
+    // Initial render
+    updateStagePanel();
+    renderQuests();
+  </script>
+</body>
+</html>

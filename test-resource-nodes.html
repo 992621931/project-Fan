@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>资源点系统测试</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      color: white;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .battle-area {
+      width: 100%;
+      height: 600px;
+      background: url('images/changjing_caoyuan.png') center/cover;
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .controls {
+      margin-top: 20px;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .button-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    button:hover {
+      background: #5568d3;
+      transform: translateY(-2px);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .info {
+      margin-top: 15px;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 6px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .info h3 {
+      margin: 0 0 10px 0;
+      color: #333;
+    }
+
+    .info p {
+      margin: 5px 0;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🌾 资源点系统测试</h1>
+    
+    <div class="battle-area" id="battle-area"></div>
+    
+    <div class="controls">
+      <h3>控制面板</h3>
+      <div class="button-group">
+        <button onclick="spawnAdventurer()">➕ 生成冒险者</button>
+        <button onclick="spawnResourceNode()">🌳 生成资源点</button>
+        <button onclick="startAutoSpawn()">▶️ 开始自动生成</button>
+        <button onclick="stopAutoSpawn()">⏸️ 停止自动生成</button>
+        <button onclick="clearAll()">🗑️ 清除所有</button>
+      </div>
+      
+      <div class="info">
+        <h3>📋 说明</h3>
+        <p>✅ 资源点每5-10秒自动生成（远离冒险者）</p>
+        <p>✅ 冒险者碰撞资源点会造成伤害</p>
+        <p>✅ 资源点不会移动、不会被击退</p>
+        <p>✅ 资源点每次受伤获得0.5秒无敌</p>
+        <p>✅ 资源点生命值≤0时死亡并掉落物品</p>
+        <p>✅ 资源点数量上限：5个</p>
+        <p>💡 打开浏览器控制台查看详细日志</p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { BattleSystem } from './dist/game/systems/BattleSystem.js';
+    import { NPCSystem } from './dist/game/systems/NPCSystem.js';
+    import { ResourceNodeSystem } from './dist/game/systems/ResourceNodeSystem.js';
+    import { LootSystem } from './dist/game/systems/LootSystem.js';
+    import { World } from './dist/ecs/World.js';
+    
+    const battleArea = document.getElementById('battle-area');
+    const world = new World();
+    const npcSystem = new NPCSystem(world);
+    const battleSystem = new BattleSystem(npcSystem);
+    const resourceNodeSystem = new ResourceNodeSystem();
+    const lootSystem = new LootSystem(world);
+    
+    // Initialize systems
+    battleSystem.initialize(battleArea);
+    battleSystem.setLootSystem(lootSystem);
+    battleSystem.setResourceNodeSystem(resourceNodeSystem);
+    battleSystem.setCurrentStage('grassland');
+    
+    // Load resource node data
+    async function loadResourceNodeData() {
+      try {
+        const response = await fetch('src/game/data/resource-nodes.json');
+        const data = await response.json();
+        await resourceNodeSystem.loadResourceNodes(data);
+        console.log('Resource node data loaded');
+      } catch (error) {
+        console.error('Failed to load resource node data:', error);
+      }
+    }
+    
+    loadResourceNodeData();
+    
+    let characterCounter = 0;
+    
+    // Make functions global for button onclick
+    window.spawnAdventurer = function() {
+      characterCounter++;
+      
+      const names = ['李', '王', '林', '刘', '肯尼', '塞拉'];
+      const randomName = names[Math.floor(Math.random() * names.length)];
+      
+      const character = {
+        id: `test_char_${characterCounter}`,
+        name: randomName,
+        title: '冒险者',
+        emoji: `images/touxiang_maoxianzhe_${String(Math.floor(Math.random() * 48) + 1).padStart(3, '0')}.png`,
+        type: 'Adventurer',
+        level: 5,
+        currentHP: 100,
+        maxHP: 100,
+        currentMP: 50,
+        maxMP: 100,
+        moveSpeed: 50,
+        hpRegen: 2,
+        mpRegen: 10,
+        attack: 15,
+        defense: 10,
+        critRate: 10,
+        critDamage: 150,
+        dodgeRate: 5,
+        weight: 50
+      };
+      
+      battleSystem.spawnCharacter(character);
+      console.log(`Spawned adventurer: ${character.name}`);
+    };
+    
+    window.spawnResourceNode = function() {
+      const nodeTypes = ['ore_vein', 'grass_patch', 'tree'];
+      const randomType = nodeTypes[Math.floor(Math.random() * nodeTypes.length)];
+      const nodeData = resourceNodeSystem.getResourceNode(randomType);
+      
+      if (nodeData) {
+        battleSystem.spawnResourceNode(nodeData);
+        console.log(`Spawned resource node: ${nodeData.name}`);
+      }
+    };
+    
+    window.startAutoSpawn = function() {
+      battleSystem.startResourceNodeSpawning();
+      console.log('Auto-spawn started');
+    };
+    
+    window.stopAutoSpawn = function() {
+      battleSystem.stopResourceNodeSpawning();
+      console.log('Auto-spawn stopped');
+    };
+    
+    window.clearAll = function() {
+      battleSystem.clearAll();
+      console.log('Cleared all');
+    };
+    
+    // Spawn 2 adventurers on load
+    setTimeout(() => {
+      for (let i = 0; i < 2; i++) {
+        window.spawnAdventurer();
+      }
+    }, 500);
+  </script>
+</body>
+</html>

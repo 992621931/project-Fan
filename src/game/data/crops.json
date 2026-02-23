@@ -1,0 +1,125 @@
+{
+  "crops": [
+    {
+      "id": "wheat",
+      "name": "小麦",
+      "description": "基础的粮食作物，生长周期短，产量稳定。",
+      "seedItemId": "wheat_seed",
+      "growthTime": 4,
+      "seasons": ["spring", "summer", "autumn"],
+      "yield": [
+        {
+          "itemId": "wheat",
+          "minAmount": 2,
+          "maxAmount": 4,
+          "chance": 1.0
+        },
+        {
+          "itemId": "wheat_seed",
+          "minAmount": 1,
+          "maxAmount": 2,
+          "chance": 0.3
+        }
+      ],
+      "soilRequirement": 30
+    },
+    {
+      "id": "potato",
+      "name": "土豆",
+      "description": "营养丰富的块茎作物，适应性强。",
+      "seedItemId": "potato_seed",
+      "growthTime": 6,
+      "seasons": ["spring", "summer", "autumn"],
+      "yield": [
+        {
+          "itemId": "potato",
+          "minAmount": 3,
+          "maxAmount": 6,
+          "chance": 1.0
+        },
+        {
+          "itemId": "potato_seed",
+          "minAmount": 1,
+          "maxAmount": 3,
+          "chance": 0.4
+        }
+      ],
+      "soilRequirement": 40
+    },
+    {
+      "id": "healing_herb",
+      "name": "治疗草药",
+      "description": "珍贵的药用植物，可用于制作治疗药剂。",
+      "seedItemId": "herb_seed",
+      "growthTime": 8,
+      "seasons": ["spring", "summer"],
+      "yield": [
+        {
+          "itemId": "healing_herb",
+          "minAmount": 1,
+          "maxAmount": 3,
+          "chance": 1.0
+        },
+        {
+          "itemId": "herb_seed",
+          "minAmount": 0,
+          "maxAmount": 1,
+          "chance": 0.2
+        }
+      ],
+      "soilRequirement": 60
+    },
+    {
+      "id": "magic_flower",
+      "name": "魔法花",
+      "description": "稀有的魔法植物，含有强大的魔法能量。",
+      "seedItemId": "magic_seed",
+      "growthTime": 12,
+      "seasons": ["summer"],
+      "yield": [
+        {
+          "itemId": "magic_flower",
+          "minAmount": 1,
+          "maxAmount": 2,
+          "chance": 0.8
+        },
+        {
+          "itemId": "magic_essence",
+          "minAmount": 1,
+          "maxAmount": 1,
+          "chance": 0.3
+        },
+        {
+          "itemId": "magic_seed",
+          "minAmount": 0,
+          "maxAmount": 1,
+          "chance": 0.1
+        }
+      ],
+      "soilRequirement": 80
+    },
+    {
+      "id": "golden_fruit",
+      "name": "黄金果实",
+      "description": "传说中的神奇果实，据说能永久提升属性。",
+      "seedItemId": "golden_seed",
+      "growthTime": 24,
+      "seasons": ["summer", "autumn"],
+      "yield": [
+        {
+          "itemId": "golden_fruit",
+          "minAmount": 1,
+          "maxAmount": 1,
+          "chance": 0.5
+        },
+        {
+          "itemId": "golden_seed",
+          "minAmount": 0,
+          "maxAmount": 1,
+          "chance": 0.05
+        }
+      ],
+      "soilRequirement": 95
+    }
+  ]
+}

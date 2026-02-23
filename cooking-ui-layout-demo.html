@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>烹饪UI布局演示</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .demo-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .section h2 {
+            color: #667eea;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .ingredients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 12px;
+            padding: 12px;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 8px;
+            border: 2px solid rgba(102, 126, 234, 0.2);
+        }
+        .ingredient-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px;
+            background: white;
+            border-radius: 8px;
+            border: 2px solid rgba(46, 204, 113, 0.5);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        .ingredient-card.insufficient {
+            border-color: rgba(231, 76, 60, 0.5);
+        }
+        .ingredient-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        .ingredient-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 8px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-bottom: 6px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            position: relative;
+            font-size: 32px;
+        }
+        .quantity-badge {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            background: rgba(46, 204, 113, 0.9);
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 2px 4px;
+            border-radius: 4px;
+            line-height: 1;
+        }
+        .insufficient .quantity-badge {
+            background: rgba(231, 76, 60, 0.9);
+        }
+        .status-indicator {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #2ecc71;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .insufficient .status-indicator {
+            background: #e74c3c;
+        }
+        .item-name {
+            color: #333;
+            font-size: 11px;
+            text-align: center;
+            line-height: 1.2;
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        .legend {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .legend-box {
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
+            border: 2px solid;
+        }
+        .legend-box.sufficient {
+            border-color: rgba(46, 204, 113, 0.5);
+            background: rgba(46, 204, 113, 0.1);
+        }
+        .legend-box.insufficient {
+            border-color: rgba(231, 76, 60, 0.5);
+            background: rgba(231, 76, 60, 0.1);
+        }
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+        .note strong {
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1>🍳 烹饪UI - 材料图标网格布局演示</h1>
+
+        <div class="section">
+            <h2>所需材料（材料充足）</h2>
+            <div class="ingredients-grid">
+                <div class="ingredient-card">
+                    <div class="status-indicator">✓</div>
+                    <div class="ingredient-icon">
+                        🍬
+                        <div class="quantity-badge">10/3</div>
+                    </div>
+                    <div class="item-name">史莱姆甜珠</div>
+                </div>
+                <div class="ingredient-card">
+                    <div class="status-indicator">✓</div>
+                    <div class="ingredient-icon">
+                        🍄
+                        <div class="quantity-badge">8/3</div>
+                    </div>
+                    <div class="item-name">迷香菇</div>
+                </div>
+                <div class="ingredient-card">
+                    <div class="status-indicator">✓</div>
+                    <div class="ingredient-icon">
+                        🐍
+                        <div class="quantity-badge">5/2</div>
+                    </div>
+                    <div class="item-name">光滑蛇皮</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>所需材料（部分不足）</h2>
+            <div class="ingredients-grid">
+                <div class="ingredient-card">
+                    <div class="status-indicator">✓</div>
+                    <div class="ingredient-icon">
+                        🥔
+                        <div class="quantity-badge">5/3</div>
+                    </div>
+                    <div class="item-name">尸薯</div>
+                </div>
+                <div class="ingredient-card insufficient">
+                    <div class="status-indicator">✗</div>
+                    <div class="ingredient-icon">
+                        🫀
+                        <div class="quantity-badge">0/1</div>
+                    </div>
+                    <div class="item-name">跳动的胆囊</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>所需材料（多种材料）</h2>
+            <div class="ingredients-grid">
+                <div class="ingredient-card">
+                    <div class="status-indicator">✓</div>
+                    <div class="ingredient-icon">
+                        🧂
+                        <div class="quantity-badge">10/2</div>
+                    </div>
+                    <div class="item-name">甜浆腺体</div>
+                </div>
+                <div class="ingredient-card">
+                    <div class="status-indicator">✓</div>
+                    <div class="ingredient-icon">
+                        🐍
+                        <div class="quantity-badge">8/2</div>
+                    </div>
+                    <div class="item-name">双头蛇肝</div>
+                </div>
+                <div class="ingredient-card insufficient">
+                    <div class="status-indicator">✗</div>
+                    <div class="ingredient-icon">
+                        🦋
+                        <div class="quantity-badge">1/2</div>
+                    </div>
+                    <div class="item-name">草菇虫薄翼</div>
+                </div>
+                <div class="ingredient-card">
+                    <div class="status-indicator">✓</div>
+                    <div class="ingredient-icon">
+                        🌿
+                        <div class="quantity-badge">5/2</div>
+                    </div>
+                    <div class="item-name">兰香草</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-box sufficient"></div>
+                <span>材料充足（绿色边框）</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box insufficient"></div>
+                <span>材料不足（红色边框）</span>
+            </div>
+        </div>
+
+        <div class="note">
+            <strong>💡 交互提示：</strong>
+            <ul style="margin: 10px 0 0 0; padding-left: 20px;">
+                <li>鼠标悬停在材料卡片上会有上浮效果</li>
+                <li>右上角显示状态（✓ 充足 / ✗ 不足）</li>
+                <li>图标右下角显示拥有数量/需要数量</li>
+                <li>网格会自动调整列数以适应容器宽度</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

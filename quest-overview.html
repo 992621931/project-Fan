@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>代号：饭 - 任务总览</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      color: #e0e0e0;
+      min-height: 100vh;
+      padding: 24px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 28px;
+      color: #ffd700;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+    }
+    .subtitle {
+      text-align: center;
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 32px;
+    }
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+    .stat-card {
+      background: rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 16px 28px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .stat-card .num { font-size: 28px; font-weight: bold; }
+    .stat-card .label { font-size: 12px; color: #999; margin-top: 4px; }
+    .stat-main .num { color: #e74c3c; }
+    .stat-side .num { color: #3498db; }
+    .stat-daily .num { color: #f39c12; }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 10px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.2s;
+      background: rgba(255,255,255,0.08);
+      color: #ccc;
+    }
+    .tab-btn:hover { background: rgba(255,255,255,0.15); }
+    .tab-btn.active-main { background: #e74c3c; color: white; }
+    .tab-btn.active-side { background: #3498db; color: white; }
+    .tab-btn.active-daily { background: #f39c12; color: white; }
+    .tab-btn.active-all { background: #9b59b6; color: white; }
+
+    .section { margin-bottom: 32px; }
+    .section-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 16px;
+      padding-left: 12px;
+      border-left: 4px solid;
+    }
+    .section-main .section-title { border-color: #e74c3c; color: #e74c3c; }
+    .section-side .section-title { border-color: #3498db; color: #3498db; }
+    .section-daily .section-title { border-color: #f39c12; color: #f39c12; }
+
+    .quest-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 16px;
+    }
+    .quest-card {
+      background: rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+    .quest-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+    .quest-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .quest-order {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: bold;
+      color: white;
+      flex-shrink: 0;
+    }
+    .order-main { background: #e74c3c; }
+    .order-side { background: #3498db; }
+    .order-daily { background: #f39c12; }
+    .quest-name { font-size: 16px; font-weight: bold; color: #fff; }
+    .quest-type-badge {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      color: white;
+      font-weight: 600;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+    .badge-main { background: #e74c3c; }
+    .badge-side { background: #3498db; }
+    .badge-daily { background: #f39c12; }
+
+    .quest-desc {
+      font-size: 13px;
+      color: #aaa;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    .quest-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .meta-tag {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.08);
+      color: #bbb;
+    }
+    .objectives-title {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    .objective {
+      font-size: 13px;
+      color: #ccc;
+      padding: 6px 10px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 6px;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .obj-icon { font-size: 14px; }
+    .obj-amount {
+      margin-left: auto;
+      font-size: 11px;
+      color: #888;
+      background: rgba(255,255,255,0.06);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .rewards {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .rewards-title {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    .reward-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .reward-tag {
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+    .reward-gold { background: rgba(255, 215, 0, 0.15); color: #ffd700; }
+    .reward-crystal { background: rgba(138, 43, 226, 0.15); color: #bb86fc; }
+    .reward-item { background: rgba(46, 204, 113, 0.15); color: #2ecc71; }
+    .reward-unlock { background: rgba(231, 76, 60, 0.15); color: #e74c3c; }
+
+    .prereq {
+      margin-top: 8px;
+      font-size: 11px;
+      color: #777;
+    }
+    .prereq span { color: #e67e22; }
+
+    .chain-arrow {
+      text-align: center;
+      color: #555;
+      font-size: 20px;
+      margin: 4px 0;
+    }
+
+    /* Flow chart for main quests */
+    .flow-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 32px;
+    }
+    .flow-card {
+      width: 100%;
+      max-width: 500px;
+    }
+    .flow-arrow {
+      color: #e74c3c;
+      font-size: 24px;
+      opacity: 0.5;
+      padding: 4px 0;
+    }
+
+    .hidden { display: none; }
+
+    @media (max-width: 600px) {
+      body { padding: 12px; }
+      .quest-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <h1>🎮 代号：饭 - 任务总览</h1>
+  <p class="subtitle">共 29 个任务 | 主线 10 · 支线 10 · 日常 9</p>
+
+  <div class="stats">
+    <div class="stat-card stat-main"><div class="num">10</div><div class="label">主线任务</div></div>
+    <div class="stat-card stat-side"><div class="num">10</div><div class="label">支线任务</div></div>
+    <div class="stat-card stat-daily"><div class="num">9</div><div class="label">日常任务</div></div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active-all" onclick="showTab('all')">全部</button>
+    <button class="tab-btn" onclick="showTab('main')">主线任务</button>
+    <button class="tab-btn" onclick="showTab('side')">支线任务</button>
+    <button class="tab-btn" onclick="showTab('daily')">日常任务</button>
+  </div>
+
+  <div id="content"></div>
+
+  <script>
+    const NPC_NAMES = {
+      'village_chief': '村长',
+      'bartender': '酒保',
+      'blacksmith_zz': '铁匠ZZ',
+      'alchemist_tuanzi': '炼金师团子',
+      'chef_curry': '厨师咖喱',
+      'trainer_alin': '训练师阿林',
+      'summoner_kaoezi': '召唤师烤饵子',
+      'scholar_xiaomei': '学者小梅',
+      'maid': '女仆良子',
+      'merchant_youliang': '商人油亮',
+      'merchant_xiaoheiyang': '商人小黑羊',
+      'player_stall': '玩家摊位'
+    };
+
+    const OBJ_ICONS = {
+      'scene_visit': '🗺️',
+      'recruit': '👥',
+      'combat_complete': '⚔️',
+      'gift_give': '🎁',
+      'craft_item': '🔨',
+      'affinity_level': '❤️',
+      'item_possession': '📦',
+      'dialogue': '💬'
+    };
+
+    const TYPE_NAMES = { 'main': '主线', 'side': '支线', 'daily': '日常' };
+
+    const quests = {
+      main: [
+        { id:"main_01_meet_chief", name:"初来乍到", desc:"前往广场拜访村长，了解村庄的基本情况。", npc:"village_chief", objectives:[{type:"scene_visit",target:"square",amount:1,desc:"前往广场"}], rewards:{gold:100}, prereqs:[], order:1 },
+        { id:"main_02_visit_tavern", name:"酒馆探访", desc:"前往酒馆与酒保交谈，了解冒险者招募的信息。", npc:"bartender", objectives:[{type:"scene_visit",target:"tavern",amount:1,desc:"前往酒馆"}], rewards:{gold:150}, prereqs:["main_01_meet_chief"], order:2 },
+        { id:"main_03_first_recruit", name:"招募伙伴", desc:"在酒馆招募你的第一位冒险者同伴。", npc:"bartender", objectives:[{type:"recruit",target:"any",amount:1,desc:"招募一名冒险者"}], rewards:{gold:300}, prereqs:["main_02_visit_tavern"], order:3 },
+        { id:"main_04_explore_grassland", name:"草原历练", desc:"带领队伍前往草原进行第一次探索。", npc:"village_chief", objectives:[{type:"combat_complete",target:"grassland",amount:1,desc:"在草原完成一次战斗"}], rewards:{gold:500,unlockNpc:"blacksmith_zz"}, prereqs:["main_03_first_recruit"], order:4 },
+        { id:"main_05_meet_blacksmith", name:"铁匠的锤声", desc:"拜访铁匠ZZ，了解装备制作的奥秘。", npc:"blacksmith_zz", objectives:[{type:"gift_give",target:"blacksmith_zz",amount:1,desc:"向铁匠ZZ赠送一份礼物"}], rewards:{gold:400,unlockNpc:"alchemist_tuanzi"}, prereqs:["main_04_explore_grassland"], order:5 },
+        { id:"main_06_meet_alchemist", name:"炼金术入门", desc:"拜访炼金师团子，学习药剂制作的基础知识。", npc:"alchemist_tuanzi", objectives:[{type:"gift_give",target:"alchemist_tuanzi",amount:1,desc:"向炼金师团子赠送一份礼物"}], rewards:{gold:400,unlockNpc:"chef_curry"}, prereqs:["main_05_meet_blacksmith"], order:6 },
+        { id:"main_07_meet_chef", name:"厨房的秘密", desc:"拜访厨师咖喱，品尝村庄的美食。", npc:"chef_curry", objectives:[{type:"gift_give",target:"chef_curry",amount:1,desc:"向厨师咖喱赠送一份礼物"}], rewards:{gold:400,unlockNpc:"trainer_alin"}, prereqs:["main_06_meet_alchemist"], order:7 },
+        { id:"main_08_meet_trainer", name:"转职之路", desc:"拜访训练师阿林，了解角色转职系统。", npc:"trainer_alin", objectives:[{type:"gift_give",target:"trainer_alin",amount:1,desc:"向训练师阿林赠送一份礼物"}], rewards:{gold:400,unlockNpc:"summoner_kaoezi"}, prereqs:["main_07_meet_chef"], order:8 },
+        { id:"main_09_meet_summoner", name:"异界之门", desc:"拜访召唤师烤饵子，探索异界召唤的力量。", npc:"summoner_kaoezi", objectives:[{type:"gift_give",target:"summoner_kaoezi",amount:1,desc:"向召唤师烤饵子赠送一份礼物"}], rewards:{gold:400,unlockNpc:"scholar_xiaomei"}, prereqs:["main_08_meet_trainer"], order:9 },
+        { id:"main_10_meet_scholar", name:"知识的殿堂", desc:"拜访学者小梅，开启卡牌收集之旅。", npc:"scholar_xiaomei", objectives:[{type:"gift_give",target:"scholar_xiaomei",amount:1,desc:"向学者小梅赠送一份礼物"}], rewards:{gold:1000,crystal:50}, prereqs:["main_09_meet_summoner"], order:10 }
+      ],
+      side: [
+        { id:"side_blacksmith_01", name:"铁匠的考验", desc:"为铁匠制作一把铜质长剑，证明你的锻造实力。", npc:"blacksmith_zz", objectives:[{type:"craft_item",target:"copper_longsword",amount:1,desc:"制作铜质长剑 x1"}], rewards:{gold:500,items:[{id:"copper_ore",qty:10}]}, prereqs:[], order:1 },
+        { id:"side_blacksmith_02", name:"全副武装", desc:"制作一件铜甲护胸和一面小圆盾。", npc:"blacksmith_zz", objectives:[{type:"craft_item",target:"copper_chestplate",amount:1,desc:"制作铜甲护胸 x1"},{type:"craft_item",target:"small_round_shield",amount:1,desc:"制作小圆盾 x1"}], rewards:{gold:800,items:[{id:"iron_ore",qty:5}]}, prereqs:["side_blacksmith_01"], order:2 },
+        { id:"side_chef_01", name:"初级厨艺", desc:"制作一份史莱姆QQ糖，展示你的烹饪天赋。", npc:"chef_curry", objectives:[{type:"craft_item",target:"slime_qq_candy",amount:1,desc:"制作史莱姆QQ糖 x1"}], rewards:{gold:400,items:[{id:"slime_sweet_pearl",qty:5}]}, prereqs:[], order:1 },
+        { id:"side_chef_02", name:"草原风味", desc:"制作一份草原套餐，这是厨师咖喱的招牌菜。", npc:"chef_curry", objectives:[{type:"craft_item",target:"grassland_set_meal",amount:1,desc:"制作草原套餐 x1"}], rewards:{gold:1000,crystal:20}, prereqs:["side_chef_01"], order:2 },
+        { id:"side_alchemist_01", name:"药剂学基础", desc:"制作一瓶学徒级治疗药剂。", npc:"alchemist_tuanzi", objectives:[{type:"craft_item",target:"apprentice_healing_potion",amount:1,desc:"制作学徒级治疗药剂 x1"}], rewards:{gold:400,items:[{id:"orchid_herb",qty:5}]}, prereqs:[], order:1 },
+        { id:"side_alchemist_02", name:"全能药剂师", desc:"制作一瓶学徒级大力药剂和一瓶学徒级急速药剂。", npc:"alchemist_tuanzi", objectives:[{type:"craft_item",target:"apprentice_strength_potion",amount:1,desc:"制作学徒级大力药剂 x1"},{type:"craft_item",target:"apprentice_speed_potion",amount:1,desc:"制作学徒级急速药剂 x1"}], rewards:{gold:800,crystal:15}, prereqs:["side_alchemist_01"], order:2 },
+        { id:"side_bartender_01", name:"酒保的请求", desc:"招募3名冒险者，帮助酒保活跃酒馆的气氛。", npc:"bartender", objectives:[{type:"recruit",target:"any",amount:3,desc:"招募3名冒险者"}], rewards:{gold:600}, prereqs:[], order:1 },
+        { id:"side_trainer_01", name:"实力的证明", desc:"在草原完成5次战斗，向训练师证明你的实力。", npc:"trainer_alin", objectives:[{type:"combat_complete",target:"grassland",amount:5,desc:"在草原完成5次战斗"}], rewards:{gold:1000,crystal:30}, prereqs:[], order:1 },
+        { id:"side_scholar_01", name:"知识收集者", desc:"与5位不同的NPC交谈，收集村庄的故事。", npc:"scholar_xiaomei", objectives:[{type:"gift_give",target:"any",amount:5,desc:"向5位NPC赠送礼物"}], rewards:{gold:800,crystal:25}, prereqs:[], order:1 },
+        { id:"side_summoner_01", name:"异界探索者", desc:"招募5名冒险者，为异界召唤积蓄力量。", npc:"summoner_kaoezi", objectives:[{type:"recruit",target:"any",amount:5,desc:"招募5名冒险者"}], rewards:{gold:1000,crystal:30}, prereqs:[], order:1 }
+      ],
+      daily: [
+        { id:"daily_blacksmith_01", name:"日常锻造", desc:"制作任意一件装备。", npc:"blacksmith_zz", objectives:[{type:"craft_item",target:"any_equipment",amount:1,desc:"制作任意装备 x1"}], rewards:{gold:200}, prereqs:[], order:1 },
+        { id:"daily_chef_01", name:"日常烹饪", desc:"制作任意一道料理。", npc:"chef_curry", objectives:[{type:"craft_item",target:"any_cooking",amount:1,desc:"制作任意料理 x1"}], rewards:{gold:200}, prereqs:[], order:1 },
+        { id:"daily_alchemist_01", name:"日常炼金", desc:"制作任意一瓶药剂。", npc:"alchemist_tuanzi", objectives:[{type:"craft_item",target:"any_alchemy",amount:1,desc:"制作任意药剂 x1"}], rewards:{gold:200}, prereqs:[], order:1 },
+        { id:"daily_bartender_01", name:"日常招募", desc:"招募一名新的冒险者。", npc:"bartender", objectives:[{type:"recruit",target:"any",amount:1,desc:"招募1名冒险者"}], rewards:{gold:150}, prereqs:[], order:1 },
+        { id:"daily_trainer_01", name:"日常训练", desc:"完成一次战斗训练。", npc:"trainer_alin", objectives:[{type:"combat_complete",target:"any",amount:1,desc:"完成1次战斗"}], rewards:{gold:150}, prereqs:[], order:1 },
+        { id:"daily_village_chief_01", name:"村长的嘱托", desc:"和村长进行一次对话，聆听他的教诲。", npc:"village_chief", objectives:[{type:"dialogue",target:"village_chief",amount:1,desc:"与村长对话1次"}], rewards:{gold:150}, prereqs:[], order:1 },
+        { id:"daily_maid_01", name:"女仆的心意", desc:"向任意NPC赠送2份礼物。", npc:"maid", objectives:[{type:"gift_give",target:"any",amount:2,desc:"向任意NPC赠送2份礼物"}], rewards:{gold:200}, prereqs:[], order:1 },
+        { id:"daily_scholar_01", name:"日常研究", desc:"访问3个不同的场景，收集研究素材。", npc:"scholar_xiaomei", objectives:[{type:"scene_visit",target:"any",amount:3,desc:"访问3个不同场景"}], rewards:{gold:200}, prereqs:[], order:1 },
+        { id:"daily_summoner_01", name:"异界感应", desc:"招募一名冒险者，感受异界的力量。", npc:"summoner_kaoezi", objectives:[{type:"recruit",target:"any",amount:1,desc:"招募1名冒险者"}], rewards:{gold:150}, prereqs:[], order:1 }
+      ]
+    };
+
+    function renderRewards(r) {
+      let html = '';
+      if (r.gold) html += `<span class="reward-tag reward-gold">💰 ${r.gold} 金币</span>`;
+      if (r.crystal) html += `<span class="reward-tag reward-crystal">💎 ${r.crystal} 水晶</span>`;
+      if (r.unlockNpc) html += `<span class="reward-tag reward-unlock">🔓 解锁 ${NPC_NAMES[r.unlockNpc] || r.unlockNpc}</span>`;
+      if (r.unlockStage) html += `<span class="reward-tag reward-unlock">🗺️ 解锁 ${r.unlockStage}</span>`;
+      if (r.items) r.items.forEach(i => { html += `<span class="reward-tag reward-item">📦 ${i.id} x${i.qty}</span>`; });
+      return html;
+    }
+
+    function renderCard(q, type) {
+      const badgeClass = `badge-${type}`;
+      const orderClass = `order-${type}`;
+      const npcName = NPC_NAMES[q.npc] || q.npc;
+
+      let objsHtml = q.objectives.map(o => `
+        <div class="objective">
+          <span class="obj-icon">${OBJ_ICONS[o.type] || '📋'}</span>
+          <span>${o.desc}</span>
+          <span class="obj-amount">x${o.amount}</span>
+        </div>
+      `).join('');
+
+      let prereqHtml = '';
+      if (q.prereqs.length > 0) {
+        const names = q.prereqs.map(pid => {
+          for (const t of ['main','side','daily']) {
+            const found = quests[t].find(x => x.id === pid);
+            if (found) return found.name;
+          }
+          return pid;
+        });
+        prereqHtml = `<div class="prereq">前置任务: <span>${names.join(', ')}</span></div>`;
+      }
+
+      return `
+        <div class="quest-card">
+          <div class="quest-header">
+            <div class="quest-order ${orderClass}">${q.order}</div>
+            <div class="quest-name">${q.name}</div>
+            <span class="quest-type-badge ${badgeClass}">${TYPE_NAMES[type]}</span>
+          </div>
+          <div class="quest-desc">${q.desc}</div>
+          <div class="quest-meta">
+            <span class="meta-tag">📍 ${npcName}</span>
+            <span class="meta-tag">🆔 ${q.id}</span>
+          </div>
+          <div class="objectives-title">📋 任务目标</div>
+          ${objsHtml}
+          <div class="rewards">
+            <div class="rewards-title">🎁 奖励</div>
+            <div class="reward-list">${renderRewards(q.rewards)}</div>
+          </div>
+          ${prereqHtml}
+        </div>
+      `;
+    }
+
+    function renderSection(type, title) {
+      const list = quests[type];
+      if (!list || list.length === 0) return '';
+
+      if (type === 'main') {
+        // Render as flow chart
+        let html = `<div class="section section-${type}"><div class="section-title">${title} (${list.length})</div><div class="flow-container">`;
+        list.forEach((q, i) => {
+          html += `<div class="flow-card">${renderCard(q, type)}</div>`;
+          if (i < list.length - 1) html += `<div class="flow-arrow">⬇</div>`;
+        });
+        html += '</div></div>';
+        return html;
+      }
+
+      let html = `<div class="section section-${type}"><div class="section-title">${title} (${list.length})</div><div class="quest-grid">`;
+      list.forEach(q => { html += renderCard(q, type); });
+      html += '</div></div>';
+      return html;
+    }
+
+    let currentTab = 'all';
+
+    function showTab(tab) {
+      currentTab = tab;
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.className = 'tab-btn';
+      });
+      event.target.classList.add(`active-${tab}`);
+      render();
+    }
+
+    function render() {
+      const el = document.getElementById('content');
+      let html = '';
+      if (currentTab === 'all' || currentTab === 'main') html += renderSection('main', '⚔️ 主线任务');
+      if (currentTab === 'all' || currentTab === 'side') html += renderSection('side', '📜 支线任务');
+      if (currentTab === 'all' || currentTab === 'daily') html += renderSection('daily', '🔄 日常任务');
+      el.innerHTML = html;
+    }
+
+    render();
+  </script>
+</body>
+</html>

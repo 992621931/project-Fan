@@ -1,0 +1,114 @@
+{
+  "recipes": [
+    {
+      "id": "apprentice_healing_potion",
+      "name": "学徒级治疗药剂",
+      "description": "恢复30点生命值",
+      "icon": "images/touxiang_yaoji_xuetujizhiliaoyaoji.png",
+      "rarity": "common",
+      "type": [
+        "potion",
+        "consumable"
+      ],
+      "materials": [
+        {
+          "itemId": "lavender",
+          "amount": 3
+        },
+        {
+          "itemId": "slime_sweet_pearl",
+          "amount": 3
+        }
+      ],
+      "buyPrice": 100
+    },
+    {
+      "id": "apprentice_mana_potion",
+      "name": "学徒级魔力药剂",
+      "description": "恢复30点魔法值",
+      "icon": "images/touxiang_yaoji_xuetujimoliyaoji.png",
+      "rarity": "common",
+      "type": [
+        "potion",
+        "consumable"
+      ],
+      "materials": [
+        {
+          "itemId": "lavender",
+          "amount": 3
+        },
+        {
+          "itemId": "mystic_mushroom",
+          "amount": 3
+        }
+      ],
+      "buyPrice": 100
+    },
+    {
+      "id": "apprentice_hardening_potion",
+      "name": "学徒级硬化药剂",
+      "description": "获得硬化增益效果，持续30秒",
+      "icon": "images/touxiang_yaoji_xuetujiyinghuayaoji.png",
+      "rarity": "common",
+      "type": [
+        "potion",
+        "consumable"
+      ],
+      "materials": [
+        {
+          "itemId": "lavender",
+          "amount": 4
+        },
+        {
+          "itemId": "two_headed_snake_liver",
+          "amount": 2
+        }
+      ],
+      "buyPrice": 150
+    },
+    {
+      "id": "apprentice_strength_potion",
+      "name": "学徒级大力药剂",
+      "description": "获得大力增益效果，持续30秒",
+      "icon": "images/touxiang_yaoji_xuetujidaliyaoji.png",
+      "rarity": "common",
+      "type": [
+        "potion",
+        "consumable"
+      ],
+      "materials": [
+        {
+          "itemId": "lavender",
+          "amount": 4
+        },
+        {
+          "itemId": "sweet_syrup_gland",
+          "amount": 2
+        }
+      ],
+      "buyPrice": 150
+    },
+    {
+      "id": "apprentice_speed_potion",
+      "name": "学徒级急速药剂",
+      "description": "获得急速增益效果，持续30秒",
+      "icon": "images/touxiang_yaoji_xuetujijisuyaoji.png",
+      "rarity": "common",
+      "type": [
+        "potion",
+        "consumable"
+      ],
+      "materials": [
+        {
+          "itemId": "lavender",
+          "amount": 4
+        },
+        {
+          "itemId": "grass_mushroom_worm_thin_wing",
+          "amount": 2
+        }
+      ],
+      "buyPrice": 150
+    }
+  ]
+}

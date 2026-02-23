@@ -1,0 +1,751 @@
+{
+  "mainQuests": [
+    {
+      "id": "main_01_meet_chief",
+      "name": "初来乍到",
+      "description": "与村长进行一次对话，了解村庄的基本情况。",
+      "type": "main",
+      "npcId": "village_chief",
+      "objectives": [
+        {
+          "type": "dialogue",
+          "target": "village_chief",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "与村长对话1次"
+        }
+      ],
+      "rewards": { "gold": 100 },
+      "prerequisites": [],
+      "sortOrder": 1
+    },
+    {
+      "id": "main_02_visit_tavern",
+      "name": "酒馆探访",
+      "description": "前往酒馆与酒保鲍勃交谈，了解冒险者招募的信息。",
+      "type": "main",
+      "npcId": "bartender",
+      "objectives": [
+        {
+          "type": "dialogue",
+          "target": "bartender",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "与酒保鲍勃对话1次"
+        }
+      ],
+      "rewards": { "gold": 150, "affinityBonus": [{ "npcId": "bartender", "amount": 5 }] },
+      "prerequisites": ["main_01_meet_chief"],
+      "sortOrder": 2
+    },
+    {
+      "id": "main_03_first_recruit",
+      "name": "招募伙伴",
+      "description": "在酒馆招募你的第一位冒险者同伴。",
+      "type": "main",
+      "npcId": "bartender",
+      "objectives": [
+        {
+          "type": "recruit",
+          "target": "any",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "招募一名冒险者"
+        }
+      ],
+      "rewards": { "gold": 300, "unlockStage": "grassland", "items": [{ "itemId": "sugar_pickled_snake_liver", "quantity": 1 }] },
+      "prerequisites": ["main_02_visit_tavern"],
+      "sortOrder": 3
+    },
+    {
+      "id": "main_04_explore_grassland",
+      "name": "草原历练",
+      "description": "带领队伍前往草原，击杀3个敌人。",
+      "type": "main",
+      "npcId": "village_chief",
+      "objectives": [
+        {
+          "type": "combat_kill",
+          "target": "grassland",
+          "requiredAmount": 3,
+          "currentAmount": 0,
+          "description": "在草原击杀3个敌人"
+        }
+      ],
+      "rewards": { "gold": 500, "unlockNpc": "blacksmith_zz", "items": [{ "itemId": "copper_ore", "quantity": 5 }, { "itemId": "oak_wood", "quantity": 5 }], "affinityBonus": [{ "npcId": "blacksmith_zz", "amount": 10 }] },
+      "prerequisites": ["main_03_first_recruit"],
+      "sortOrder": 4
+    },
+    {
+      "id": "main_05_meet_blacksmith",
+      "name": "铁匠的锤声",
+      "description": "制作一个铜质长剑和一个小圆盾。",
+      "type": "main",
+      "npcId": "blacksmith_zz",
+      "objectives": [
+        {
+          "type": "craft_item",
+          "target": "copper_longsword",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "制作1个铜质长剑"
+        },
+        {
+          "type": "craft_item",
+          "target": "small_round_shield",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "制作1个小圆盾"
+        }
+      ],
+      "rewards": { "gold": 400, "unlockNpc": "chef_curry", "affinityBonus": [{ "npcId": "blacksmith_zz", "amount": 10 }, { "npcId": "chef_curry", "amount": 10 }] },
+      "prerequisites": ["main_04_explore_grassland"],
+      "sortOrder": 5
+    },
+    {
+      "id": "main_06_meet_alchemist",
+      "name": "尝尝咖喱的手艺",
+      "description": "从厨师咖喱的摊位中购买一件菜肴。",
+      "type": "main",
+      "npcId": "chef_curry",
+      "objectives": [
+        {
+          "type": "shop_purchase",
+          "target": "chef_curry",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "从咖喱的摊位中购买1件菜肴"
+        }
+      ],
+      "rewards": { "gold": 400, "unlockNpc": "alchemist_tuanzi", "affinityBonus": [{ "npcId": "alchemist_tuanzi", "amount": 10 }], "items": [{ "itemId": "lavender", "quantity": 3 }, { "itemId": "slime_sweet_pearl", "quantity": 3 }] },
+      "prerequisites": ["main_05_meet_blacksmith"],
+      "sortOrder": 6
+    },
+    {
+      "id": "main_07_meet_chef",
+      "name": "试试团子的药剂",
+      "description": "制作一瓶学徒级治疗药剂。",
+      "type": "main",
+      "npcId": "alchemist_tuanzi",
+      "objectives": [
+        {
+          "type": "craft_item",
+          "target": "apprentice_healing_potion",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "制作1瓶学徒级治疗药剂"
+        }
+      ],
+      "rewards": { "gold": 400, "unlockNpc": "trainer_alin", "affinityBonus": [{ "npcId": "trainer_alin", "amount": 10 }] },
+      "prerequisites": ["main_06_meet_alchemist"],
+      "sortOrder": 7
+    },
+    {
+      "id": "main_08_meet_trainer",
+      "name": "转职之路",
+      "description": "将一个角色进行转职。",
+      "type": "main",
+      "npcId": "trainer_alin",
+      "objectives": [
+        {
+          "type": "job_change",
+          "target": "any",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "将一个角色进行转职"
+        }
+      ],
+      "rewards": { "gold": 400, "unlockNpc": "summoner_kaoezi", "crystal": 1, "affinityBonus": [{ "npcId": "summoner_kaoezi", "amount": 10 }] },
+      "prerequisites": ["main_07_meet_chef"],
+      "sortOrder": 8
+    },
+    {
+      "id": "main_09_meet_summoner",
+      "name": "异界之门",
+      "description": "通过召唤师烤鹅子，成功进行一次异界召唤。",
+      "type": "main",
+      "npcId": "summoner_kaoezi",
+      "objectives": [
+        {
+          "type": "summon",
+          "target": "any",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "通过召唤师烤鹅子，成功进行一次异界召唤"
+        }
+      ],
+      "rewards": { "gold": 400, "unlockNpc": "scholar_xiaomei", "affinityBonus": [{ "npcId": "scholar_xiaomei", "amount": 10 }] },
+      "prerequisites": ["main_08_meet_trainer"],
+      "sortOrder": 9
+    },
+    {
+      "id": "main_10_meet_scholar",
+      "name": "知识的殿堂",
+      "description": "和智者小么进行一次对话。",
+      "type": "main",
+      "npcId": "scholar_xiaomei",
+      "objectives": [
+        {
+          "type": "dialogue",
+          "target": "scholar_xiaomei",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "和智者小么进行一次对话"
+        }
+      ],
+      "rewards": { "gold": 1000, "crystal": 50, "unlockFeature": "card-collection", "cards": [{ "cardId": "card_xiaome" }], "items": [{ "itemId": "skill_book_heavy_punch", "quantity": 1 }, { "itemId": "skill_book_simple_bandage", "quantity": 1 }] },
+      "prerequisites": ["main_09_meet_summoner"],
+      "sortOrder": 10
+    },
+    {
+      "id": "main_11_learn_skills",
+      "name": "技多不压身",
+      "description": "在营地中点击角色，为角色学习新的技能并更换1次主动技能。",
+      "type": "main",
+      "npcId": "village_chief",
+      "objectives": [
+        {
+          "type": "skill_change",
+          "target": "any",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "为角色学习新技能并更换1次主动技能"
+        }
+      ],
+      "rewards": { "gold": 500, "items": [{ "itemId": "slime_sweet_pearl", "quantity": 3 }, { "itemId": "smooth_snake_skin", "quantity": 3 }, { "itemId": "mystic_mushroom", "quantity": 3 }] },
+      "prerequisites": ["main_10_meet_scholar"],
+      "sortOrder": 11
+    },
+    {
+      "id": "main_12_cooking",
+      "name": "烹饪时间",
+      "description": "在营地中点击烹饪功能，制作3次菜肴。",
+      "type": "main",
+      "npcId": "village_chief",
+      "objectives": [
+        {
+          "type": "craft_item",
+          "target": "any_cooking",
+          "requiredAmount": 3,
+          "currentAmount": 0,
+          "description": "制作3次菜肴"
+        }
+      ],
+      "rewards": { "gold": 500, "affinityBonus": [{ "npcId": "village_chief", "amount": 10 }] },
+      "prerequisites": ["main_11_learn_skills"],
+      "sortOrder": 12
+    },
+    {
+      "id": "main_13_open_stall",
+      "name": "开始营业",
+      "description": "在市场中点击\"我的摊位\"，在摊位管理中添加1次商品。",
+      "type": "main",
+      "npcId": "village_chief",
+      "objectives": [
+        {
+          "type": "stall_add_item",
+          "target": "any",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "在摊位管理中添加1次商品"
+        }
+      ],
+      "rewards": { "gold": 500, "unlockNpc": "merchant_xiaoheiyang" },
+      "prerequisites": ["main_12_cooking"],
+      "sortOrder": 13
+    },
+    {
+      "id": "main_14_buy_from_xiaoheiyang",
+      "name": "进货",
+      "description": "在市场中点击\"杂货商小黑羊\"，在小黑羊的摊位中购买1次商品。",
+      "type": "main",
+      "npcId": "merchant_xiaoheiyang",
+      "objectives": [
+        {
+          "type": "shop_purchase",
+          "target": "merchant_xiaoheiyang",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "从小黑羊的摊位中购买1次商品"
+        }
+      ],
+      "rewards": { "gold": 500, "unlockNpc": "merchant_youliang" },
+      "prerequisites": ["main_13_open_stall"],
+      "sortOrder": 14
+    },
+    {
+      "id": "main_15_buy_from_youliang",
+      "name": "军购",
+      "description": "在市场中点击\"装备商由良\"，在由良的摊位中购买1次商品。",
+      "type": "main",
+      "npcId": "merchant_youliang",
+      "objectives": [
+        {
+          "type": "shop_purchase",
+          "target": "merchant_youliang",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "从由良的摊位中购买1次商品"
+        }
+      ],
+      "rewards": { "gold": 500 },
+      "prerequisites": ["main_14_buy_from_xiaoheiyang"],
+      "sortOrder": 15
+    },
+    {
+      "id": "main_16_equip_item",
+      "name": "全副武装",
+      "description": "在营地中点击角色，为其装备1次装备。",
+      "type": "main",
+      "npcId": "village_chief",
+      "objectives": [
+        {
+          "type": "equipment_equip",
+          "target": "any",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "为角色装备1次装备"
+        }
+      ],
+      "rewards": { "gold": 500 },
+      "prerequisites": ["main_15_buy_from_youliang"],
+      "sortOrder": 16
+    }
+  ],
+  "sideQuests": [
+    {
+      "id": "side_blacksmith_01",
+      "name": "铁匠的考验",
+      "description": "为铁匠制作一把铜质长剑，证明你的锻造实力。",
+      "type": "side",
+      "npcId": "blacksmith_zz",
+      "objectives": [
+        {
+          "type": "craft_item",
+          "target": "copper_longsword",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "制作铜质长剑 x1"
+        }
+      ],
+      "rewards": { "gold": 500, "items": [{ "itemId": "copper_ore", "quantity": 10 }] },
+      "prerequisites": [],
+      "sortOrder": 1
+    },
+    {
+      "id": "side_blacksmith_02",
+      "name": "全副武装",
+      "description": "制作一件铜甲护胸和一面小圆盾。",
+      "type": "side",
+      "npcId": "blacksmith_zz",
+      "objectives": [
+        {
+          "type": "craft_item",
+          "target": "copper_chestplate",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "制作铜甲护胸 x1"
+        },
+        {
+          "type": "craft_item",
+          "target": "small_round_shield",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "制作小圆盾 x1"
+        }
+      ],
+      "rewards": { "gold": 800, "items": [{ "itemId": "iron_ore", "quantity": 5 }] },
+      "prerequisites": ["side_blacksmith_01"],
+      "sortOrder": 2
+    },
+    {
+      "id": "side_chef_01",
+      "name": "初级厨艺",
+      "description": "制作一份史莱姆QQ糖，展示你的烹饪天赋。",
+      "type": "side",
+      "npcId": "chef_curry",
+      "objectives": [
+        {
+          "type": "craft_item",
+          "target": "slime_qq_candy",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "制作史莱姆QQ糖 x1"
+        }
+      ],
+      "rewards": { "gold": 400, "items": [{ "itemId": "slime_sweet_pearl", "quantity": 5 }] },
+      "prerequisites": [],
+      "sortOrder": 1
+    },
+    {
+      "id": "side_chef_02",
+      "name": "草原风味",
+      "description": "制作一份草原套餐，这是厨师咖喱的招牌菜。",
+      "type": "side",
+      "npcId": "chef_curry",
+      "objectives": [
+        {
+          "type": "craft_item",
+          "target": "grassland_set_meal",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "制作草原套餐 x1"
+        }
+      ],
+      "rewards": { "gold": 1000, "crystal": 20 },
+      "prerequisites": ["side_chef_01"],
+      "sortOrder": 2
+    },
+    {
+      "id": "side_alchemist_01",
+      "name": "药剂学基础",
+      "description": "制作一瓶学徒级治疗药剂。",
+      "type": "side",
+      "npcId": "alchemist_tuanzi",
+      "objectives": [
+        {
+          "type": "craft_item",
+          "target": "apprentice_healing_potion",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "制作学徒级治疗药剂 x1"
+        }
+      ],
+      "rewards": { "gold": 400, "items": [{ "itemId": "orchid_herb", "quantity": 5 }] },
+      "prerequisites": [],
+      "sortOrder": 1
+    },
+    {
+      "id": "side_alchemist_02",
+      "name": "全能药剂师",
+      "description": "制作一瓶学徒级大力药剂和一瓶学徒级急速药剂。",
+      "type": "side",
+      "npcId": "alchemist_tuanzi",
+      "objectives": [
+        {
+          "type": "craft_item",
+          "target": "apprentice_strength_potion",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "制作学徒级大力药剂 x1"
+        },
+        {
+          "type": "craft_item",
+          "target": "apprentice_speed_potion",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "制作学徒级急速药剂 x1"
+        }
+      ],
+      "rewards": { "gold": 800, "crystal": 15 },
+      "prerequisites": ["side_alchemist_01"],
+      "sortOrder": 2
+    },
+    {
+      "id": "side_bartender_01",
+      "name": "酒保的请求",
+      "description": "招募3名冒险者，帮助酒保活跃酒馆的气氛。",
+      "type": "side",
+      "npcId": "bartender",
+      "objectives": [
+        {
+          "type": "recruit",
+          "target": "any",
+          "requiredAmount": 3,
+          "currentAmount": 0,
+          "description": "招募3名冒险者"
+        }
+      ],
+      "rewards": { "gold": 600 },
+      "prerequisites": [],
+      "sortOrder": 1
+    },
+    {
+      "id": "side_trainer_01",
+      "name": "实力的证明",
+      "description": "在草原完成5次战斗，向训练师证明你的实力。",
+      "type": "side",
+      "npcId": "trainer_alin",
+      "objectives": [
+        {
+          "type": "combat_complete",
+          "target": "grassland",
+          "requiredAmount": 5,
+          "currentAmount": 0,
+          "description": "在草原完成5次战斗"
+        }
+      ],
+      "rewards": { "gold": 1000, "crystal": 30 },
+      "prerequisites": [],
+      "sortOrder": 1
+    },
+    {
+      "id": "side_scholar_01",
+      "name": "知识收集者",
+      "description": "与5位不同的NPC交谈，收集村庄的故事。",
+      "type": "side",
+      "npcId": "scholar_xiaomei",
+      "objectives": [
+        {
+          "type": "gift_give",
+          "target": "any",
+          "requiredAmount": 5,
+          "currentAmount": 0,
+          "description": "向5位NPC赠送礼物"
+        }
+      ],
+      "rewards": { "gold": 800, "crystal": 25 },
+      "prerequisites": [],
+      "sortOrder": 1
+    },
+    {
+      "id": "side_summoner_01",
+      "name": "异界探索者",
+      "description": "招募5名冒险者，为异界召唤积蓄力量。",
+      "type": "side",
+      "npcId": "summoner_kaoezi",
+      "objectives": [
+        {
+          "type": "recruit",
+          "target": "any",
+          "requiredAmount": 5,
+          "currentAmount": 0,
+          "description": "招募5名冒险者"
+        }
+      ],
+      "rewards": { "gold": 1000, "crystal": 30 },
+      "prerequisites": [],
+      "sortOrder": 1
+    },
+    {
+      "id": "side_village_chief_01",
+      "name": "吸引商户",
+      "description": "在草原关卡中击杀1次赤鬃，证明村庄周边的安全。",
+      "type": "side",
+      "npcId": "village_chief",
+      "objectives": [
+        {
+          "type": "kill_enemy",
+          "target": "enemy_red_mane",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "在草原击杀赤鬃 x1"
+        }
+      ],
+      "rewards": { "unlockNpc": "bookseller_xiaochao" },
+      "prerequisites": [],
+      "sortOrder": 1
+    },
+    {
+      "id": "side_village_chief_02",
+      "name": "去往森林的路",
+      "description": "在草原关卡中击杀20次赤鬃，清除通往森林的威胁。",
+      "type": "side",
+      "npcId": "village_chief",
+      "objectives": [
+        {
+          "type": "kill_enemy",
+          "target": "enemy_red_mane",
+          "requiredAmount": 20,
+          "currentAmount": 0,
+          "description": "在草原击杀赤鬃 x20"
+        }
+      ],
+      "rewards": { "unlockStage": "forest" },
+      "prerequisites": [],
+      "sortOrder": 2
+    },
+    {
+      "id": "side_village_chief_03",
+      "name": "深入洞穴",
+      "description": "在森林关卡中击杀20次胡克，打通前往洞穴的道路。",
+      "type": "side",
+      "npcId": "village_chief",
+      "objectives": [
+        {
+          "type": "kill_enemy",
+          "target": "enemy_huke",
+          "requiredAmount": 20,
+          "currentAmount": 0,
+          "description": "在森林击杀胡克 x20"
+        }
+      ],
+      "rewards": { "unlockStage": "cave" },
+      "prerequisites": ["side_village_chief_02"],
+      "sortOrder": 3
+    }
+  ],
+  "dailyQuests": [
+    {
+      "id": "daily_blacksmith_01",
+      "name": "日常锻造",
+      "description": "制作任意一件装备。",
+      "type": "daily",
+      "npcId": "blacksmith_zz",
+      "objectives": [
+        {
+          "type": "craft_item",
+          "target": "any_equipment",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "制作任意装备 x1"
+        }
+      ],
+      "rewards": { "gold": 200 },
+      "prerequisites": [],
+      "sortOrder": 1
+    },
+    {
+      "id": "daily_chef_01",
+      "name": "日常烹饪",
+      "description": "制作任意一道料理。",
+      "type": "daily",
+      "npcId": "chef_curry",
+      "objectives": [
+        {
+          "type": "craft_item",
+          "target": "any_cooking",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "制作任意料理 x1"
+        }
+      ],
+      "rewards": { "gold": 200 },
+      "prerequisites": [],
+      "sortOrder": 1
+    },
+    {
+      "id": "daily_alchemist_01",
+      "name": "日常炼金",
+      "description": "制作任意一瓶药剂。",
+      "type": "daily",
+      "npcId": "alchemist_tuanzi",
+      "objectives": [
+        {
+          "type": "craft_item",
+          "target": "any_alchemy",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "制作任意药剂 x1"
+        }
+      ],
+      "rewards": { "gold": 200 },
+      "prerequisites": [],
+      "sortOrder": 1
+    },
+    {
+      "id": "daily_bartender_01",
+      "name": "日常招募",
+      "description": "招募一名新的冒险者。",
+      "type": "daily",
+      "npcId": "bartender",
+      "objectives": [
+        {
+          "type": "recruit",
+          "target": "any",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "招募1名冒险者"
+        }
+      ],
+      "rewards": { "gold": 150 },
+      "prerequisites": [],
+      "sortOrder": 1
+    },
+    {
+      "id": "daily_trainer_01",
+      "name": "日常训练",
+      "description": "完成一次战斗训练。",
+      "type": "daily",
+      "npcId": "trainer_alin",
+      "objectives": [
+        {
+          "type": "combat_complete",
+          "target": "any",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "完成1次战斗"
+        }
+      ],
+      "rewards": { "gold": 150 },
+      "prerequisites": [],
+      "sortOrder": 1
+    },
+    {
+      "id": "daily_village_chief_01",
+      "name": "村长的嘱托",
+      "description": "和村长进行一次对话，聆听他的教诲。",
+      "type": "daily",
+      "npcId": "village_chief",
+      "objectives": [
+        {
+          "type": "dialogue",
+          "target": "village_chief",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "与村长对话1次"
+        }
+      ],
+      "rewards": { "gold": 150 },
+      "prerequisites": [],
+      "sortOrder": 1
+    },
+    {
+      "id": "daily_maid_01",
+      "name": "女仆的心意",
+      "description": "向任意NPC赠送2份礼物。",
+      "type": "daily",
+      "npcId": "maid",
+      "objectives": [
+        {
+          "type": "gift_give",
+          "target": "any",
+          "requiredAmount": 2,
+          "currentAmount": 0,
+          "description": "向任意NPC赠送2份礼物"
+        }
+      ],
+      "rewards": { "gold": 200 },
+      "prerequisites": [],
+      "sortOrder": 1
+    },
+    {
+      "id": "daily_scholar_01",
+      "name": "日常研究",
+      "description": "访问3个不同的场景，收集研究素材。",
+      "type": "daily",
+      "npcId": "scholar_xiaomei",
+      "objectives": [
+        {
+          "type": "scene_visit",
+          "target": "any",
+          "requiredAmount": 3,
+          "currentAmount": 0,
+          "description": "访问3个不同场景"
+        }
+      ],
+      "rewards": { "gold": 200 },
+      "prerequisites": [],
+      "sortOrder": 1
+    },
+    {
+      "id": "daily_summoner_01",
+      "name": "异界感应",
+      "description": "招募一名冒险者，感受异界的力量。",
+      "type": "daily",
+      "npcId": "summoner_kaoezi",
+      "objectives": [
+        {
+          "type": "recruit",
+          "target": "any",
+          "requiredAmount": 1,
+          "currentAmount": 0,
+          "description": "招募1名冒险者"
+        }
+      ],
+      "rewards": { "gold": 150 },
+      "prerequisites": [],
+      "sortOrder": 1
+    }
+  ]
+}
