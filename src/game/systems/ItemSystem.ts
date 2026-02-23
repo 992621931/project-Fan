@@ -98,6 +98,14 @@ export class ItemSystem extends System {
       // Load from item-prefabs.json
       const prefabItems = itemPrefabsData.items || [];
       prefabItems.forEach((item: any) => {
+        // Extract hungerRestore from effects array if present
+        if (item.type === 'food' && !item.hungerRestore && Array.isArray(item.effects)) {
+          const hungerEffect = item.effects.find((e: any) => e.type === 'hunger');
+          if (hungerEffect) {
+            item.hungerRestore = hungerEffect.value;
+            item.effects = `饱腹度+${hungerEffect.value}`;
+          }
+        }
         this.itemDatabase.set(item.id, item as ItemData);
       });
       

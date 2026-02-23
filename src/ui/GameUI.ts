@@ -879,6 +879,14 @@ export class GameUI {
       const prefabsResponse = await fetch('src/game/data/item-prefabs.json');
       const prefabsData = await prefabsResponse.json();
       prefabsData.items.forEach((item: any) => {
+        // Extract hungerRestore from effects array if present
+        if (item.type === 'food' && !item.hungerRestore && Array.isArray(item.effects)) {
+          const hungerEffect = item.effects.find((e: any) => e.type === 'hunger');
+          if (hungerEffect) {
+            item.hungerRestore = hungerEffect.value;
+            item.effects = `饱腹度+${hungerEffect.value}`;
+          }
+        }
         this.itemsData.set(item.id, item);
       });
 
