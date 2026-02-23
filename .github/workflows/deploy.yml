@@ -3,10 +3,6 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
-  release:
-    types: [published]
 
 permissions:
   contents: read
@@ -17,151 +13,34 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
-env:
-  NODE_VERSION: '18'
-
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ env.NODE_VERSION }}
-        cache: 'npm'
-        
-    - name: Install dependencies
-      run: npm ci
-      
-    - name: Run linting
-      run: npm run lint
-      
-    - name: Run type checking
-      run: npm run type-check
-      
-    - name: Run unit tests
-      run: npm run test
-      
-    - name: Run performance tests
-      run: npm run test:performance
-      continue-on-error: true
-      
-    - name: Generate test coverage
-      run: npm run test:coverage
-      continue-on-error: true
-      
-    - name: Upload coverage reports
-      uses: codecov/codecov-action@v3
-      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-      continue-on-error: true
-
   build:
     runs-on: ubuntu-latest
-    outputs:
-      version: ${{ steps.version.outputs.version }}
-      build-time: ${{ steps.build-info.outputs.build-time }}
-    
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-      with:
-        fetch-depth: 0  # Fetch full history for version calculation
-      
+
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: ${{ env.NODE_VERSION }}
+        node-version: '18'
         cache: 'npm'
-        
+
     - name: Install dependencies
       run: npm ci
-      
-    - name: Generate version info
-      id: version
-      run: |
-        if [ "${{ github.event_name }}" = "release" ]; then
-          VERSION="${{ github.event.release.tag_name }}"
-        else
-          VERSION="$(date +%Y.%m.%d)-$(git rev-parse --short HEAD)"
-        fi
-        echo "version=$VERSION" >> $GITHUB_OUTPUT
-        echo "Generated version: $VERSION"
-        
-    - name: Generate build info
-      id: build-info
-      run: |
-        BUILD_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-        echo "build-time=$BUILD_TIME" >> $GITHUB_OUTPUT
-        echo "Build time: $BUILD_TIME"
-        
-    - name: Create version file
-      run: |
-        mkdir -p src/generated
-        cat > src/generated/version.ts << EOF
-        // Auto-generated version information
-        export const VERSION_INFO = {
-          version: '${{ steps.version.outputs.version }}',
-          buildTime: '${{ steps.build-info.outputs.build-time }}',
-          commit: '${{ github.sha }}',
-          branch: '${{ github.ref_name }}',
-          environment: 'production'
-        } as const;
-        EOF
-        
+
     - name: Build for production
       run: npm run build
-      env:
-        NODE_ENV: production
-        VITE_VERSION: ${{ steps.version.outputs.version }}
-        VITE_BUILD_TIME: ${{ steps.build-info.outputs.build-time }}
-        VITE_COMMIT: ${{ github.sha }}
-        
-    - name: Generate build manifest
-      run: |
-        cat > dist/build-manifest.json << EOF
-        {
-          "version": "${{ steps.version.outputs.version }}",
-          "buildTime": "${{ steps.build-info.outputs.build-time }}",
-          "commit": "${{ github.sha }}",
-          "branch": "${{ github.ref_name }}",
-          "workflow": "${{ github.run_id }}",
-          "environment": "production"
-        }
-        EOF
-        
-    - name: Optimize build
-      run: |
-        # Compress assets
-        find dist -name "*.js" -exec gzip -k {} \;
-        find dist -name "*.css" -exec gzip -k {} \;
-        find dist -name "*.html" -exec gzip -k {} \;
-        
-        # Generate file checksums
-        find dist -type f -exec sha256sum {} \; > dist/checksums.txt
-        
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: build-artifacts-${{ steps.version.outputs.version }}
-        path: dist/
-        retention-days: 30
-        
+
     - name: Setup Pages
-      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
       uses: actions/configure-pages@v4
-      
+
     - name: Upload Pages artifact
-      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
       uses: actions/upload-pages-artifact@v3
       with:
         path: ./dist
 
   deploy:
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -171,29 +50,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        
-      - name: Notify deployment success
-        if: success()
-        run: |
-          echo "🚀 Deployment successful!"
-          echo "Version: ${{ needs.build.outputs.version }}"
-          echo "Build time: ${{ needs.build.outputs.build-time }}"
-          echo "URL: ${{ steps.deployment.outputs.page_url }}"
-          
-  notify:
-    if: always() && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
-    runs-on: ubuntu-latest
-    needs: [test, build, deploy]
-    steps:
-      - name: Notify build status
-        run: |
-          if [ "${{ needs.deploy.result }}" = "success" ]; then
-            echo "✅ Build and deployment completed successfully"
-            echo "Version: ${{ needs.build.outputs.version }}"
-          elif [ "${{ needs.build.result }}" = "failure" ]; then
-            echo "❌ Build failed"
-          elif [ "${{ needs.test.result }}" = "failure" ]; then
-            echo "❌ Tests failed"
-          else
-            echo "⚠️ Deployment completed with issues"
-          fi
