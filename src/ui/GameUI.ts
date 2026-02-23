@@ -2299,10 +2299,13 @@ export class GameUI {
   }
 
   private saveToSlot(slotKey: string, isAuto: boolean = false): void {
-    // Only allow saving in village stage (auto-save also respects this)
+    // Only allow manual saving in village stage; auto-save works in all stages
     if (!this.isNonCombatStage(this.currentStage)) {
-      if (!isAuto) this.showNotification('⚠️ 只能在村庄中保存游戏', 'warning');
-      return;
+      if (!isAuto) {
+        this.showNotification('⚠️ 只能在村庄中保存游戏', 'warning');
+        return;
+      }
+      // isAuto=true: continue to save even in combat stages
     }
     try {
       const worldSaved = SaveSystem.saveToLocalStorage(this.world, slotKey);
@@ -2403,11 +2406,20 @@ export class GameUI {
         }
       }
 
-      // 7. Force switch to village stage and square scene
-      this.currentStage = 'village';
-      this.currentScene = 'square';
+      // Validate restored stage/scene, fallback to village/square if invalid
+      const validStages = new Set(['village', 'grassland', 'forest', 'cave']);
+      if (!this.currentStage || !validStages.has(this.currentStage)) {
+        this.currentStage = 'village';
+        this.currentScene = 'square';
+      }
+
+      // Load the appropriate scene based on restored stage
       this.updateCurrencyDisplay();
-      this.loadStageDefaultScene();
+      if (this.isNonCombatStage(this.currentStage)) {
+        this.switchScene(this.currentScene);
+      } else {
+        this.loadStageDefaultScene();
+      }
       this.updateStageButtonStyles();
       this.updateSceneButtons();
       this.showNotification('📂 存档已加载', 'success');

@@ -102,20 +102,20 @@
   - 确保时间依赖技能正确工作，如有问题请询问用户
 
 - [ ] 6. 实现碰撞触发效果技能
-  - [~] 6.1 扩展CombatSystem支持碰撞事件
+  - [ ] 6.1 扩展CombatSystem支持碰撞事件
     - 在CombatSystem中添加handleCollisionDamage方法
     - 在造成碰撞伤害后触发碰撞事件
     - 将事件传递给SkillSystem处理
     - _Requirements: 12.3_
 
-  - [~] 6.2 实现on_collision_heal效果类型
+  - [ ] 6.2 实现on_collision_heal效果类型
     - 在SkillSystem中添加handleCollisionEffects方法
     - 检查攻击者是否拥有饮血技能
     - 计算治疗量为伤害的10%
     - 立即应用治疗效果
     - _Requirements: 6.2, 6.3, 6.4_
 
-  - [~] 6.3 实现on_collision_gold效果类型
+  - [ ] 6.3 实现on_collision_gold效果类型
     - 检查攻击者是否拥有麦达斯之触技能
     - 生成1到3之间的随机金币数量
     - 将金币添加到角色的货币组件
@@ -130,31 +130,31 @@
     - **Property 8: 麦达斯之触金币奖励**
     - **Validates: Requirements 4.2, 4.3, 6.2, 6.3, 6.4**
 
-- [~] 7. Checkpoint - 确保碰撞技能测试通过
+- [ ] 7. Checkpoint - 确保碰撞技能测试通过
   - 运行所有单元测试和属性测试
   - 确保碰撞触发技能正确工作，如有问题请询问用户
 
 - [ ] 8. 实现伤害修正型技能
-  - [~] 8.1 扩展CombatSystem支持目标类型识别
+  - [ ] 8.1 扩展CombatSystem支持目标类型识别
     - 添加getTargetType方法识别目标是普通敌人、BOSS还是资源点
     - 可以通过组件标签或特定组件来识别目标类型
     - _Requirements: 12.4_
 
-  - [~] 8.2 实现damage_modifier效果类型
+  - [ ] 8.2 实现damage_modifier效果类型
     - 在SkillSystem中添加getDamageModifier方法
     - 根据目标类型和角色技能返回伤害修正倍率
     - _Requirements: 12.4_
 
-  - [~] 8.3 集成伤害修正到伤害计算
+  - [ ] 8.3 集成伤害修正到伤害计算
     - 在CombatSystem的伤害计算中调用getDamageModifier
     - 将基础伤害乘以修正倍率
     - _Requirements: 1.6, 3.2_
 
-  - [~] 8.4 实现挑战者技能效果
+  - [ ] 8.4 实现挑战者技能效果
     - 对BOSS敌人造成的伤害增加15%
     - _Requirements: 1.6_
 
-  - [~] 8.5 实现自然学技能效果
+  - [ ] 8.5 实现自然学技能效果
     - 对资源点造成的伤害增加100%
     - _Requirements: 3.2_
 
@@ -167,12 +167,12 @@
     - **Property 6: 资源点伤害加成正确计算**
     - **Validates: Requirements 1.6, 3.2**
 
-- [~] 9. Checkpoint - 确保伤害修正技能测试通过
+- [ ] 9. Checkpoint - 确保伤害修正技能测试通过
   - 运行所有单元测试和属性测试
   - 确保伤害修正技能正确工作，如有问题请询问用户
 
 - [ ] 10. 最终集成和验证
-  - [~] 10.1 运行完整的测试套件
+  - [ ] 10.1 运行完整的测试套件
     - 运行所有单元测试（npm run test:unit）
     - 运行所有属性测试（npm run test:property）
     - 确保测试覆盖率达到目标
@@ -184,13 +184,13 @@
     - **Property 15: 系统支持所需效果类型**
     - **Validates: Requirements 12.1, 12.2, 12.3, 12.4**
 
-  - [~] 10.3 手动测试游戏中的技能效果
+  - [ ] 10.3 手动测试游戏中的技能效果
     - 在游戏中学习每个新技能
     - 验证技能效果在实际游戏中正确显示和应用
     - 测试昼夜切换时条件技能的表现
     - 测试战斗中碰撞触发技能的表现
 
-- [~] 11. Final Checkpoint - 确保所有测试通过
+- [ ] 11. Final Checkpoint - 确保所有测试通过
   - 确保所有测试通过，代码质量符合标准
   - 如有任何问题或疑问，请询问用户
 
