@@ -1371,6 +1371,7 @@ export class GameUI {
         cursor: pointer;
         transition: all 0.2s;
         transform: translateY(0);
+        ${btn.id === 'dev-btn' ? 'display: none;' : ''}
         ${btn.id === 'card-collection-btn' && this.lockedButtons.has('card-collection') ? 'display: none;' : ''}
       `;
       
