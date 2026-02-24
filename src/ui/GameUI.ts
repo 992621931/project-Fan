@@ -2329,6 +2329,7 @@ export class GameUI {
         inventory: this.itemSystem.getInventory(),
         itemInstances: this.itemSystem.getAllItemInstances(),
         ownedCards: this.cardSystem.getOwnedCards().map((c: any) => ({ id: c.id, holographic: c.holographic || false })),
+        recruitedCharacters: this.npcSystem.getRecruitedCharacters().map((c: any) => ({ ...c })),
       };
       localStorage.setItem(`${slotKey}_ui`, JSON.stringify(uiState));
       if (!isAuto) this.showNotification('💾 游戏进度已保存', 'success');
@@ -2406,6 +2407,17 @@ export class GameUI {
         }
       }
 
+      // Restore recruited characters
+      if (uiState.recruitedCharacters && Array.isArray(uiState.recruitedCharacters)) {
+        for (const charData of uiState.recruitedCharacters) {
+          // Only restore if not already recruited (avoid duplicates)
+          if (!this.npcSystem.getRecruitedCharacter(charData.id)) {
+            this.npcSystem.recruitCharacter(charData);
+          }
+        }
+        console.log(`[SaveSystem] Restored ${uiState.recruitedCharacters.length} recruited characters`);
+      }
+
       // Validate restored stage/scene, fallback to village/square if invalid
       const validStages = new Set(['village', 'grassland', 'forest', 'cave']);
       if (!this.currentStage || !validStages.has(this.currentStage)) {
@@ -2420,8 +2432,9 @@ export class GameUI {
       } else {
         this.loadStageDefaultScene();
       }
-      this.updateStageButtonStyles();
+      this.updateStagePanel();
       this.updateSceneButtons();
+      this.updateQuestTracker();
       this.showNotification('📂 存档已加载', 'success');
     } catch (error) {
       console.error('Load failed:', error);
