@@ -2576,6 +2576,10 @@ export class GameUI {
    * Reload the current scene to reflect NPC unlock changes
    */
   private reloadCurrentScene(): void {
+    // Only reload village scenes; combat stages use loadStageDefaultScene instead
+    if (!this.isNonCombatStage(this.currentStage)) {
+      return;
+    }
     this.clearSceneContainer();
     if (this.currentScene === 'square') {
       this.loadSquareScene();
@@ -15244,6 +15248,10 @@ export class GameUI {
       this.currentScene = 'square';
       this.switchScene('square');
     } else {
+      // Clear currentScene so village-specific logic (e.g. onDawnEvents tavern reload)
+      // does not accidentally overwrite the combat stage background
+      this.currentScene = '';
+
       // Load stage background
       const backgroundImage = stageBackgrounds[this.currentStage];
       if (backgroundImage) {
@@ -16266,8 +16274,8 @@ export class GameUI {
       }
     }
     
-    // If currently in tavern scene, reload it to display new adventurers
-    if (this.currentScene === 'tavern') {
+    // If currently in tavern scene (and in village stage), reload it to display new adventurers
+    if (this.currentScene === 'tavern' && this.isNonCombatStage(this.currentStage)) {
       this.loadTavernScene();
       console.log('✅ Reloaded tavern scene with new adventurers');
     }
