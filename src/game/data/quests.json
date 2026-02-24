@@ -193,7 +193,7 @@
           "description": "和智者小么进行一次对话"
         }
       ],
-      "rewards": { "gold": 1000, "crystal": 50, "unlockFeature": "card-collection", "cards": [{ "cardId": "card_xiaome" }], "items": [{ "itemId": "skill_book_heavy_punch", "quantity": 1 }, { "itemId": "skill_book_simple_bandage", "quantity": 1 }] },
+      "rewards": { "gold": 1000, "unlockFeature": "card-collection", "cards": [{ "cardId": "card_xiaome" }], "items": [{ "itemId": "skill_book_heavy_punch", "quantity": 1 }, { "itemId": "skill_book_simple_bandage", "quantity": 1 }] },
       "prerequisites": ["main_09_meet_summoner"],
       "sortOrder": 10
     },
